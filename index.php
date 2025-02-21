@@ -5,6 +5,7 @@ include("header.php");
 ?>
 <?php
 echo "My 1st PHP script!";
+echo "Wurst";
 ?>
 <?php
 //footer
