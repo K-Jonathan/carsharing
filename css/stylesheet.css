@@ -6,3 +6,57 @@ body {
     font-weight: normal; /* 100 bis 900 möglich */
     font-style: normal;
 }
+
+.navbar {
+    position: absolute; /* Über dem Hintergrundbild */
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: green;
+    padding: 15px 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.navbar nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 50px;
+}
+
+.navbar nav ul li {
+    display: inline;
+}
+
+.navbar nav ul li a {
+    color: white; /* Text bleibt sichtbar */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Abstand zwischen Icon & Text */
+}
+
+.icon-text:hover {
+    text-decoration: underline; /* Unterstreichung beim Hover */
+    text-underline-offset: 2px; /* Abstand zwischen Text und Linie */
+    text-decoration-thickness: 2px; /* Dicke der Linie */
+}
+
+.icon-text img {
+    height: 35px;
+}
