@@ -232,10 +232,11 @@ html, body {
 
 .pink-text h1{
     color: #313131;
-    font-size: 60px;
+    font-size: 80px;
     font-weight: bold;
     letter-spacing: 5px;
     line-height: 1.4; /* Erhöht den Abstand */
+    margin-top: -25px;
 }
 
 .pink-text h2{
@@ -284,6 +285,7 @@ html, body {
     text-align: left;
 }
 
+/* Gesamtstil */
 .cs {
     background-color: #EFCFD8; /* Pink */
     padding: 40px 20px;
@@ -292,21 +294,21 @@ html, body {
     font-family: "Roboto", sans-serif;
     width: 100%;
     display: flex;
-    flex-direction: column; /* Stapelt h1 & h2 untereinander */
-    align-items: center; /* Zentriert horizontal */
-    justify-content: center; /* Zentriert vertikal */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.cs h1{
+.cs h1 {
     color: #313131;
     font-size: 80px;
     font-weight: bold;
     letter-spacing: 5px;
-    line-height: 1.4; /* Erhöht den Abstand */
+    line-height: 1.4;
     margin-top: -25px;
 }
 
-.review-slider{
+.review-slider {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -321,7 +323,7 @@ html, body {
     width: 100%;
 }
 
-/* Neuer Schatten über dem Bild */
+/* Schatten-Hintergrund */
 .review-overlay {
     position: absolute;
     top: 0;
@@ -329,20 +331,20 @@ html, body {
     width: 100%;
     height: 99.5%;
     border-radius: 20px;
-    background: rgba(0, 0, 0, 0.719); /* Halbtransparenter dunkler Schatten */
-    z-index: 1; /* Setzt den Schatten unter den Text */
+    background: rgba(0, 0, 0, 0.719);
+    z-index: 1;
 }
 
-/* Bild bleibt unverändert */
+/* Bild */
 .review img {
     border-radius: 20px;
     width: 100%;
     height: 100%;
     position: relative;
-    z-index: 0; /* Hintergrundbild unter dem Schatten */
+    z-index: 0;
 }
 
-/* Text liegt über dem Schatten */
+/* **Textanimation** */
 .review-text {
     position: absolute;
     top: 50%;
@@ -352,33 +354,60 @@ html, body {
     padding: 20px;
     width: 85%;
     text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    z-index: 2; /* Stellt sicher, dass der Text über dem Schatten liegt */
+    z-index: 2;
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-.review-text p {
+.review-text p{
     font-size: 48px;
     font-weight: bold;
-    margin-bottom: 10px;
 }
 
-.review-text span {
-    font-size: 24px;
-    font-weight:lighter;
+.review-text span{
+    font-size: 32px;
+    font-weight: lighter;
 }
 
+/* **Nur das aktive Zitat sichtbar** */
+.review-text.active {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+/* **Animationen für den Textwechsel** */
+.review-text.exit-left {
+    transform: translate(-150%, -50%);
+    opacity: 0;
+}
+
+.review-text.exit-right {
+    transform: translate(50%, -50%);
+    opacity: 0;
+}
+
+.review-text.enter-left {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.review-text.enter-right {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+/* **Navigationsbuttons** */
 .review-navigation {
     position: absolute;
-    bottom: 20px; /* Abstand zum unteren Rand des Bildes */
-    right: 20px; /* Abstand zum rechten Rand des Bildes */
+    bottom: 20px;
+    right: 20px;
     display: flex;
-    gap: 25px; /* Abstand zwischen den Buttons */
-    z-index: 3; /* Über Bild und Overlay */
+    gap: 15px;
+    z-index: 3;
 }
 
 .review-navigation button {
-    background: rgba(0, 0, 0, 0.6); /* Halbtransparenter Hintergrund */
+    background: rgba(0, 0, 0, 0.6);
     color: white;
     border: none;
     padding: 15px 25px;
@@ -389,5 +418,27 @@ html, body {
 }
 
 .review-navigation button:hover {
-    background: rgba(0, 0, 0, 0.9); /* Beim Hover dunkler */
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* **Kreis-Navigation für die Zitate** */
+.review-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.dot.active-dot {
+    background: white;
 }
