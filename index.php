@@ -59,3 +59,23 @@ include("includes/header.php");
         <p><strong>Für jeden Mietwagen pflanzen wir einen Baum, seien Sie umweltfreundlich unterwegs</strong></p>
     </div>
 </section>
+
+<section class="cs">
+    <h1>UNSERE KUNDEN</h1>
+    <div class="review-slider">
+    <div class="review">
+    <div class="review-overlay"></div>
+    <img src="images/review-1.png" alt="Review-1">
+    <div class="review-text">
+        <p><strong>Bester Mietwagen meines Lebens. Endlich kann ich auch grün Autofahren. Ich bin begeistert.</strong></p>
+        <span>- Rudi Völler</span>
+    </div>
+    
+    <!-- Navigation innerhalb des Bild-Containers -->
+    <div class="review-navigation">
+        <button id="prevBtn">&#10094;</button>
+        <button id="nextBtn">&#10095;</button>
+    </div>
+</div>
+    </div>
+</section>

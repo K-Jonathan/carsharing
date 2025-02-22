@@ -231,6 +231,7 @@ html, body {
 }
 
 .pink-text h1{
+    color: #313131;
     font-size: 60px;
     font-weight: bold;
     letter-spacing: 5px;
@@ -238,6 +239,7 @@ html, body {
 }
 
 .pink-text h2{
+    color: #313131;
     font-size: 22.5px;
     letter-spacing: 2.5px;
 }
@@ -280,4 +282,112 @@ html, body {
     font-size: 27px;
     font-weight: bold;
     text-align: left;
+}
+
+.cs {
+    background-color: #EFCFD8; /* Pink */
+    padding: 40px 20px;
+    text-align: center;
+    color: black;
+    font-family: "Roboto", sans-serif;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stapelt h1 & h2 untereinander */
+    align-items: center; /* Zentriert horizontal */
+    justify-content: center; /* Zentriert vertikal */
+}
+
+.cs h1{
+    color: #313131;
+    font-size: 80px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    line-height: 1.4; /* Erhöht den Abstand */
+    margin-top: -25px;
+}
+
+.review-slider{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 100%;
+}
+
+.review {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Neuer Schatten über dem Bild */
+.review-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 99.5%;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.719); /* Halbtransparenter dunkler Schatten */
+    z-index: 1; /* Setzt den Schatten unter den Text */
+}
+
+/* Bild bleibt unverändert */
+.review img {
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 0; /* Hintergrundbild unter dem Schatten */
+}
+
+/* Text liegt über dem Schatten */
+.review-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 20px;
+    width: 85%;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    z-index: 2; /* Stellt sicher, dass der Text über dem Schatten liegt */
+}
+
+.review-text p {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.review-text span {
+    font-size: 24px;
+    font-weight:lighter;
+}
+
+.review-navigation {
+    position: absolute;
+    bottom: 20px; /* Abstand zum unteren Rand des Bildes */
+    right: 20px; /* Abstand zum rechten Rand des Bildes */
+    display: flex;
+    gap: 25px; /* Abstand zwischen den Buttons */
+    z-index: 3; /* Über Bild und Overlay */
+}
+
+.review-navigation button {
+    background: rgba(0, 0, 0, 0.6); /* Halbtransparenter Hintergrund */
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.review-navigation button:hover {
+    background: rgba(0, 0, 0, 0.9); /* Beim Hover dunkler */
 }
