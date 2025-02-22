@@ -241,3 +241,43 @@ html, body {
     font-size: 22.5px;
     letter-spacing: 2.5px;
 }
+
+.features {
+    display: flex;
+    justify-content: space-between; /* Gleichmäßiger Abstand */
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.feature {
+    background-color: white; /* Weiße Boxen */
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1; /* Alle Boxen gleich groß */
+    margin: 0 15px; /* Abstand zwischen den Boxen */
+}
+
+.feature-header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Abstand zwischen Icon und Text */
+    margin-bottom: 10px;
+}
+
+.feature img {
+    height: 25px; /* Größe der Icons */
+    margin-bottom: 0; /* Kein extra Abstand nach unten */
+}
+
+.feature h3 {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: left;
+    margin: 0; /* Kein extra Abstand */
+}
+
+.feature p {
+    font-size: 27px;
+    font-weight: bold;
+    text-align: left;
+}
