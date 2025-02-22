@@ -20,12 +20,11 @@ html, body {
 }
 
 .navbar {
-    position: relative; /* Ändert von absolute auf relative */
     width: 100%;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.7); /* Falls du einen halbtransparenten Hintergrund möchtest */
-    z-index: 10;
+    background: transparent; /* Kein Hintergrund */
+    z-index: 10; /* Stellt sicher, dass er über dem Bild liegt */
     padding: 15px 0;
 }
 
@@ -82,16 +81,6 @@ html, body {
     overflow-x: hidden;
 }
 
-/* 🔹 HEADER anpassen, damit er über dem Bild liegt */
-.navbar {
-    width: 100%;
-    top: 0;
-    left: 0;
-    background: transparent; /* Kein Hintergrund */
-    z-index: 10; /* Stellt sicher, dass er über dem Bild liegt */
-    padding: 15px 0;
-}
-
 /* 🔹 HERO-BEREICH: Hintergrundbild + Höhe anpassen */
 .hero {
     width: 100%;
@@ -103,11 +92,118 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -84px;
+    margin-top: -275px;
+}
+
+.hero .rundeck {
+    background-color: white;
+    width: 80%;
+    height: 175px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero .rundeck nav ul{
+    display: flex; /* Stellt sicher, dass die Listenelemente in einer Zeile sind */
+    gap: 50px; /* Abstand zwischen den Einträgen */
+}
+
+.search-btn {
+    background-color: #EFCFD8; /* Weiches Pink */
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px; /* Abgerundete Ecken */
+    font-weight: bold;
+    font-size: 26px;
+    cursor: pointer;
+    width: 275px; /* Gesamtbreite */
+    height: 75px;
+}
+
+.search-btn:hover {
+    background-color: #e3b9c6; /* Dunkleres Pink beim Hover */
+}
+
+.location-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    font-size: 22px;
+    border-radius: 20px; /* Runde Ecken */
+    overflow: hidden;
+    padding: 5px;
+    background: white;
+    width: 350px; /* Gesamtbreite */
+    height: 75px;
+    overflow: visible;
+ }
+
+.location-group input {
+    border: none;
+    font-size: 22px;
+    outline: none;
+    flex: 1; /* Beide Felder teilen sich den Platz */
+    min-width: 50px; /* Verhindert zu kleine Felder */
+    padding-left: 25px; /* Abstand vom linken Rand */
+    overflow: visible;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* Runde Ecken */
+    overflow: hidden;
+    padding: 5px;
+    background: white;
+    width: 350px; /* Gesamtbreite */
+    height: 75px;
+    overflow: visible;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between; /* Gleichmäßige Verteilung */
+    align-items: center;
+    width: 85%; /* Breite der gesamten Suchleiste */
+    height: 175px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: -100px; /* Leicht ins Bild ziehen */
+    overflow: visible;
+}
+
+.input-group input {
+    border: none;
+    font-size: 22px;
+    outline: none;
+    flex: 1; /* Beide Felder teilen sich den Platz */
+    min-width: 50px; /* Verhindert zu kleine Felder */
+    padding: 12px; /* Standard-Padding */
+}
+
+/* 📅 Datum linksbündig mit Abstand */
+.input-group input:first-child {
+    border-right: 1px solid #ccc; /* Linie zwischen den Eingaben */
+    text-align: left;
+    padding-left: 25px; /* Abstand vom linken Rand */
+}
+
+/* ⏰ Uhrzeit rechtsbündig mit Abstand */
+.input-group input:last-child {
+    text-align: left;
+    padding-right: 10px; /* Abstand von der Trennlinie */
 }
 
 /* 🔹 PINKER KASTEN unterhalb des Bildes */
-.hero-text {
+.pink-text {
     background-color: #EFCFD8; /* Pink */
     padding: 40px 20px;
     text-align: center;
@@ -121,14 +217,14 @@ html, body {
     justify-content: center; /* Zentriert vertikal */
 }
 
-.hero-text h1{
+.pink-text h1{
     font-size: 60px;
     font-weight: bold;
     letter-spacing: 5px;
     line-height: 1.4; /* Erhöht den Abstand */
 }
 
-.hero-text h2{
+.pink-text h2{
     font-size: 22.5px;
     letter-spacing: 2.5px;
 }
