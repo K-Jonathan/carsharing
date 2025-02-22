@@ -7,19 +7,28 @@ include("includes/header.php");
 <section class="hero">
     </div>
     <div class="search-container">
-        <div class="search-field location-group">
-            <input type="text" placeholder="Abholung & Rückgabe">
+    <div class="search-field">
+        <label for="location">Stadt</label>
+        <div class="location-group">
+            <input type="text" id="location" placeholder="Abholung & Rückgabe">
         </div>
-        <div class="search-field input-group">
-            <input type="text" placeholder="Datum">
-            <input type="text" placeholder="Uhrzeit">
-        </div>
-        <div class="search-field input-group">
-            <input type="text" placeholder="Datum">
-            <input type="text" placeholder="Uhrzeit">
-        </div>
-        <button type="submit" class="search-btn">Suchen</button>
     </div>
+    <div class="search-field">
+        <label for="pickup">Abholdatum</label>
+        <div class="input-group">
+            <input type="text" id="pickup" placeholder="Datum">
+            <input type="text" placeholder="Uhrzeit">
+        </div>
+    </div>
+    <div class="search-field">
+        <label for="return">Rückgabedatum</label>
+        <div class="input-group">
+            <input type="text" id="return" placeholder="Datum">
+            <input type="text" placeholder="Uhrzeit">
+        </div>
+    </div>
+    <button type="submit" class="search-btn">Suchen</button>
+</div>
 </section>
 
 <section class="pink-text">

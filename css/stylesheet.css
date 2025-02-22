@@ -121,6 +121,7 @@ html, body {
     cursor: pointer;
     width: 275px; /* Gesamtbreite */
     height: 75px;
+    margin-top: 25px;
 }
 
 .search-btn:hover {
@@ -200,6 +201,18 @@ html, body {
 .input-group input:last-child {
     text-align: left;
     padding-right: 10px; /* Abstand von der Trennlinie */
+}
+
+.search-field {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.search-field label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 /* 🔹 PINKER KASTEN unterhalb des Bildes */
