@@ -442,3 +442,85 @@ html, body {
 .dot.active-dot {
     background: white;
 }
+
+.earth-section {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: white; /* Weißer Hintergrund */
+}
+
+.earth-section h1 {
+    color: #313131;
+    font-size: 80px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    line-height: 1.4;
+    margin-bottom: 40px;
+}
+
+/* Bild-Container */
+.earth-link {
+    display: inline-block;
+    text-decoration: none; /* Entfernt Link-Unterstreichung */
+}
+
+.earth-image {
+    position: relative;
+    width: 675px; /* Größe anpassen */
+    height: auto;
+    border-radius: 20px;
+    overflow: hidden; /* Damit nichts übersteht */
+    margin-top: -25px;
+}
+
+/* Das eigentliche Bild */
+.earth-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+}
+
+/* Overlay über dem Bild */
+.earth-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Halbtransparenter schwarzer Overlay */
+    border-radius: 20px;
+    z-index: 1;
+}
+
+/* Text auf dem Bild */
+.earth-text {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+.earth-text h2 {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.earth-text p {
+    font-size: 26px;
+}
+
+/* Hover-Effekt */
+.earth-image:hover .earth-overlay {
+    background: rgba(0, 0, 0, 0.7); /* Overlay dunkler beim Hover */
+    transition: background 0.7s ease;
+}
+
+.earth-image:hover .earth-text {
+    transform: translate(-50%, -50%) scale(1.05); /* Leichte Vergrößerung */
+    transition: transform 0.3s ease;
+}

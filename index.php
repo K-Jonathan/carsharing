@@ -102,6 +102,20 @@ include("includes/header.php");
     </div>
 </section>
 
+<section class="earth-section">
+    <h1>FÜR UNSERE ERDE</h1>
+    <a href="#" class="earth-link">
+        <div class="earth-image">
+            <div class="earth-overlay"></div>
+            <img src="images/brand-1.png" alt="Flamin-Go Konzept">
+            <div class="earth-text">
+                <h2>FLAMIN-GO</h2>
+                <p>Jetzt unser Konzept anschauen</p>
+            </div>
+        </div>
+    </a>
+</section>
+
 <?php
 //STRG + U auf beliebigen Websites für Insights
 //header
