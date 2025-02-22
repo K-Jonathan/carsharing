@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
@@ -7,12 +13,19 @@ body {
     font-style: normal;
 }
 
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Verhindert horizontales Scrollen */
+}
+
 .navbar {
-    position: absolute; /* Über dem Hintergrundbild */
+    position: relative; /* Ändert von absolute auf relative */
     width: 100%;
     top: 0;
     left: 0;
-    background-color: green;
+    background: rgba(0, 0, 0, 0.7); /* Falls du einen halbtransparenten Hintergrund möchtest */
+    z-index: 10;
     padding: 15px 0;
 }
 
@@ -59,4 +72,63 @@ body {
 
 .icon-text img {
     height: 35px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* 🔹 HEADER anpassen, damit er über dem Bild liegt */
+.navbar {
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: transparent; /* Kein Hintergrund */
+    z-index: 10; /* Stellt sicher, dass er über dem Bild liegt */
+    padding: 15px 0;
+}
+
+/* 🔹 HERO-BEREICH: Hintergrundbild + Höhe anpassen */
+.hero {
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/hero-image.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -84px;
+}
+
+/* 🔹 PINKER KASTEN unterhalb des Bildes */
+.hero-text {
+    background-color: #EFCFD8; /* Pink */
+    padding: 40px 20px;
+    text-align: center;
+    color: black;
+    font-family: "Roboto", sans-serif;
+    width: 100%;
+    height: 225px; /* Falls fixe Höhe gewünscht */
+    display: flex;
+    flex-direction: column; /* Stapelt h1 & h2 untereinander */
+    align-items: center; /* Zentriert horizontal */
+    justify-content: center; /* Zentriert vertikal */
+}
+
+.hero-text h1{
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    line-height: 1.4; /* Erhöht den Abstand */
+}
+
+.hero-text h2{
+    font-size: 22.5px;
+    letter-spacing: 2.5px;
 }

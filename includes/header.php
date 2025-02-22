@@ -20,7 +20,3 @@
             </nav>
         </div>
     </header>
-<?php
-echo "Header";
-?>
-<p></p>
