@@ -9,7 +9,7 @@
 <body>
     <header class="navbar">
         <div class="container">
-            <a href="index.php" class="logo img">
+            <a href="/carsharing/" class="logo img">
                 <img src="images/flamin-go-logo.png" alt="Flamin-Go Car Rental Logo">
             </a>
             <nav>

@@ -524,3 +524,99 @@ html, body {
     transform: translate(-50%, -50%) scale(1.05); /* Leichte Vergrößerung */
     transition: transform 0.3s ease;
 }
+
+/* Footer Grundlayout */
+.footer {
+    background-color: #e0d8d8;
+    padding: 40px 0;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;  /* Erhöht die Breite für mehr Abstand */
+    margin: 0 auto;
+    padding: 0 60px; /* Mehr Abstand vom Rand */
+}
+
+/* Linke Seite */
+.footer-left {
+    width: 40%; /* Weniger Breite, um es nach links zu rücken */
+    text-align: left;
+    margin-left: -150px;
+}
+
+.footer-logo {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.footer-title {
+    color: #313131;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-text {
+    font-size: 18px;
+    color: #313131;
+    line-height: 1.5;
+    margin-top: -5px;
+}
+
+/* Trennlinie */
+.footer-divider {
+    width: 1px;
+    height: 260px;
+    background-color: #313131;
+    margin-right: 100px;
+}
+
+/* Rechte Seite mit Buttons */
+.footer-right {
+    width: 45%; /* Weniger Breite, um es nach rechts zu rücken */
+    display: flex;
+    justify-content: flex-end; /* Nach rechts ausrichten */
+}
+
+/* Container für die zwei Button-Spalten */
+.footer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 80px; /* Mehr Abstand zwischen den beiden Spalten */
+    margin-right: -155px;
+}
+
+/* Jede Spalte */
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Mehr Abstand zwischen den Buttons */
+}
+
+/* Buttons */
+.footer-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    min-width: 350px;
+}
+
+/* Dunkle Buttons links */
+.footer-btn.dark {
+    background-color: #6a6a6a;
+    color: white;
+}
+
+/* Helle Buttons rechts */
+.footer-btn.light {
+    background-color: #c6b8b8;
+    color: white;
+}
