@@ -1,0 +1,128 @@
+/* <weight>: Use a value from 100 to 900 // <uniquifier>: Use a unique and descriptive class name
+.roboto-<uniquifier>
+ 
+{ font-family: "Roboto", serif; font-optical-sizing: auto; font-weight: <weight>; font-style: normal; font-variation-settings: "wdth" 100; }
+ 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> */
+ 
+  .hero {
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/hero-image.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -275px;
+}
+
+  .startbild {
+    background-size: cover;
+    text-align: center;
+    background-image: url('images/EcoCar1.jpg');
+   min-width: 100%;
+    min-height: 1200px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+        margin-top: -100px;
+   
+  }
+ 
+  .verdunkelt {
+    opacity: 0.99; /* 80% Sichtbarkeit = 20% dunkler */
+}
+.blacksmall {
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: rgb(0, 0, 0);
+    font-weight:normal;
+    font-size:140%;
+ }
+ .blackbig {
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: rgb(0, 0, 0);
+    font-weight:bold;
+    font-size:250%;
+ }
+ 
+ .whitebig {
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white; /* Schriftfarbe auf Weiß setzen */
+    font-weight: bold; /* Fettgedruckte Schrift */
+    font-size:500%;
+ }
+ 
+ .whitemedium {
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white; /* Schriftfarbe auf Weiß setzen */
+    font-weight: bold; /* Fettgedruckte Schrift */
+    font-size:350%;
+ }
+ .whiteandthin {
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white; /* Schriftfarbe auf Weiß setzen */
+    font-weight:lighter; /* Fettgedruckte Schrift */
+    font-size:200%;
+ }
+.testclass {    
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+   
+ 
+ 
+}
+ 
+.container {
+    position: relative;
+    text-align: center;
+ 
+  }
+ 
+  .bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+  }
+ 
+  .top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+  }
+ 
+  .top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+  }
+ 
+  .bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+  }
+ 
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+ 
