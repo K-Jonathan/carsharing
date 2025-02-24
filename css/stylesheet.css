@@ -140,7 +140,13 @@ html, body {
     width: 350px; /* Gesamtbreite */
     height: 75px;
     overflow: visible;
- }
+    box-sizing: border-box; /* Stellt sicher, dass die Gesamtgröße gleich bleibt */
+}
+
+.location-group:focus-within {
+    border: 1px solid #EFCFD8; /* Pinke Umrandung beim Fokussieren */
+    outline: 3px solid #EFCFD8; /* Pinke Umrandung bleibt außerhalb, ohne Inhalt zu verschieben */
+}
 
 .location-group input {
     border: none;
@@ -619,4 +625,111 @@ html, body {
 .footer-btn.light {
     background-color: #c6b8b8;
     color: white;
+}
+
+/* Autovervollständigungs-Dropdown */
+.autocomplete-suggestions {
+    position: absolute;
+    top: calc(100% + 10px); /* Setzt die Box höher, damit sie über die Suchbox ragt */
+    left: 0;
+    width: 350px; /* Genauso breit wie das Eingabefeld */
+    max-width: 500px; /* Falls notwendig, um es visuell anzupassen */
+    background: white;
+    border: 1px solid #ccc;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 20px; /* Runde Ecken */
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.6); /* Stärkerer Schatten für mehr Kontrast */
+    font-family: inherit;
+    font-size: 16px;
+    padding: 5px 0;
+    margin-top: -35px;
+    margin-left: 30px;
+    font-size: 22px;
+}
+
+/* Styling für einzelne Vorschläge */
+.autocomplete-suggestion {
+    padding: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    font-size: 18px;
+    color: black;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal; /* 100 bis 900 möglich */
+    font-style: normal;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s ease-in-out;
+}
+
+/* Trennlinie zwischen Vorschlägen */
+.autocomplete-suggestion:not(:last-child) {
+    border-bottom: 1px solid #ddd; /* Dünne graue Linie */
+}
+
+.autocomplete-suggestion:hover {
+    background: #f7f7f7;
+}
+
+/* Eingabefeld mit Icon */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 10px; /* Stelle sicher, dass das Icon links bleibt */
+    width: 20px;
+    height: 20px;
+}
+
+/* Vorschlagsbox mit Icon */
+.suggestion-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.suggestion-icon {
+    width: 20px;
+    height: 20px;
+}
+
+#search-location {
+    padding-left: 40px; /* Platz für die Lupe lassen */
+}
+
+/* Webkit-Browser (Chrome, Edge, Safari, Opera) */
+.autocomplete-suggestions::-webkit-scrollbar {
+    width: 8px; /* Dünne Scrollbar */
+    height: 80%; /* Höhe der Scrollbar */
+}
+
+/* Unsichtbarer Hintergrund (Track) */
+.autocomplete-suggestions::-webkit-scrollbar-track {
+    background: transparent; /* Track unsichtbar */
+    border-radius: 10px;
+}
+
+/* Pinker Thumb mit abgerundeten Ecken */
+.autocomplete-suggestions::-webkit-scrollbar-thumb {
+    background: #EFCFD8; /* Pink */
+    border-radius: 16px; /* Runde Kanten */
+}
+
+/* Hover-Effekt für den Thumb */
+.autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
+    background: #e5b9c4; /* Etwas dunkleres Pink beim Drüberfahren */
+}
+
+/* Unsichtbare Pfeile (Buttons) */
+.autocomplete-suggestions::-webkit-scrollbar-button {
+    background: transparent; /* Pink */
 }
