@@ -639,8 +639,8 @@ html, body {
     max-height: 300px;
     overflow-y: auto;
     z-index: 1000;
-    border-radius: 20px; /* Runde Ecken */
-    box-shadow: 1px 1px 4px rgba(0,0,0,0.6); /* Stärkerer Schatten für mehr Kontrast */
+    border-radius: 12px; /* Runde Ecken */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6); /* Stärkerer Schatten für mehr Kontrast */
     font-family: inherit;
     font-size: 16px;
     padding: 5px 0;
@@ -733,3 +733,165 @@ html, body {
 .autocomplete-suggestions::-webkit-scrollbar-button {
     background: transparent; /* Pink */
 }
+
+/* Datum-Feld: Schreibgeschützt & Zeiger ändern */
+#pickup, #return {
+    cursor: pointer; /* Zeigt eine Hand an */
+}
+
+/* Der Kalender-Kasten */
+.calendar-box {
+    position: absolute;
+    top: 300px; /* Abstand unterhalb der Suchleiste */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 465px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 1000;
+    padding: 15px; /* Abstand für den Inhalt */
+}
+
+/* Kalender-Header mit Monatsnamen */
+.calendar-header {
+    position: relative; /* Stellt sicher, dass wir absolute Positionierung innerhalb nutzen können */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.calendar-months {
+    display: flex;
+    justify-content: center;
+    position: absolute; /* Dadurch kann es unabhängig von anderen Elementen verschoben werden */
+    left: 50%; /* Mitte des Containers */
+    transform: translateX(-50%); /* Exakte Zentrierung */
+}
+
+.calendar-month {
+    width: 150px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 172.5px; /* Hiermit kannst du den Abstand der Labels verändern */
+}
+
+/* Individuelle Bewegung der Monatslabels */
+.calendar-months.move-left {
+    transform: translateX(-60%);
+}
+
+.calendar-months.move-right {
+    transform: translateX(-40%);
+}
+
+/* Navigations-Buttons */
+.calendar-nav {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    position: relative; /* Stellt sicher, dass es nicht von absolut positionierten Elementen überlappt wird */
+    z-index: 10; /* Priorisiert die Klickbarkeit */
+}
+
+.calendar-nav:hover {
+    color: #EFCFD8; /* Pink */
+}
+
+.calendar-nav:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Kalender-Gitter für 3 Monate */
+.calendar-grid {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px 40px 20px; /* Mehr Platz nach unten */
+    position: relative;
+}
+
+/* Spalten für die Monate */
+.calendar-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Sorgt dafür, dass alles mittig bleibt */
+    text-align: center;
+    width: 33%; /* Damit jeder Monat genau ein Drittel einnimmt */
+}
+
+.calendar-weekdays {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc; /* Dünne graue Linie */
+    width: 80%;
+}
+
+.calendar-weekdays span {
+    flex: 1; /* Gleichmäßige Verteilung */
+    text-align: center; /* Zentriert MO, DI, etc. */
+    font-size: 14px;
+    font-weight: 500;
+    color: #6c757d; /* Grau */
+}
+
+/* Styling für die Kalender-Tage */
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Sieben gleich große Spalten */
+    gap: 17px; /* Abstand zwischen den Tagen */
+    text-align: center;
+    padding-top: 10px;
+}
+
+/* Styling für die Tage */
+.calendar-day {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Hover-Effekt: grauer Hintergrund + pinke Umrandung */
+.calendar-day:hover {
+    background-color: #f3f3f3;
+    border: 2px solid #EFCFD8; /* Pinke Umrandung */
+}
+
+/* Tage außerhalb des Monats ausgegraut und deaktiviert */
+.calendar-day.outside {
+    color: #bbb;
+    pointer-events: none; /* Klicks deaktivieren */
+    background: none;
+}
+
+/* Styling für ausgewähltes Datum */
+.calendar-day.selected {
+    background-color: #EFCFD8; /* Pink */
+    color: white;
+    border-radius: 8px;
+}
+
+/* Tage zwischen den ausgewählten Tagen */
+.in-range {
+    background-color: #f3e1e6; /* Helles Pink für Tage zwischen Start- und Enddatum */
+    color: black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+

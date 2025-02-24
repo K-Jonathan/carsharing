@@ -179,3 +179,162 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const dateInputs = document.querySelectorAll("#pickup, #return");
+    const calendarContainer = document.getElementById("calendar-container");
+    const prevButton = document.getElementById("prev-month");
+    const nextButton = document.getElementById("next-month");
+    const pickupInput = document.getElementById("pickup");
+    const returnInput = document.getElementById("return");
+
+    let selectedDates = [];
+
+    const monthNamesShort = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
+    const monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+
+    function generateMonthGrid(container, year, month) {
+        container.innerHTML = "";
+        let firstDay = new Date(year, month, 1).getDay();
+        if (firstDay === 0) firstDay = 7; // Sonntag als 7 setzen
+
+        let daysInMonth = new Date(year, month + 1, 0).getDate();
+        let prevMonthDays = new Date(year, month, 0).getDate();
+
+        let daysHTML = "";
+        for (let i = firstDay - 1; i > 0; i--) {
+            daysHTML += `<span class="calendar-day outside">${prevMonthDays - i + 1}</span>`;
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            daysHTML += `<span class="calendar-day" data-day="${day}" data-month="${month}" data-year="${year}">${day}</span>`;
+        }
+
+        container.innerHTML = daysHTML;
+        addDateSelectionListeners(container);
+    }
+
+    function updateCalendar() {
+        generateMonthGrid(document.getElementById("calendar-prev"), currentYear, currentMonth);
+        generateMonthGrid(document.getElementById("calendar-current"), currentYear, currentMonth + 1);
+        generateMonthGrid(document.getElementById("calendar-next"), currentYear, currentMonth + 2);
+        updateMonthLabels();
+        updateSelectionUI();
+    }
+
+    function updateMonthLabels() {
+        document.getElementById("month-prev").textContent = monthNames[currentMonth] + " " + currentYear;
+        document.getElementById("month-current").textContent = monthNames[(currentMonth + 1) % 12] + " " + (currentMonth + 1 > 11 ? currentYear + 1 : currentYear);
+        document.getElementById("month-next").textContent = monthNames[(currentMonth + 2) % 12] + " " + (currentMonth + 2 > 11 ? currentYear + 1 : currentYear);
+
+        prevButton.disabled = (currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear());
+    }
+
+    prevButton.addEventListener("click", function () {
+        if (!prevButton.disabled) {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            updateCalendar();
+        }
+    });
+
+    nextButton.addEventListener("click", function () {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        updateCalendar();
+    });
+
+    function addDateSelectionListeners(container) {
+        container.querySelectorAll(".calendar-day").forEach(day => {
+            day.addEventListener("click", function () {
+                const selectedDay = this.getAttribute("data-day");
+                const selectedMonth = this.getAttribute("data-month");
+                const selectedYear = this.getAttribute("data-year");
+                let selectedDate = new Date(selectedYear, selectedMonth, selectedDay);
+
+                if (selectedDates.length === 0) {
+                    selectedDates.push(selectedDate);
+                } else if (selectedDates.length === 1) {
+                    if (selectedDate.getTime() === selectedDates[0].getTime()) return;
+                    selectedDates.push(selectedDate);
+                    selectedDates.sort((a, b) => a - b);
+                } else {
+                    selectedDates = [selectedDate];
+                }
+
+                updateDateInputs();
+                updateSelectionUI();
+            });
+        });
+    }
+
+    function updateDateInputs() {
+        if (selectedDates.length > 0) {
+            pickupInput.value = `${selectedDates[0].getDate()}. ${monthNamesShort[selectedDates[0].getMonth()]}`;
+        }
+        if (selectedDates.length > 1) {
+            returnInput.value = `${selectedDates[1].getDate()}. ${monthNamesShort[selectedDates[1].getMonth()]}`;
+        } else {
+            returnInput.value = "";
+        }
+    }
+
+    function updateSelectionUI() {
+        document.querySelectorAll(".calendar-day").forEach(day => {
+            day.classList.remove("selected", "in-range");
+        });
+
+        selectedDates.forEach(date => {
+            document.querySelectorAll(".calendar-day").forEach(day => {
+                if (day.getAttribute("data-day") == date.getDate() &&
+                    day.getAttribute("data-month") == date.getMonth() &&
+                    day.getAttribute("data-year") == date.getFullYear()) {
+                    day.classList.add("selected");
+                }
+            });
+        });
+
+        // Färbt die Tage zwischen den zwei gewählten Daten in hellpink
+        if (selectedDates.length === 2) {
+            let startDate = selectedDates[0];
+            let endDate = selectedDates[1];
+
+            document.querySelectorAll(".calendar-day").forEach(day => {
+                let dayNumber = parseInt(day.getAttribute("data-day"));
+                let month = parseInt(day.getAttribute("data-month"));
+                let year = parseInt(day.getAttribute("data-year"));
+                let dateObj = new Date(year, month, dayNumber);
+
+                if (dateObj > startDate && dateObj < endDate) {
+                    day.classList.add("in-range"); // Färbt die Tage dazwischen
+                }
+            });
+        }
+    }
+
+    dateInputs.forEach(input => {
+        input.addEventListener("click", function () {
+            calendarContainer.style.display = "block";
+            updateCalendar();
+            updateSelectionUI();
+        });
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!calendarContainer.contains(event.target) && !Array.from(dateInputs).includes(event.target)) {
+            calendarContainer.style.display = "none";
+        }
+    });
+
+    updateCalendar();
+});

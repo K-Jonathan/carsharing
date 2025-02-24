@@ -6,33 +6,75 @@ include("includes/header.php");
 
 <section class="hero">
     <div class="search-container">
-    <div class="search-field">
-    <label for="location">Stadt</label>
-    <div class="location-group">
-        <div class="input-wrapper">
-            <img src="images/lupe-icon.png" class="input-icon" alt="Such-Icon">
-            <input type="text" id="search-location" placeholder="Abholung & Rückgabe">
+        <div class="search-field">
+            <label for="location">Stadt</label>
+            <div class="location-group">
+                <div class="input-wrapper">
+                    <img src="images/lupe-icon.png" class="input-icon" alt="Such-Icon">
+                    <input type="text" id="search-location" placeholder="Abholung & Rückgabe">
+                </div>
+                <div id="autocomplete-container" class="autocomplete-suggestions"></div>
+            </div>
         </div>
-        <div id="autocomplete-container" class="autocomplete-suggestions"></div>
-    </div>
-</div>
         <div class="search-field">
             <label for="pickup">Abholdatum</label>
             <div class="input-group">
-                <input type="text" id="pickup" placeholder="Datum">
+                <input type="text" id="pickup" placeholder="Datum" readonly>
                 <input type="text" placeholder="Uhrzeit">
             </div>
         </div>
         <div class="search-field">
             <label for="return">Rückgabedatum</label>
             <div class="input-group">
-                <input type="text" id="return" placeholder="Datum">
+                <input type="text" id="return" placeholder="Datum" readonly>
                 <input type="text" placeholder="Uhrzeit">
             </div>
         </div>
         <button type="submit" class="search-btn">Suchen</button>
     </div>
+
+    <!-- Kalender Container -->
+    <div id="calendar-container" class="calendar-box">
+        <div class="calendar-header">
+            <button id="prev-month" class="calendar-nav">&lt;</button>
+            <div class="calendar-months">
+                <span id="month-prev" class="calendar-month"></span>
+                <span id="month-current" class="calendar-month"></span>
+                <span id="month-next" class="calendar-month"></span>
+            </div>
+            <button id="next-month" class="calendar-nav">&gt;</button>
+        </div>
+
+        <div class="calendar-grid">
+            <div class="calendar-column">
+                <div class="calendar-weekdays">
+                    <span>MO</span><span>DI</span><span>MI</span><span>DO</span><span>FR</span><span>SA</span><span>SO</span>
+                </div>
+                <div class="calendar-days" id="calendar-prev"></div>
+            </div>
+            <div class="calendar-column">
+                <div class="calendar-weekdays">
+                    <span>MO</span><span>DI</span><span>MI</span><span>DO</span><span>FR</span><span>SA</span><span>SO</span>
+                </div>
+                <div class="calendar-days" id="calendar-current"></div>
+            </div>
+            <div class="calendar-column">
+                <div class="calendar-weekdays">
+                    <span>MO</span><span>DI</span><span>MI</span><span>DO</span><span>FR</span><span>SA</span><span>SO</span>
+                </div>
+                <div class="calendar-days" id="calendar-next"></div>
+            </div>
+        </div>
+    </div>
 </section>
+
+
+
+
+
+
+
+
 
 <section class="pink-text">
     <h1>MIETE PINK - FAHR GRÜN</h1>
