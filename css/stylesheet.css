@@ -973,3 +973,8 @@ html, body {
     border: 1px solid #EFCFD8 !important; /* Pinke Umrandung */
     outline: 3px solid #EFCFD8 !important; /* Weiche äußere Umrandung */
 }
+
+/* Auf bestimmten Seiten: Grauer Header */
+body.car-selection .navbar {
+    background-color: #B0B0B0 !important; /* Grau */
+}

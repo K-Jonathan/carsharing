@@ -37,7 +37,9 @@ include("includes/header.php");
                 </div>
             </div>
         </div>
-        <button type="submit" class="search-btn">Suchen</button>
+        <form action="car_selection.php" method="GET">
+    <button type="submit" class="search-btn">Suchen</button>
+</form>
     </div>
 
     <!-- Kalender Container -->
