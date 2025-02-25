@@ -146,6 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (inputField.value.trim().length === 0) {
             fetchLocations("");
         }
+        suggestionsContainer.style.display = "block"; // Dropdown offen halten, solange das Feld aktiv ist
     });
 
     // ENTER-Taste: Wenn der Benutzer Enter drückt, wird die erste Stadt aus den Vorschlägen übernommen
@@ -164,6 +165,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Fix: Die Standortauswahl bleibt offen, solange das Eingabefeld fokussiert ist
+    inputField.addEventListener("click", function (event) {
+        event.stopPropagation(); // Verhindert das Schließen durch andere Klick-Listener
+        suggestionsContainer.style.display = "block";
+    });
+
     // Klicke außerhalb -> Vorschläge ausblenden
     document.addEventListener("click", function (event) {
         if (!inputField.contains(event.target) && !suggestionsContainer.contains(event.target)) {
@@ -179,6 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const dateInputs = document.querySelectorAll("#pickup, #return");
@@ -338,3 +346,158 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateCalendar();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const pickupTimeInput = document.getElementById("pickup-time");
+    const pickupTimeDropdown = document.getElementById("time-dropdown");
+    const pickupTimeGrid = document.getElementById("time-grid");
+
+    const returnTimeInput = document.getElementById("return-time");
+    const returnTimeDropdown = document.getElementById("return-time-dropdown");
+    const returnTimeGrid = document.getElementById("return-time-grid");
+
+    function generateTimeOptions(grid, input, dropdown) {
+        grid.innerHTML = ""; // Leeren, falls schon Inhalte da sind
+        for (let hour = 0; hour < 24; hour++) {
+            for (let min of ["00", "30"]) {
+                const timeString = `${hour.toString().padStart(2, '0')}:${min}`;
+                const timeOption = document.createElement("div");
+                timeOption.classList.add("time-option");
+                timeOption.textContent = timeString;
+
+                // Klick-Event für Auswahl der Uhrzeit
+                timeOption.addEventListener("click", function () {
+                    input.value = timeString;
+                    dropdown.style.display = "none";
+                });
+
+                grid.appendChild(timeOption);
+
+                // Letzte Zeile nur mit einer Uhrzeit
+                if (hour === 23 && min === "30") break;
+            }
+        }
+    }
+
+    // Öffnet das Dropdown mit Uhrzeiten für Abholdatum
+    pickupTimeInput.addEventListener("click", function (event) {
+        event.stopPropagation();
+        pickupTimeDropdown.style.display = "block";
+        generateTimeOptions(pickupTimeGrid, pickupTimeInput, pickupTimeDropdown);
+    });
+
+    // Öffnet das Dropdown mit Uhrzeiten für Rückgabedatum
+    returnTimeInput.addEventListener("click", function (event) {
+        event.stopPropagation();
+        returnTimeDropdown.style.display = "block";
+        generateTimeOptions(returnTimeGrid, returnTimeInput, returnTimeDropdown);
+    });
+
+    // Schließt das Dropdown, wenn außerhalb geklickt wird
+    document.addEventListener("click", function (event) {
+        if (!pickupTimeDropdown.contains(event.target) && event.target !== pickupTimeInput) {
+            pickupTimeDropdown.style.display = "none";
+        }
+        if (!returnTimeDropdown.contains(event.target) && event.target !== returnTimeInput) {
+            returnTimeDropdown.style.display = "none";
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const locationInput = document.getElementById("search-location");
+    const calendarContainer = document.getElementById("calendar-container");
+    const pickupInput = document.getElementById("pickup");
+    const returnInput = document.getElementById("return");
+    const pickupTimeInput = document.getElementById("pickup-time");
+    const returnTimeInput = document.getElementById("return-time");
+    const calendarDays = document.querySelectorAll(".calendar-days span"); // Alle Tage im Kalender
+
+    function closeAllExcept(except) {
+        if (except !== "calendar") calendarContainer.style.display = "none";
+        if (except !== "location") document.getElementById("autocomplete-container").style.display = "none";
+        if (except !== "pickupTime") document.getElementById("time-dropdown").style.display = "none";
+        if (except !== "returnTime") document.getElementById("return-time-dropdown").style.display = "none";
+    }
+
+    // Öffnet den Kalender
+    pickupInput.addEventListener("click", function (event) {
+        event.stopPropagation();
+        closeAllExcept("calendar");
+        calendarContainer.style.display = "block";
+    });
+
+    returnInput.addEventListener("click", function (event) {
+        event.stopPropagation();
+        closeAllExcept("calendar");
+        calendarContainer.style.display = "block";
+    });
+
+    // Schließt den Kalender nur bei Klick außerhalb oder auf Standort/Uhrzeitfelder
+    document.addEventListener("click", function (event) {
+        if (
+            !calendarContainer.contains(event.target) &&
+            !pickupInput.contains(event.target) &&
+            !returnInput.contains(event.target)
+        ) {
+            closeAllExcept(null);
+        }
+    });
+
+    // **WICHTIG**: Kalender bleibt offen, wenn ein Tag angeklickt wird
+    calendarDays.forEach(day => {
+        day.addEventListener("click", function (event) {
+            event.stopPropagation(); // Verhindert das Schließen beim Anklicken eines Tages
+        });
+    });
+
+    // Klick auf Standort oder Uhrzeit schließt den Kalender
+    locationInput.addEventListener("click", function () {
+        closeAllExcept("location");
+    });
+
+    pickupTimeInput.addEventListener("click", function () {
+        closeAllExcept("pickupTime");
+    });
+
+    returnTimeInput.addEventListener("click", function () {
+        closeAllExcept("returnTime");
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const locationWrapper = document.querySelector(".location-group");
+    const locationInput = document.getElementById("search-location");
+
+    const pickupWrapper = document.getElementById("pickup").closest(".input-group");
+    const returnWrapper = document.getElementById("return").closest(".input-group");
+
+    function closeAllExcept(except) {
+        if (except !== "location") locationWrapper.classList.remove("focus-within");
+        if (except !== "pickup") pickupWrapper.classList.remove("focus-within");
+        if (except !== "return") returnWrapper.classList.remove("focus-within");
+    }
+
+    locationInput.addEventListener("focus", function () {
+        closeAllExcept("location");
+        locationWrapper.classList.add("focus-within");
+    });
+
+    document.getElementById("pickup").addEventListener("focus", function () {
+        closeAllExcept("pickup");
+        pickupWrapper.classList.add("focus-within");
+    });
+
+    document.getElementById("return").addEventListener("focus", function () {
+        closeAllExcept("return");
+        returnWrapper.classList.add("focus-within");
+    });
+
+    // Klick außerhalb schließt alle Umrandungen
+    document.addEventListener("click", function (event) {
+        if (!event.target.closest(".input-group") && !event.target.closest(".location-group")) {
+            closeAllExcept(null);
+        }
+    });
+});
+

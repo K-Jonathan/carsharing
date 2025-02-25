@@ -143,11 +143,6 @@ html, body {
     box-sizing: border-box; /* Stellt sicher, dass die Gesamtgröße gleich bleibt */
 }
 
-.location-group:focus-within {
-    border: 1px solid #EFCFD8; /* Pinke Umrandung beim Fokussieren */
-    outline: 3px solid #EFCFD8; /* Pinke Umrandung bleibt außerhalb, ohne Inhalt zu verschieben */
-}
-
 .location-group input {
     border: none;
     font-size: 22px;
@@ -158,17 +153,17 @@ html, body {
     overflow: visible;
 }
 
+/* Standardgraue Umrandung für die Eingabefelder */
 .input-group {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 20px; /* Runde Ecken */
-    overflow: hidden;
-    padding: 5px;
+    border: 1px solid #ccc; /* Standardgrau */
+    border-radius: 20px;
     background: white;
-    width: 350px; /* Gesamtbreite */
+    width: 350px;
     height: 75px;
-    overflow: visible;
+    padding: 5px;
+    position: relative;
 }
 
 .search-container {
@@ -215,12 +210,13 @@ html, body {
     align-items: left;
 }
 
+/* Sicherstellen, dass sich das Label nicht verschiebt */
 .search-field label {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
+    transition: none; /* Kein Springen mehr */
 }
-
 /* 🔹 PINKER KASTEN unterhalb des Bildes */
 .pink-text {
     background-color: #EFCFD8; /* Pink */
@@ -894,4 +890,86 @@ html, body {
     padding: 5px;
 }
 
+.time-picker-container {
+    position: relative;
+    display: inline-block;
+}
 
+/* Dropdown Styling */
+.time-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: none;
+    min-height: none;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 1000;
+    margin-top: 15px;
+    margin-left: 82.5px;
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Zwei Spalten */
+    gap: 10px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto; /* Scrollbar falls nötig */
+}
+
+.time-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 50px;
+    background: #f3f3f3;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.time-option:hover {
+    background-color: #EFCFD8;
+    border: 2px solid #EFCFD8; /* Pinke Umrandung */
+}
+
+/* Webkit-Browser (Chrome, Edge, Safari, Opera) */
+.time-grid::-webkit-scrollbar {
+    width: 8px; /* Dünne Scrollbar */
+    height: 80%; /* Höhe der Scrollbar */
+}
+
+/* Unsichtbarer Hintergrund (Track) */
+.time-grid::-webkit-scrollbar-track {
+    background: transparent; /* Track unsichtbar */
+    border-radius: 10px;
+}
+
+/* Pinker Thumb mit abgerundeten Ecken */
+.time-grid::-webkit-scrollbar-thumb {
+    background: #EFCFD8; /* Pink */
+    border-radius: 16px; /* Runde Kanten */
+}
+
+/* Hover-Effekt für den Thumb */
+.time-grid::-webkit-scrollbar-thumb:hover {
+    background: #e5b9c4; /* Etwas dunkleres Pink beim Drüberfahren */
+}
+
+/* Unsichtbare Pfeile (Buttons) */
+.time-grid::-webkit-scrollbar-button {
+    background: transparent; /* Pink */
+}
+
+/* Fokussierte Umrandung für Standort, Abhol- & Rückgabedatum */
+.location-group:focus-within,
+.input-group:focus-within {
+    border: 1px solid #EFCFD8 !important; /* Pinke Umrandung */
+    outline: 3px solid #EFCFD8 !important; /* Weiche äußere Umrandung */
+}

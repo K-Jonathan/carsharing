@@ -17,17 +17,24 @@ include("includes/header.php");
             </div>
         </div>
         <div class="search-field">
-            <label for="pickup">Abholdatum</label>
-            <div class="input-group">
-                <input type="text" id="pickup" placeholder="Datum" readonly>
-                <input type="text" placeholder="Uhrzeit">
-            </div>
+    <label for="pickup">Abholdatum</label>
+    <div class="input-group">
+        <input type="text" id="pickup" placeholder="Datum" readonly>
+        <input type="text" id="pickup-time" placeholder="Uhrzeit" readonly>
+        <div id="time-dropdown" class="time-dropdown">
+        <div id="time-grid" class="time-grid"></div>
         </div>
+    </div>
+</div>
+
         <div class="search-field">
             <label for="return">Rückgabedatum</label>
             <div class="input-group">
                 <input type="text" id="return" placeholder="Datum" readonly>
-                <input type="text" placeholder="Uhrzeit">
+                <input type="text" id="return-time" placeholder="Uhrzeit" readonly>
+                <div id="return-time-dropdown" class="time-dropdown">
+                <div id="return-time-grid" class="time-grid"></div>
+                </div>
             </div>
         </div>
         <button type="submit" class="search-btn">Suchen</button>
@@ -67,6 +74,7 @@ include("includes/header.php");
         </div>
     </div>
 </section>
+
 
 
 
