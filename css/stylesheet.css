@@ -976,7 +976,7 @@ html, body {
 
 /* Auf bestimmten Seiten: Grauer Header */
 body.car-selection .navbar {
-    background-color: #B0B0B0 !important; /* Grau */
+    background-color: #333 !important; /* Grau */
 }
 
 /* Section für den Fahrzeugfilter */
@@ -984,19 +984,20 @@ body.car-selection .navbar {
     width: 100%;
     display: flex;
     justify-content: center; /* Zentriert die Box */
-    margin-top: 100px; /* Abstand nach unten */
+    margin-top: 75px; /* Abstand nach unten */
 }
 
-/* Weiße Hauptbox */
+/* 🔹 Stellt sicher, dass `.filter-container` alles in einer Zeile hält */
 .filter-container {
     display: flex;
-    align-items: center; /* Vertikal zentrieren */
-    width: 90%;
-    height: 125px;
+    align-items: center;
+    justify-content: space-between; /* Verteilt Standort & Filter */
     background-color: white;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
-    padding: 0 15px;
+    width: 90%;
+    height: 125px;
 }
 
 /* Graue Box auf der linken Seite */
@@ -1044,4 +1045,37 @@ body.car-selection .navbar {
 .dash {
     margin: 0 10px;
     font-weight: bold;
+}
+
+/* 🔹 Verteilt die Buttons gleichmäßig und rückt sie näher an die schwarze Box */
+.filter-options {
+    display: flex;
+    flex-grow: 1; /* Lässt die Buttons den verfügbaren Platz nutzen */
+    justify-content: space-evenly; /* Gleichmäßige Verteilung der Buttons */
+    align-items: center;
+    margin-left: 50px; /* Reduziert den Abstand zur schwarzen Box */
+    margin-right: 35px;
+    gap: 15px;
+    height: 55%;
+}
+
+/* 🔹 Buttons anpassen */
+.filter-btn {
+    background-color: #e0e0e0;
+    color: black;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    flex: 1; /* Lässt alle Buttons die gleiche Breite haben */
+    text-align: center; /* Zentriert den Text in den Buttons */
+    height: 100%;
+    letter-spacing: 1.5px; /* 👉 Buchstabenabstand hier anpassen */
+}
+
+/* 🔹 Hover-Effekt */
+.filter-btn:hover {
+    background-color: #d0d0d0;
 }

@@ -25,7 +25,16 @@ $returnTime = isset($_GET['return-time']) ? htmlspecialchars($_GET['return-time'
                 <span class="date-time"><?php echo $returnTime; ?></span>
             </div>
         </div>
-    </div>
+
+        <!-- ✅ Filter ist jetzt innerhalb der richtigen Box -->
+        <div class="filter-options">
+            <button class="filter-btn">Sortierung ▼</button>
+            <button class="filter-btn">Typ ▼</button>
+            <button class="filter-btn">Getriebe ▼</button>
+            <button class="filter-btn">Preis bis ▼</button>
+            <button class="filter-btn">Mehr Filter ▼</button>
+        </div>
+    </div> <!-- ✅ `filter-container` schließt jetzt richtig -->
 </section>
 
 
