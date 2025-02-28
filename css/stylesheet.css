@@ -978,3 +978,70 @@ html, body {
 body.car-selection .navbar {
     background-color: #B0B0B0 !important; /* Grau */
 }
+
+/* Section für den Fahrzeugfilter */
+.car_filter {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Zentriert die Box */
+    margin-top: 100px; /* Abstand nach unten */
+}
+
+/* Weiße Hauptbox */
+.filter-container {
+    display: flex;
+    align-items: center; /* Vertikal zentrieren */
+    width: 90%;
+    height: 125px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    padding: 0 15px;
+}
+
+/* Graue Box auf der linken Seite */
+.filter-location {
+    background-color: #333; /* Dunkelgrau */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 70%; /* Passt sich automatisch an */
+    width: 20%;
+    margin-left: 15px;
+}
+
+/* Stadt-Label oben links */
+.city-label {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+/* Container für Datum & Uhrzeiten */
+.filter-dates {
+    display: flex;
+    align-items: center;
+}
+
+/* Datum & Uhrzeiten */
+.date-time {
+    font-size: 18px;
+}
+
+/* Trennlinie zwischen Datum & Uhrzeit */
+.divider {
+    width: 1px;
+    height: 14px;
+    background-color: white;
+    margin: 0 8px;
+}
+
+/* Bindestrich zwischen Abhol- und Rückgabedatum */
+.dash {
+    margin: 0 10px;
+    font-weight: bold;
+}

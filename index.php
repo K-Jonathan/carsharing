@@ -24,8 +24,8 @@ include("includes/header.php");
         <div id="time-dropdown" class="time-dropdown">
         <div id="time-grid" class="time-grid"></div>
         </div>
-    </div>
-</div>
+        </div>
+        </div>
 
         <div class="search-field">
             <label for="return">Rückgabedatum</label>
@@ -38,8 +38,13 @@ include("includes/header.php");
             </div>
         </div>
         <form action="car_selection.php" method="GET">
-    <button type="submit" class="search-btn">Suchen</button>
-</form>
+            <input type="hidden" name="search-location" id="hidden-search-location">
+            <input type="hidden" name="pickup" id="hidden-pickup">
+            <input type="hidden" name="pickup-time" id="hidden-pickup-time">
+            <input type="hidden" name="return" id="hidden-return">
+            <input type="hidden" name="return-time" id="hidden-return-time">
+            <button type="submit" class="search-btn">Suchen</button>
+        </form>
     </div>
 
     <!-- Kalender Container -->
