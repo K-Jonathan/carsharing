@@ -514,3 +514,163 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    function setupDropdown(buttonId, dropdownId) {
+        const button = document.getElementById(buttonId);
+        const dropdown = document.getElementById(dropdownId);
+        const options = dropdown.querySelectorAll("button");
+
+        button.addEventListener("click", function () {
+            const rect = button.getBoundingClientRect(); // Position des Buttons holen
+
+            // 🛠 Anpassungen für exakte Positionierung
+            const offsetY = -190; // Abstand nach unten
+            const offsetX = -635; // Falls notwendig, für Links/Rechts-Verschiebung
+
+            dropdown.style.top = `${rect.bottom + window.scrollY + offsetY}px`; // Direkt unter den Button
+            dropdown.style.left = `${rect.left + window.scrollX + rect.width / 2 - dropdown.offsetWidth / 2 + offsetX}px`; // Exakt mittig
+            dropdown.classList.toggle("visible");
+        });
+
+        // Event-Listener für Dropdown-Optionen (Einzelauswahl für "Sortierung" und "Preis bis", Mehrfachauswahl für andere)
+        options.forEach(option => {
+            option.addEventListener("click", function () {
+                if (buttonId === "sort-filter" || buttonId === "price-filter") {
+                    // Falls "Sortierung" oder "Preis bis", nur eine Auswahl zulassen, aber auch deaktivierbar machen
+                    if (this.classList.contains("active")) {
+                        this.classList.remove("active");
+
+                        // Falls nichts mehr aktiv ist, entferne Farbe vom Hauptbutton
+                        button.classList.remove("active");
+                    } else {
+                        options.forEach(opt => opt.classList.remove("active"));
+                        this.classList.add("active");
+
+                        // Hauptbutton färben
+                        button.classList.add("active");
+                    }
+                } else {
+                    // Falls bereits aktiv, entferne Auswahl (für Mehrfachauswahl-Buttons)
+                    if (this.classList.contains("active")) {
+                        this.classList.remove("active");
+                    } else {
+                        this.classList.add("active");
+                    }
+
+                    // Prüfe, ob mindestens eine Auswahl aktiv ist
+                    const anyActive = [...options].some(opt => opt.classList.contains("active"));
+
+                    // Falls eine Auswahl aktiv ist, färbe den Hauptbutton
+                    if (anyActive) {
+                        button.classList.add("active");
+                    } else {
+                        button.classList.remove("active");
+                    }
+                }
+            });
+        });
+
+        // Klick außerhalb der Box schließt sie wieder
+        document.addEventListener("click", function (event) {
+            if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.remove("visible");
+            }
+        });
+    }
+
+    // Dropdowns initialisieren
+    setupDropdown("gear-filter", "gear-dropdown"); // Getriebe
+    setupDropdown("type-filter", "type-dropdown"); // Typ
+    setupDropdown("sort-filter", "sort-dropdown"); // Sortierung
+    setupDropdown("price-filter", "price-dropdown"); // Preis bis
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const moreFiltersBtn = document.getElementById("more-filters-btn");
+    const extraFiltersBox = document.getElementById("extra-filters-box");
+
+    if (moreFiltersBtn && extraFiltersBox) {
+        moreFiltersBtn.addEventListener("click", function () {
+            // Prüfe den aktuellen `display`-Wert
+            const isHidden = getComputedStyle(extraFiltersBox).display === "none";
+
+            // Setze den neuen `display`-Wert basierend auf dem vorherigen Zustand
+            extraFiltersBox.style.display = isHidden ? "block" : "none";
+
+            // 🔹 Button einfärben, wenn extraFiltersBox sichtbar ist
+            if (!isHidden) {
+                moreFiltersBtn.classList.remove("active");
+            } else {
+                moreFiltersBtn.classList.add("active");
+            }
+        });
+    } else {
+        console.error("Fehler: Elemente nicht gefunden!");
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    function setupDropdown(buttonId, dropdownId, offsetX = 0) {
+        const button = document.getElementById(buttonId);
+        const dropdown = document.getElementById(dropdownId);
+        const options = dropdown.querySelectorAll("button");
+
+        button.addEventListener("click", function () {
+            const rect = button.getBoundingClientRect();
+
+            // Fixierte Position OHNE Scrollen
+            dropdown.style.top = `${rect.bottom - 253.5}px`; // Entfernt window.scrollY
+            dropdown.style.left = `${rect.left + rect.width / 2 - dropdown.offsetWidth / 2 + offsetX}px`;
+
+            dropdown.classList.toggle("visible");
+        });
+
+        // Klick außerhalb des Dropdowns schließt es
+        document.addEventListener("click", function (event) {
+            if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.remove("visible");
+            }
+        });
+
+        // Event-Listener für Mehrfachauswahl (Buttons färben sich)
+        options.forEach(option => {
+            option.addEventListener("click", function () {
+                if (this.classList.contains("active")) {
+                    this.classList.remove("active");
+                } else {
+                    this.classList.add("active");
+                }
+
+                const anyActive = [...options].some(opt => opt.classList.contains("active"));
+
+                if (anyActive) {
+                    button.classList.add("active");
+                } else {
+                    button.classList.remove("active");
+                }
+            });
+        });
+    }
+
+    // 🔹 Dropdowns für neue Filter-Buttons initialisieren (mit X-Verschiebung)
+    setupDropdown("manufacturer-filter", "manufacturer-dropdown", -121.5);
+    setupDropdown("doors-filter", "doors-dropdown", -122.5);
+    setupDropdown("seats-filter", "seats-dropdown", -125);
+    setupDropdown("drive-filter", "drive-dropdown", -125);
+    setupDropdown("age-filter", "age-dropdown", -127.5);
+    setupDropdown("trunk-filter", "trunk-dropdown", -122.5);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    function setupToggleButton(buttonId) {
+        const button = document.getElementById(buttonId);
+
+        button.addEventListener("click", function () {
+            button.classList.toggle("active");
+        });
+    }
+
+    setupToggleButton("climate-filter");
+    setupToggleButton("gps-filter");
+});
