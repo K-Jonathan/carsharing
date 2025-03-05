@@ -146,7 +146,9 @@ $returnTime = isset($_GET['return-time']) ? htmlspecialchars($_GET['return-time'
 
 
 
-
+<div id="car-list">
+    <!-- 🚗 Hier werden die Car-IDs dynamisch eingefügt -->
+</div>
 
 
 

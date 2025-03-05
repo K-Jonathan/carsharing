@@ -674,3 +674,136 @@ document.addEventListener("DOMContentLoaded", function () {
     setupToggleButton("climate-filter");
     setupToggleButton("gps-filter");
 });
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    function fetchCarIds() {
+        let sortOrder = "";
+        let selectedTypes = [];
+        let selectedGears = [];
+        let selectedVendors = [];
+        let selectedDoors = [];
+        let selectedSeats = [];
+        let selectedDrives = [];
+        let selectedAges = [];
+        let selectedTrunks = [];
+        let maxPrice = null;
+        let airCondition = 0;
+        let gps = 0;
+
+        const activeSortButton = document.querySelector("#sort-dropdown button.active");
+        if (activeSortButton) {
+            if (activeSortButton.innerText.includes("absteigend")) {
+                sortOrder = "price_desc";
+            } else if (activeSortButton.innerText.includes("aufsteigend")) {
+                sortOrder = "price_asc";
+            }
+        }
+
+        // 🔹 Typ-Filter
+        document.querySelectorAll("#type-dropdown button.active").forEach(button => {
+            selectedTypes.push(button.innerText);
+        });
+
+        // 🔹 Getriebe-Filter
+        document.querySelectorAll("#gear-dropdown button.active").forEach(button => {
+            selectedGears.push(button.innerText);
+        });
+
+        // 🔹 Hersteller-Filter
+        document.querySelectorAll("#manufacturer-dropdown button.active").forEach(button => {
+            selectedVendors.push(button.innerText);
+        });
+
+        // 🔹 Türen-Filter
+        document.querySelectorAll("#doors-dropdown button.active").forEach(button => {
+            selectedDoors.push(button.innerText);
+        });
+
+        // 🔹 Sitze-Filter
+        document.querySelectorAll("#seats-dropdown button.active").forEach(button => {
+            selectedSeats.push(button.innerText);
+        });
+
+        // 🔹 Antriebs-Filter
+        document.querySelectorAll("#drive-dropdown button.active").forEach(button => {
+            selectedDrives.push(button.innerText);
+        });
+
+        // 🔹 Mindestalter-Filter
+        document.querySelectorAll("#age-dropdown button.active").forEach(button => {
+            selectedAges.push(button.innerText);
+        });
+
+        // 🔹 Kofferraumvolumen-Filter (Mehrfachauswahl) **🔹 NEU**
+        document.querySelectorAll("#trunk-dropdown button.active").forEach(button => {
+            selectedTrunks.push(button.innerText);
+        });
+
+        // 🔹 Preis bis Filter
+        const activePriceButton = document.querySelector("#price-dropdown button.active");
+        if (activePriceButton) {
+            maxPrice = activePriceButton.innerText;
+        }
+
+        // 🔹 Klima-Filter (Falls aktiv)
+        if (document.getElementById("climate-filter").classList.contains("active")) {
+            airCondition = 1;
+        }
+
+        // 🔹 GPS-Filter (Falls aktiv)
+        if (document.getElementById("gps-filter").classList.contains("active")) {
+            gps = 1;
+        }
+
+        let url = `fetch_cars.php`;
+        let params = [];
+
+        if (sortOrder) params.push(`sort=${sortOrder}`);
+        if (selectedTypes.length > 0) params.push(`type=${selectedTypes.join(",")}`);
+        if (selectedGears.length > 0) params.push(`gear=${selectedGears.join(",")}`);
+        if (selectedVendors.length > 0) params.push(`vendor=${selectedVendors.join(",")}`);
+        if (selectedDoors.length > 0) params.push(`doors=${selectedDoors.join(",")}`);
+        if (selectedSeats.length > 0) params.push(`seats=${selectedSeats.join(",")}`);
+        if (selectedDrives.length > 0) params.push(`drive=${selectedDrives.join(",")}`);
+        if (selectedAges.length > 0) params.push(`min_age=${selectedAges.join(",")}`);
+        if (selectedTrunks.length > 0) params.push(`trunk=${selectedTrunks.join(",")}`); // **🔹 NEU**
+        if (maxPrice) params.push(`max_price=${maxPrice}`);
+        if (airCondition === 1) params.push(`air_condition=1`);
+        if (gps === 1) params.push(`gps=1`);
+
+        if (params.length > 0) {
+            url += `?${params.join("&")}`;
+        }
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById("car-list");
+                container.innerHTML = "";
+
+                if (data.length === 0) {
+                    container.innerHTML = "<div class='no-results'>Keine Autos gefunden.</div>";
+                    return;
+                }
+
+                data.forEach(car => {
+                    container.innerHTML += `<div class="car-id">Car ID: ${car.car_id} | Kofferraumvolumen: ${car.trunk} | Klima: ${car.air_condition ? "Ja" : "Nein"} | GPS: ${car.gps ? "Ja" : "Nein"} | Antrieb: ${car.drive} | Sitze: ${car.seats} | Türen: ${car.doors} | Hersteller: ${car.vendor_name} | Typ: ${car.type} | Getriebe: ${car.gear} | Preis: ${car.price}€</div>`;
+                });
+            })
+            .catch(error => console.error("Fehler beim Laden der Car-IDs:", error));
+    }
+
+    // ✅ Sicherstellen, dass ALLE Filter das fetchCarIds() auslösen
+    document.querySelectorAll("#sort-dropdown button, #type-dropdown button, #gear-dropdown button, #manufacturer-dropdown button, #doors-dropdown button, #seats-dropdown button, #drive-dropdown button, #age-dropdown button, #price-dropdown button, #climate-filter, #gps-filter, #trunk-dropdown button").forEach(button => {
+        button.addEventListener("click", function () {
+            fetchCarIds();
+        });
+    });
+
+    // Erste Datenabfrage beim Laden der Seite
+    fetchCarIds();
+});
