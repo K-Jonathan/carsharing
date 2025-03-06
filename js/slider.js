@@ -798,18 +798,34 @@ document.addEventListener("DOMContentLoaded", function () {
                     const imageName = car.img_file_name ? car.img_file_name : "default.jpg";
                 
                     carElement.innerHTML = `
-                        <div class="car-image">
-                            <img src="images/cars/${imageName}" alt="${car.vendor_name} ${car.type}" 
-                                 onerror="this.onerror=null; this.src='images/cars/default.jpg';">
-                        </div>
-                        <div class="car-info">
-                            <h3 class="car-title">${car.vendor_name} ${car.type}</h3>
-                            <p class="car-price">${car.price}€/Tag</p>
-                        </div>
-                    `;
+    <div class="car-image">
+        <img src="images/cars/${imageName}" alt="${car.vendor_name} ${car.type}" 
+             onerror="this.onerror=null; this.src='images/cars/default.jpg';">
+    </div>
+    <div class="car-info">
+        <div class="car-info-left">
+            <h3 class="car-title">${car.vendor_name} ${car.name} ${car.type}</h3>
+            <p class="car-price">${car.price}€/Tag</p>
+        </div>
+        <button class="book-button" data-car-id="${car.car_id}">
+            Buchen
+        </button>
+    </div>
+`;
+
+
+
+
                 
                     container.appendChild(carElement);
-                });                              
+                    // Füge Event Listener für den Button hinzu
+carElement.querySelector(".book-button").addEventListener("click", function () {
+    const carId = this.getAttribute("data-car-id");
+    redirectToDetails(carId);
+});
+
+                });   
+                                           
             })
             .catch(error => console.error("Fehler beim Laden der Car-IDs:", error));
     }
@@ -823,6 +839,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Erste Datenabfrage beim Laden der Seite
     fetchCarIds();
+    function redirectToDetails(carId) {
+        let currentParams = new URLSearchParams(window.location.search);
+        currentParams.set("car_id", carId);
+        window.location.href = "car_details.php?" + currentParams.toString();
+    }
+    
+    
+    
 });
 
 

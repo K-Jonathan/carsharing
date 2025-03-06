@@ -115,7 +115,7 @@ if (!empty($_GET['trunk'])) {
 }
 
 // 🔹 SQL-Abfrage erstellen
-$sql = "SELECT car_id, vendor_name, type, gear, doors, seats, drive, min_age, price, air_condition, gps, trunk, img_file_name FROM cars";
+$sql = "SELECT car_id, vendor_name, type, gear, doors, seats, drive, min_age, price, air_condition, gps, trunk, img_file_name, name FROM cars";
 if (!empty($whereClauses)) {
     $sql .= " WHERE " . implode(" AND ", $whereClauses);
 }

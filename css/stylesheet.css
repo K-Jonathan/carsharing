@@ -1256,12 +1256,17 @@ body.car-selection .navbar {
 #car-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-    margin-top: 50px;
+    gap: 50px;
+    padding: 100px;
+    margin-top: 0px;
+}
+
+:root {
+    --car-image-darken: 0.4; /* Wert von 0 (keine Verdunklung) bis 1 (komplett schwarz) */
 }
 
 .car-card {
+    position: relative;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
@@ -1269,23 +1274,75 @@ body.car-selection .navbar {
     text-align: center;
 }
 
+.car-image {
+    position: relative;
+}
+
+.car-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, var(--car-image-darken));
+    z-index: 1;
+}
+
+/* Stelle sicher, dass das Bild und der Titel darunter liegen */
 .car-image img {
     width: 100%;
     height: auto;
+    display: block;
+    position: relative;
+    z-index: 0;
 }
 
 .car-info {
-    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Abstand zwischen Text und Button */
+    align-items: center;
+    padding: 15px;
+    text-align: left; /* Linksbündiger Text */
+    background: #fff;
+}
+
+.car-info-left {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Abstand zwischen Titel & Preis */
 }
 
 .car-title {
-    font-size: 18px;
+    color: black;
+    font-size: 22px;
     font-weight: bold;
-    margin: 10px 0;
 }
 
 .car-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(83, 83, 83);
+}
+
+/* ✅ Buchungs-Button */
+.book-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
     font-size: 16px;
     font-weight: bold;
-    color: #28a745;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.book-button:hover {
+    background-color: #d3b6be;
+}
+
+/* Auf bestimmten Seiten: Grauer Header */
+body.car-details .navbar {
+    background-color: #333 !important; /* Grau */
 }
