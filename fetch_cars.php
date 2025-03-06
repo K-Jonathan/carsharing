@@ -115,7 +115,7 @@ if (!empty($_GET['trunk'])) {
 }
 
 // 🔹 SQL-Abfrage erstellen
-$sql = "SELECT car_id, vendor_name, type, gear, doors, seats, drive, min_age, price, air_condition, gps, trunk FROM cars";
+$sql = "SELECT car_id, vendor_name, type, gear, doors, seats, drive, min_age, price, air_condition, gps, trunk, img_file_name FROM cars";
 if (!empty($whereClauses)) {
     $sql .= " WHERE " . implode(" AND ", $whereClauses);
 }
@@ -136,5 +136,9 @@ while ($row = $result->fetch_assoc()) {
     $cars[] = $row;
 }
 
-echo json_encode($cars);
+header('Content-Type: application/json');
+echo json_encode([
+    "cars" => $cars
+]);
+exit;
 ?>

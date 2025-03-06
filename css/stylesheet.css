@@ -1252,3 +1252,40 @@ body.car-selection .navbar {
     right: 20px;
     top: 20px;
 }
+
+#car-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.car-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    text-align: center;
+}
+
+.car-image img {
+    width: 100%;
+    height: auto;
+}
+
+.car-info {
+    padding: 10px;
+}
+
+.car-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.car-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #28a745;
+}

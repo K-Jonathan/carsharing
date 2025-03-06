@@ -790,9 +790,26 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
-                data.forEach(car => {
-                    container.innerHTML += `<div class="car-id">Car ID: ${car.car_id} | Kofferraumvolumen: ${car.trunk} | Klima: ${car.air_condition ? "Ja" : "Nein"} | GPS: ${car.gps ? "Ja" : "Nein"} | Antrieb: ${car.drive} | Sitze: ${car.seats} | Türen: ${car.doors} | Hersteller: ${car.vendor_name} | Typ: ${car.type} | Getriebe: ${car.gear} | Preis: ${car.price}€</div>`;
-                });
+                data.cars.forEach(car => {
+                    const carElement = document.createElement("div");
+                    carElement.classList.add("car-card");
+                
+                    // Falls img_file_name existiert, nutzen wir es. Falls nicht, Standardbild verwenden.
+                    const imageName = car.img_file_name ? car.img_file_name : "default.jpg";
+                
+                    carElement.innerHTML = `
+                        <div class="car-image">
+                            <img src="images/cars/${imageName}" alt="${car.vendor_name} ${car.type}" 
+                                 onerror="this.onerror=null; this.src='images/cars/default.jpg';">
+                        </div>
+                        <div class="car-info">
+                            <h3 class="car-title">${car.vendor_name} ${car.type}</h3>
+                            <p class="car-price">${car.price}€/Tag</p>
+                        </div>
+                    `;
+                
+                    container.appendChild(carElement);
+                });                              
             })
             .catch(error => console.error("Fehler beim Laden der Car-IDs:", error));
     }

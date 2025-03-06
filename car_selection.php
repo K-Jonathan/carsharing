@@ -10,7 +10,7 @@ include 'includes/header.php'; // Header einfügen
 <body class="car-selection">
 
 <?php 
-$location = isset($_SESSION['search-location']) ? $_SESSION['search-location'] : null;
+$location = isset($_SESSION['search-location']) && !empty($_SESSION['search-location']) ? $_SESSION['search-location'] : "Stadt";
 $pickupDate = isset($_GET['pickup']) && !empty($_GET['pickup']) ? htmlspecialchars($_GET['pickup']) : 'Datum';
 $pickupTime = isset($_GET['pickup-time']) && !empty($_GET['pickup-time']) ? htmlspecialchars($_GET['pickup-time']) : '--:--';
 $returnDate = isset($_GET['return']) && !empty($_GET['return']) ? htmlspecialchars($_GET['return']) : 'Datum';
