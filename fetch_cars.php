@@ -1,9 +1,19 @@
 <?php
 require_once('db_connection.php');
+session_start(); // Session starten
 
 $whereClauses = [];
 $params = [];
 $types = "";
+
+// 🔹 Standort-Filter (Falls gesetzt)
+$location = isset($_SESSION['search-location']) ? $_SESSION['search-location'] : null;
+
+if ($location) {
+    $whereClauses[] = "loc_name = ?";
+    $params[] = $location;
+    $types .= "s"; 
+}
 
 // 🔹 Sortierung
 $orderBy = "car_id ASC";
@@ -85,17 +95,17 @@ if (!empty($_GET['min_age'])) {
     $types .= str_repeat("i", count($ageArray)); 
 }
 
-// 🔹 Klima-Filter (Falls aktiviert, nur Autos mit air_condition = 1 anzeigen)
+// 🔹 Klima-Filter
 if (!empty($_GET['air_condition']) && $_GET['air_condition'] === "1") {
     $whereClauses[] = "air_condition = 1";
 }
 
-// 🔹 GPS-Filter (Falls aktiviert, nur Autos mit gps = 1 anzeigen)
+// 🔹 GPS-Filter
 if (!empty($_GET['gps']) && $_GET['gps'] === "1") {
     $whereClauses[] = "gps = 1";
 }
 
-// 🔹 Kofferraumvolumen-Filter (Mehrfachauswahl) **🔹 NEU**
+// 🔹 Kofferraumvolumen-Filter
 if (!empty($_GET['trunk'])) {
     $trunkArray = explode(",", $_GET['trunk']);
     $placeholders = implode(",", array_fill(0, count($trunkArray), "?"));
@@ -112,9 +122,12 @@ if (!empty($whereClauses)) {
 $sql .= " ORDER BY $orderBy";
 
 $stmt = $conn->prepare($sql);
+
+// ✅ Bind Param nur ausführen, wenn Parameter existieren
 if (!empty($params)) {
     $stmt->bind_param($types, ...$params);
 }
+
 $stmt->execute();
 $result = $stmt->get_result();
 

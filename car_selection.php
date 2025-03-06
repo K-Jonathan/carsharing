@@ -1,10 +1,16 @@
 <?php 
+session_start();
+
+$_SESSION['search-location'] = isset($_GET['search-location']) && !empty($_GET['search-location']) 
+    ? $_GET['search-location'] 
+    : null;
+
 include 'includes/header.php'; // Header einfügen
 ?>
 <body class="car-selection">
 
 <?php 
-$location = isset($_GET['search-location']) && !empty($_GET['search-location']) ? htmlspecialchars($_GET['search-location']) : 'Stadt';
+$location = isset($_SESSION['search-location']) ? $_SESSION['search-location'] : null;
 $pickupDate = isset($_GET['pickup']) && !empty($_GET['pickup']) ? htmlspecialchars($_GET['pickup']) : 'Datum';
 $pickupTime = isset($_GET['pickup-time']) && !empty($_GET['pickup-time']) ? htmlspecialchars($_GET['pickup-time']) : '--:--';
 $returnDate = isset($_GET['return']) && !empty($_GET['return']) ? htmlspecialchars($_GET['return']) : 'Datum';
