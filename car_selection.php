@@ -4,27 +4,34 @@ include 'includes/header.php'; // Header einfügen
 <body class="car-selection">
 
 <?php 
-$location = isset($_GET['search-location']) ? htmlspecialchars($_GET['search-location']) : 'Wesel';
-$pickupDate = isset($_GET['pickup']) ? htmlspecialchars($_GET['pickup']) : '05. Feb';
-$pickupTime = isset($_GET['pickup-time']) ? htmlspecialchars($_GET['pickup-time']) : '16:00';
-$returnDate = isset($_GET['return']) ? htmlspecialchars($_GET['return']) : '11. Feb';
-$returnTime = isset($_GET['return-time']) ? htmlspecialchars($_GET['return-time']) : '16:30';
+$location = isset($_GET['search-location']) && !empty($_GET['search-location']) ? htmlspecialchars($_GET['search-location']) : 'Stadt';
+$pickupDate = isset($_GET['pickup']) && !empty($_GET['pickup']) ? htmlspecialchars($_GET['pickup']) : 'Datum';
+$pickupTime = isset($_GET['pickup-time']) && !empty($_GET['pickup-time']) ? htmlspecialchars($_GET['pickup-time']) : '--:--';
+$returnDate = isset($_GET['return']) && !empty($_GET['return']) ? htmlspecialchars($_GET['return']) : 'Datum';
+$returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? htmlspecialchars($_GET['return-time']) : '--:--';
 ?>
 
 <section class="car_filter">
     <div class="filter-container">
-        <div class="filter-location">
-            <span class="city-label"><?php echo $location; ?></span>
-            <div class="filter-dates">
-                <span class="date-time"><?php echo $pickupDate; ?></span>
-                <span class="divider"></span>
-                <span class="date-time"><?php echo $pickupTime; ?></span>
-                <span class="dash"> - </span>
-                <span class="date-time"><?php echo $returnDate; ?></span>
-                <span class="divider"></span>
-                <span class="date-time"><?php echo $returnTime; ?></span>
-            </div>
-        </div>
+    <div class="filter-location">
+    <span class="city-label"><?php echo $location; ?></span>
+    <div class="filter-dates">
+        <span class="date-time"><?php echo $pickupDate; ?></span>
+        <span class="divider"></span>
+        <span class="date-time"><?php echo $pickupTime; ?></span>
+        <span class="dash"> - </span>
+        <span class="date-time"><?php echo $returnDate; ?></span>
+        <span class="divider"></span>
+        <span class="date-time"><?php echo $returnTime; ?></span>
+    <!-- 🖊 Stift-Button -->
+    <button id="edit-search-btn">
+        ✏️
+    </button>
+    </div>
+
+    
+</div>
+
 
         <!-- ✅ Filter ist jetzt innerhalb der richtigen Box -->
         <div class="filter-options">
@@ -143,6 +150,89 @@ $returnTime = isset($_GET['return-time']) ? htmlspecialchars($_GET['return-time'
         </div>
     </div>
 </section>
+
+<!-- 🔍 Suchbox Pop-up -->
+<div id="search-popup" class="search-popup">
+    <div class="search-container">
+        <button id="close-hero-popup" class="close-btn">✖</button> <!-- Schließen-Button -->
+
+        <div class="search-field">
+            <label for="location">Stadt</label>
+            <div class="location-group">
+                <div class="input-wrapper">
+                    <img src="images/lupe-icon.png" class="input-icon" alt="Such-Icon">
+                    <input type="text" id="search-location" placeholder="Abholung & Rückgabe">
+                </div>
+                <div id="autocomplete-container" class="autocomplete-suggestions"></div>
+            </div>
+        </div>
+
+        <div class="search-field">
+            <label for="pickup">Abholdatum</label>
+            <div class="input-group">
+                <input type="text" id="pickup" placeholder="Datum" readonly>
+                <input type="text" id="pickup-time" placeholder="Uhrzeit" readonly>
+                <div id="time-dropdown" class="time-dropdown">
+                    <div id="time-grid" class="time-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-field">
+            <label for="return">Rückgabedatum</label>
+            <div class="input-group">
+                <input type="text" id="return" placeholder="Datum" readonly>
+                <input type="text" id="return-time" placeholder="Uhrzeit" readonly>
+                <div id="return-time-dropdown" class="time-dropdown">
+                    <div id="return-time-grid" class="time-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <form action="car_selection.php" method="GET">
+            <input type="hidden" name="search-location" id="hidden-search-location">
+            <input type="hidden" name="pickup" id="hidden-pickup">
+            <input type="hidden" name="pickup-time" id="hidden-pickup-time">
+            <input type="hidden" name="return" id="hidden-return">
+            <input type="hidden" name="return-time" id="hidden-return-time">
+            <button type="submit" class="search-btn">Suchen</button>
+        </form>
+    </div>
+
+    <!-- 🗓️ Kalender Container (neu hinzugefügt!) -->
+    <div id="calendar-container" class="calendar-box">
+        <div class="calendar-header">
+            <button id="prev-month" class="calendar-nav">&lt;</button>
+            <div class="calendar-months">
+                <span id="month-prev" class="calendar-month"></span>
+                <span id="month-current" class="calendar-month"></span>
+                <span id="month-next" class="calendar-month"></span>
+            </div>
+            <button id="next-month" class="calendar-nav">&gt;</button>
+        </div>
+
+        <div class="calendar-grid">
+            <div class="calendar-column">
+                <div class="calendar-weekdays">
+                    <span>MO</span><span>DI</span><span>MI</span><span>DO</span><span>FR</span><span>SA</span><span>SO</span>
+                </div>
+                <div class="calendar-days" id="calendar-prev"></div>
+            </div>
+            <div class="calendar-column">
+                <div class="calendar-weekdays">
+                    <span>MO</span><span>DI</span><span>MI</span><span>DO</span><span>FR</span><span>SA</span><span>SO</span>
+                </div>
+                <div class="calendar-days" id="calendar-current"></div>
+            </div>
+            <div class="calendar-column">
+                <div class="calendar-weekdays">
+                    <span>MO</span><span>DI</span><span>MI</span><span>DO</span><span>FR</span><span>SA</span><span>SO</span>
+                </div>
+                <div class="calendar-days" id="calendar-next"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

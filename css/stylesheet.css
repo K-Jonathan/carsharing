@@ -1019,7 +1019,7 @@ body.car-selection .navbar {
 .city-label {
     font-weight: bold;
     font-size: 20px;
-    margin-bottom: 5px;
+    margin-bottom: -2.5px;
 }
 
 /* Container für Datum & Uhrzeiten */
@@ -1208,4 +1208,47 @@ body.car-selection .navbar {
 /* 🔹 Dropdown bleibt in der Box und scrollt nicht mit */
 .dropdown-box {
     position: absolute !important; /* Fixiert es an der Seite */
+}
+
+/* 🔹 Stift-Button Styling */
+#edit-search-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: white; /* Oder eine andere passende Farbe */
+    margin-left: 10px;
+    padding: 5px;
+    transition: transform 0.2s ease;
+}
+
+/* 🔹 Leichter Hover-Effekt */
+#edit-search-btn:hover {
+    transform: scale(1.2);
+}
+
+/* 🔍 Such-Pop-up (versteckt, bis geöffnet) */
+.search-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6); /* Verdunkelung */
+    display: none; /* ✅ Ändern von flex auf none */
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 250px;
+    z-index: 1000;
+}
+
+/* Schließen-Button */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
