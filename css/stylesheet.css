@@ -1649,3 +1649,162 @@ body.car-details .navbar {
 .agbpage-button:hover {
     background-color: #e3b9c6;
 }
+
+/*Datenschutz*/
+/* 🔹 Hintergrund der Datenschutzseite */
+.datenschutzpage-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('../images/BG-Datenschutz.png') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+}
+
+/* 🔹 Unsichtbarer Positionierungs-Spacer */
+.datenschutzpage-spacer {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+/* 🔹 Datenschutz-Box: bleibt oben fixiert, wächst nach unten */
+.datenschutzpage-box {
+    width: 800px;
+    min-height: 200px; /* Anfangshöhe */
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 11.5%; /* Fixe obere Position */
+    left: 50%;
+    transform: translateX(-50%); /* Zentrierung */
+    transition: height 0.3s ease-out; /* Sanfte Höhenerweiterung */
+}
+
+/* 🔹 Titel für die Datenschutzseite */
+.datenschutzpage-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* 🔹 Untertitel für Aktualisierungsdatum */
+.datenschutzpage-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* 🔹 Textformatierung für Datenschutzseite */
+.datenschutzpage-text {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* 🔹 Accordion-Container */
+.datenschutzpage-accordion {
+    width: 100%;
+    background: white;
+    padding: 10px;
+    margin: auto;
+    border: 1px solid white;
+}
+
+/* 🔹 Einzelne Accordion-Elemente */
+.datenschutzpage-accordion-item {
+    border-bottom: 1px solid #3d3d3d;
+}
+
+/* 🔹 Button-Styling für das Accordion */
+.datenschutzpage-accordion-button {
+    width: 100%;
+    background: none;
+    color: #3d3d3d;
+    cursor: pointer;
+    padding: 15px;
+    text-align: left;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 🔹 Icon für Plus / Kreuz */
+.datenschutzpage-accordion-icon {
+    font-size: 18px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+/* 🔹 Standard-Zustand: geschlossen */
+.datenschutzpage-accordion-content {
+    padding: 0 15px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out, visibility 0.1s ease-out;
+}
+
+/* 🔹 Geöffneter Zustand */
+.datenschutzpage-accordion-content.open {
+    opacity: 1;
+    visibility: visible;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-in;
+}
+
+/* 🔹 Datenschutz-Akzeptieren-Button */
+.datenschutzpage-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #EFCFD8;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.datenschutzpage-button:hover {
+    background-color: #e3b9c6;
+}
+
+/* 🔹 Standard-Listen-Styling */
+.datenschutzpage-list {
+    list-style-type: none; /* Entfernt die Standard-Aufzählung */
+    padding-left: 0;
+    margin-top: 10px;
+    text-align: center; /* Zentriert den Text */
+}
+
+/* 🔹 Einzelne Listenelemente */
+.datenschutzpage-list li {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Zentriert Punkt und Text */
+    gap: 8px; /* Abstand zwischen Punkt und Text */
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* 🔹 Kreis (•) vor jedem Listenelement */
+.datenschutzpage-list li::before {
+    content: "•"; /* Kreis-Symbol */
+    font-size: 18px;
+    color: #555;
+    font-weight: bold;
+}
