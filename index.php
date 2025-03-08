@@ -134,7 +134,7 @@ include("includes/header.php");
             </div>
             <div class="review-text">
                 <p><strong>Super Starker Wagen.</strong></p>
-                <span>- Luisa Reiter</span>
+                <span>- Maleen Zemla</span>
             </div>
             <div class="review-text">
                 <p><strong>Sau Stark.</strong></p>
