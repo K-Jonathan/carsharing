@@ -3,7 +3,6 @@
 include 'includes/header.php'; // Header einfügen
 ?>
 
-
 <!-- Hintergrund für die Registrierungsseite -->
 <div class="registerpage-background"></div>
 
@@ -12,7 +11,7 @@ include 'includes/header.php'; // Header einfügen
     <!-- Weiße abgerundete Box für das Registrierungsformular -->
     <div class="registerpage-box">
         <h2 class="loginregisterpage-title">REGISTRIERUNG</h2>
-        <form action="/Car-rental/register.php" method="POST">
+        <form id="registerForm" action="register_process.php" method="POST">
             <!-- Benutzername -->
             <label for="Benutzername">Benutzername</label>
             <input class="registerpage-input" type="text" name="Benutzername" id="Benutzername" required>
@@ -33,7 +32,6 @@ include 'includes/header.php'; // Header einfügen
             <!-- E-Mail -->
             <label for="email">E-Mail</label>
             <input class="registerpage-input" type="email" name="email" id="email" required>
-            <span id="emailError" class="registerpage-error"></span>
 
             <!-- Passwort -->
             <label for="password">Passwort</label>
@@ -42,7 +40,6 @@ include 'includes/header.php'; // Header einfügen
             <!-- Passwort wiederholen -->
             <label for="password_repeat">Passwort wiederholen</label>
             <input class="registerpage-input" type="password" name="password_repeat" id="password_repeat" required>
-            <span id="passwordError" class="registerpage-error"></span>
 
             <!-- Registrieren-Button -->
             <button class="loginregisterpage-button" type="submit">REGISTRIEREN</button>
@@ -59,9 +56,17 @@ include 'includes/header.php'; // Header einfügen
     </div>
 </div>
 
-<!--Insert of JS for Errors and Validation-->
-<script src="js/validation.js"></script>
+<!-- ❌ Pop-up für Fehleranzeige -->
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+        <p class="popup-title">Ihr Account konnte aufgrund der folgenden Faktoren nicht erstellt werden:</p>
+        <ul class="popup-errors" id="popupErrors"></ul>
+        <button class="popup-close" id="popupClose">Schließen</button>
+    </div>
+</div>
 
+<!--Insert of JS for Errors and Validation-->
+<script src="js/register_validation.js"></script>
 
 <!--Insert Footer-->
 <?php 
