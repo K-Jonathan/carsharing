@@ -1946,3 +1946,79 @@ body.car-details .navbar {
 .popup-close:hover {
     background: #e3b9c6;
 }
+
+.logged-in-user {
+    color: white; /* Gleiche Farbe wie die Navigation */
+    font-size: 25px; /* Gleiche Größe wie die anderen Links */
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Abstand zum Logo */
+}
+
+.logged-in-user strong {
+    margin-left: 10px; /* Abstand zwischen Komma und Username */
+}
+
+.Logout-bg-image {
+    background: url('../images/BG-Logout.png') no-repeat center center;
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* 🔹 Logout-Box Styling */
+.Logout-box {
+    background: transparent;
+    width: 100%;
+    height: 400px; 
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    align-content: center;
+}
+
+/* 🔹 Logout-Titel */
+.Logout-box h1 {
+    font-size: 200px;
+    font-weight: bold;
+    margin-bottom: -20px;
+    color: white;
+}
+
+/* 🔹 Logout-Text */
+.Logout-box p {
+    font-size: 30px;
+    line-height: 1.5;
+    color: white;
+    width: 40%;
+    margin-left: 30%;
+}
+
+/* 🔹 Handwave Icon */
+.Logout-box img {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* 🔹 Logout-Seite zentrieren */
+.Logout-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    text-align: center;
+    width: 100%;
+}
+
+/* 🔹 Logout-Icon */
+.logout-icon {
+    width: 100px;
+    margin-bottom: 20px;
+    filter: brightness(0) invert(1);
+}

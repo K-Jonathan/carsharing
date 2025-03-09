@@ -1,5 +1,7 @@
 <?php 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $_SESSION['search-location'] = isset($_GET['search-location']) && !empty($_GET['search-location']) 
     ? $_GET['search-location'] 
