@@ -1808,3 +1808,81 @@ body.car-details .navbar {
     color: #555;
     font-weight: bold;
 }
+
+/*Impressmumspage*/
+/* 🔹 Impressum-Hintergrund soll statisch mitwachsen */
+.impressumpage-background {
+    position: absolute; /* Ändert von fixed auf absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/BG-Impressum.png') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+}
+
+/* 🔹 Container für Impressum-Inhalt */
+.impressumpage-spacer {
+    min-height: 100vh; /* Stellt sicher, dass die Seite mindestens 100% Höhe hat */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -40px; /* 🔹 Negative Werte schieben die Box nach oben */
+}
+
+/* 🔹 Impressum-Box */
+.impressumpage-box {
+    width: 900px;
+    max-width: 90%;
+    text-align: left;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* 🔹 Titel */
+.impressumpage-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-align: center; /* Titel zentriert */
+    margin-bottom: 20px;
+}
+
+/* 🔹 Untertitel */
+.impressumpage-subtitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+/* 🔹 Text */
+.impressumpage-text {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+/* 🔹 Impressum-Tabelle */
+.impressumpage-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* 🔹 Spalten-Formatierung */
+.impressumpage-table td {
+    vertical-align: top;
+    padding: 15px; /* Mehr Abstand */
+    text-align: left;
+    width: 50%; /* Gleiche Spaltenbreite */
+}
+
+/* 🔹 Fettgedruckte Abschnitte */
+.impressumpage-text strong {
+    font-weight: bold;
+}

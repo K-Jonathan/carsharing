@@ -28,7 +28,7 @@
                 <!-- Rechte Spalte (helle Buttons) -->
                 <div class="footer-column">
                     <a href="agb.php" class="footer-btn light">AGB</a>
-                    <a href="#" class="footer-btn light">IMPRESSUM</a>
+                    <a href="impressum.php" class="footer-btn light">IMPRESSUM</a>
                     <a href="datenschutz.php" class="footer-btn light">DATENSCHUTZ</a>
                 </div>
             </div>
