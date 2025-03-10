@@ -18,7 +18,7 @@ $sql = "SELECT b.booking_id, c.vendor_name, c.name AS car_name, c.img_file_name,
         FROM bookings b
         JOIN cars c ON b.car_id = c.car_id
         WHERE b.userid = ?  -- 🔥 Hier wird der Nutzer-Filter korrekt angewendet
-        ORDER BY b.booking_time DESC";
+        ORDER BY b.booking_time ASC";
 
 $stmt = $conn->prepare($sql);
 

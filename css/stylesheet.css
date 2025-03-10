@@ -2237,7 +2237,7 @@ body.bookings-page .navbar {
     background-color: #333 !important; /* Grau */
 }
 
-/* 🔹 Hintergrundfarbe für den gesamten Bereich */
+/* 🔹 Hintergrundfarbe */
 body.bookings-page {
     background-color: #f4f4f4;
     display: flex;
@@ -2246,7 +2246,7 @@ body.bookings-page {
     min-height: 100vh;
 }
 
-/* 🔹 Zentrierte weiße Box */
+/* 🔹 Weiße Hauptbox */
 .bookings-container {
     width: 90%;
     max-width: 1200px;
@@ -2254,60 +2254,62 @@ body.bookings-page {
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    margin-top: 100px; /* 🔥 Abstand vom Header */
-    margin-bottom: 100px; /* 🔥 Abstand vom Footer */
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
-/* 🔹 Titel der Buchungsübersicht */
-.bookings-title {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-/* 🔹 Stil für die gesamte Buchungsliste */
-.bookings-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* 🔹 Labels (Header über den Buchungen) */
-.booking-labels {
-    display: grid;
-    grid-template-columns: 10% 20% 20% 20% 15% 15%;
-    align-items: center;
-    font-weight: bold;
-    padding: 10px 20px;
-    background: white;
-    border-bottom: 2px solid black;
-    text-align: left;
-}
-
-/* 🔹 Jede Buchungskarte */
+/* 🔹 Buchungsbox */
 .booking-card {
-    display: grid;
-    grid-template-columns: 10% 20% 20% 20% 15% 15%;
-    align-items: center;
+    display: flex;
     background: #333;
     color: white;
     border-radius: 10px;
     overflow: hidden;
-    padding: 10px 20px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
-/* 🔹 Linke Seite (Auto-Bild, nimmt eine Spalte ein) */
+/* 🔹 Bildbereich (links) */
 .booking-image {
-    width: 100%;
-    height: auto;
+    width: 45%;  /* Bild nimmt 45% der Breite ein */
+    max-height: 100%;
+    display: flex;
 }
 
+/* 🔹 Bildstil für maximale Qualität */
 .booking-image img {
     width: 100%;
     height: auto;
-    object-fit: cover;
+    max-height: 500px; /* Setze eine Maximalhöhe, damit das Bild nicht zu groß wird */
+    object-fit: contain; /* 🔥 Statt "cover" wird das Bild nicht verzerrt */
+    border-radius: 8px; /* Abgerundete Ecken für schönes Design */
+}
+
+/* 🔹 Infobereich (rechts) */
+.booking-info {
+    width: 55%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 🔥 Stellt sicher, dass der Titel ganz oben ist */
+}
+
+/* 🔹 Titel in der Buchungsübersicht */
+.booking-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+    align-self: flex-start; /* 🔥 Verhindert zentrieren in flexbox */
+}
+
+/* 🔹 Linie unter dem Titel */
+.booking-divider {
+    border: none;
+    height: 2px;
+    background-color: white;
+    width: 100%;
+    margin-bottom: 15px;
+    align-self: flex-start; /* 🔥 Bleibt direkt unter dem Titel */
 }
 
 /* 🔹 Falls keine Buchungen vorhanden */
@@ -2316,4 +2318,83 @@ body.bookings-page {
     color: #666;
     font-size: 18px;
     margin-top: 20px;
+}
+
+/* 🔹 Tabelle für Buchungsinformationen */
+.booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 35px;
+}
+
+/* 🔹 Tabellenkopf (Labels) */
+.booking-table-header th {
+    font-weight: bold;
+    text-align: left;
+    padding: 8px;
+    color: white;
+}
+
+/* 🔹 Tabelleninhalt (Daten) */
+.booking-table-data td {
+    padding: 8px;
+    color: white;
+    vertical-align: top; /* 🔥 Setzt den Text oben ausgerichtet */
+    white-space: nowrap; /* Verhindert Zeilenumbruch */
+}
+
+/* 🔹 Spalten gleichmäßiger aufteilen */
+.booking-table th:first-child, 
+.booking-table td:first-child {
+    width: 10%; /* ID etwas kleiner */
+}
+
+/* 🔹 Container für die Buttons */
+.booking-buttons {
+    display: flex;
+    justify-content: flex-end; /* 🔥 Rechtsbündig */
+    gap: 10px; /* Abstand zwischen den Buttons */
+    margin-top: 50px;
+}
+
+/* 🔹 Basisstil für beide Buttons */
+.booking-buttons button {
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 🔹 Stornieren-Button */
+.cancel-button {
+    background-color: transparent;
+    color: rgb(255, 82, 82);
+    border: 2px solid rgb(255, 82, 82);
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.cancel-button:hover {
+    background: rgb(255, 82, 82);
+    color: white;
+}
+
+/* 🔹 Details-Button */
+.details-button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.details-button:hover {
+    background: white;
+    color: black;
 }
