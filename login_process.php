@@ -4,18 +4,18 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-header('Content-Type: application/json'); // JSON als Antwort-Format setzen
+header('Content-Type: application/json');
 
 $errors = [];
+$redirect_url = isset($_POST["redirect"]) && !empty($_POST["redirect"]) ? $_POST["redirect"] : "index.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $classe = trim($_POST["Classe"]); // E-Mail oder Benutzername
-    $password = $_POST["Classf"]; // Passwort
+    $classe = trim($_POST["Classe"]);
+    $password = $_POST["Classf"];
 
     if (empty($classe) || empty($password)) {
         $errors[] = "Bitte füllen Sie alle Felder aus.";
     } else {
-        // 🔹 Prüfen, ob die E-Mail oder der Benutzername existiert
         $stmt = $conn->prepare("SELECT userid, username, email, password FROM users WHERE email = ? OR username = ?");
         $stmt->bind_param("ss", $classe, $classe);
         $stmt->execute();
@@ -24,14 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
 
-            // 🔹 Prüfen, ob das Passwort korrekt ist
             if (password_verify($password, $user["password"])) {
-                // ✅ Erfolgreich: Session setzen & weiterleiten
                 $_SESSION["userid"] = $user["userid"];
                 $_SESSION["username"] = $user["username"];
                 $_SESSION["email"] = $user["email"];
 
-                echo json_encode(["success" => true, "redirect" => "index.php"]); // ⬅ Weiterleitung zur Homepage
+                echo json_encode(["success" => true, "redirect" => $redirect_url]);
                 exit;
             } else {
                 $errors[] = "Das eingegebene Passwort ist nicht korrekt.";
@@ -42,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// 🔹 Falls Fehler vorhanden sind → JSON-Antwort mit Fehlern zurückgeben
+// ❌ Falls Fehler vorhanden sind, sende sie zurück
 echo json_encode(["success" => false, "errors" => $errors]);
 exit;
-?>

@@ -804,7 +804,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                         <div class="car-info">
                             <div class="car-info-left">
-                                <h3 class="car-title">${car.vendor_name} ${car.name} ${car.type}</h3>
+                                <h3 class="car-title">${car.vendor_name} ${car.name} - ${car.loc_name}</h3>
                                 <p class="car-price">${car.price}€/Tag</p>
                             </div>
                             <button class="book-button" data-car-id="${car.car_id}">

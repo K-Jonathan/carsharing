@@ -23,16 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let classe = document.getElementById("Classe").value;
         let password = document.getElementById("Classf").value;
+        let redirect = document.getElementById("redirect").value; // 🔥 Holt den Redirect-Wert
+
+        let formData = `Classe=${encodeURIComponent(classe)}&Classf=${encodeURIComponent(password)}&redirect=${encodeURIComponent(redirect)}`;
 
         fetch("login_process.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `Classe=${encodeURIComponent(classe)}&Classf=${encodeURIComponent(password)}`
+            body: formData
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                window.location.href = data.redirect; // ✅ Erfolgreich → Zur Homepage
+                window.location.href = data.redirect; // ✅ Erfolgreich → Zur ursprünglichen Seite zurück
             } else {
                 showPopup(data.errors); // ❌ Falls Fehler → Pop-up anzeigen
             }

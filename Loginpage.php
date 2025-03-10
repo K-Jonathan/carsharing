@@ -12,14 +12,17 @@ include 'includes/header.php'; // Header einfügen
     <div class="loginpage-box">
         <h2 class="loginregisterpage-title">LOGIN</h2>
         <form id="loginForm">
-            <label for="Classe">E-Mail/Benutzername</label>
-            <input class="loginpage-input" type="text" name="Classe" id="Classe" required>
-            
-            <label for="Classf">Passwort</label>
-            <input class="loginpage-input" type="password" name="Classf" id="Classf" required>
-            
-            <button class="loginregisterpage-button" type="submit">ANMELDEN</button>
-        </form>
+    <input type="hidden" name="redirect" id="redirect" value="<?php echo isset($_GET['redirect']) ? htmlspecialchars($_GET['redirect']) : ''; ?>">
+    
+    <label for="Classe">E-Mail/Benutzername</label>
+    <input class="loginpage-input" type="text" name="Classe" id="Classe" required>
+    
+    <label for="Classf">Passwort</label>
+    <input class="loginpage-input" type="password" name="Classf" id="Classf" required>
+    
+    <button class="loginregisterpage-button" type="submit">ANMELDEN</button>
+</form>
+
 
         <a href="registerpage.php" class="loginpage-link">Neuen Account erstellen</a>
     </div>

@@ -4,12 +4,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 require_once('fetch_car_details.php');
 
-include 'includes/header.php'; // Header einfügen
+include 'includes/header.php';
 
-// 🔹 Auto-ID aus der URL holen
+$logged_in = isset($_SESSION['userid']);
+$current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $car_id = isset($_GET['car_id']) ? intval($_GET['car_id']) : null;
-
-// 🔹 Auto-Details abrufen
 $car = getCarDetails($car_id);
 
 if (!$car) {
@@ -18,22 +17,17 @@ if (!$car) {
 ?>
 
 <body class="car-details-page">
-
-<!-- 🔹 Hauptcontainer für Auto-Details -->
 <div class="car-details-wrapper">
     <div class="car-details-container">
-        <!-- 🔹 Linke Hälfte: Auto-Bild -->
         <div class="car-image-section">
             <img src="images/cars/<?php echo htmlspecialchars($car['img_file_name'] ?? 'default.jpg'); ?>" 
                  alt="<?php echo htmlspecialchars($car['vendor_name'] . ' ' . $car['name']); ?>">
         </div>
 
-        <!-- 🔹 Rechte Hälfte: Details -->
         <div class="car-info-section">
             <h2 class="car-title">Details – <?php echo htmlspecialchars($car['vendor_name'] . ' ' . $car['name']); ?></h2>
             <hr class="car-title-divider">
 
-            <!-- Details-Tabelle -->
             <div class="car-specs">
                 <div class="spec">
                     <img src="images/icons/seats.png" alt="Sitze">
@@ -69,15 +63,19 @@ if (!$car) {
                 </div>
             </div>
 
-            <!-- 🔹 Preis und Buchen-Button -->
             <div class="car-booking">
                 <h3 class="car-price">Preis – <?php echo number_format($car['price'], 2); ?>€/Tag</h3>
-                <button class="book-button">Buchen</button>
+
+                <!-- Falls nicht eingeloggt, Login-Button anzeigen -->
+                <?php if (!$logged_in): ?>
+                    <a href="loginpage.php?redirect=<?php echo urlencode($current_url); ?>" class="login-button">Login</a>
+                <?php endif; ?>
+
+                <button class="book-button <?php echo !$logged_in ? 'disabled' : ''; ?>" <?php echo !$logged_in ? 'disabled' : ''; ?>>Buchen</button>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 
 <?php include 'includes/footer.php'; ?>

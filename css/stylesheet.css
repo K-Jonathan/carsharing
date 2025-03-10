@@ -2204,3 +2204,29 @@ body.car-details .navbar {
 body.car-details-page .navbar {
     background-color: #333 !important; /* Grau */
 }
+
+/* 🔹 Login-Button (wird nur angezeigt, wenn nicht eingeloggt) */
+.login-button {
+    background: transparent;
+    border: 2px solid pink;
+    color: pink;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    margin-left: 200px;
+}
+
+.login-button:hover {
+    background: pink;
+    color: white;
+}
+
+/* 🔹 Deaktivierter Buchungs-Button */
+.book-button.disabled {
+    border-color: #494949;
+    color: #494949;
+    cursor: not-allowed;
+}
