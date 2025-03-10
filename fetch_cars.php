@@ -1,6 +1,8 @@
 <?php
 require_once('db_connection.php');
-session_start(); // Session starten
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $whereClauses = [];
 $params = [];

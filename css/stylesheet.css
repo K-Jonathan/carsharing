@@ -2075,3 +2075,127 @@ body.car-details .navbar {
 .popup-close:hover {
     background: #e3b9c6;
 }
+
+/* 🔹 Stellt sicher, dass die Seite genug Platz bietet */
+.car-details-page {
+    background-color: white;
+    display: block;
+    min-height: 100vh; /* 🔥 Erhöht die Mindesthöhe auf die volle Bildschirmhöhe */
+}
+
+/* 🔹 Zentriert den gesamten Container */
+.car-details-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* 🔥 Anpassen, damit sich die Box dynamisch vergrößert */
+    padding: 150px 0;
+}
+
+/* 🔹 Hauptcontainer für Details */
+.car-details-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    max-width: 1400px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    align-items: stretch; /* 🔥 Stellt sicher, dass beide Hälften gleich hoch sind */
+}
+
+/* 🔹 Linke Hälfte: Auto-Bild */
+.car-image-section {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+
+/* 🔹 Bild 100% Höhe */
+.car-image-section img {
+    width: 100%;
+    height: 100%; /* 🔥 Bild nimmt die gesamte Höhe der Box ein */
+    object-fit: cover;
+}
+
+/* 🔹 Rechte Hälfte: Details */
+.car-info-section {
+    width: 50%;
+    padding: 30px;
+    background: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* 🔹 Stile nur für die Detailseite */
+.car-details-page .car-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: -20px;
+    color: white;
+}
+
+/* 🔹 Linie direkt unter dem Titel */
+.car-details-page .car-title-divider {
+    border: none;
+    height: 2px;
+    background-color: white;
+    margin-bottom: 15px;
+}
+
+/* 🔹 Details-Tabelle */
+.car-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.spec {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+}
+
+.spec img {
+    width: 24px;
+    height: 24px;
+}
+
+/* 🔹 Preis- und Buchungsbereich */
+.car-booking {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.car-details-page .car-price {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: white;
+}
+
+/* 🔹 Buchungs-Button */
+.car-details-page .book-button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.car-details-page .book-button:hover {
+    background: white;
+    color: black;
+}
