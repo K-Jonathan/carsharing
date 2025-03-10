@@ -2230,3 +2230,90 @@ body.car-details-page .navbar {
     color: #494949;
     cursor: not-allowed;
 }
+
+
+/* Auf bestimmten Seiten: Grauer Header */
+body.bookings-page .navbar {
+    background-color: #333 !important; /* Grau */
+}
+
+/* 🔹 Hintergrundfarbe für den gesamten Bereich */
+body.bookings-page {
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 🔹 Zentrierte weiße Box */
+.bookings-container {
+    width: 90%;
+    max-width: 1200px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    margin-top: 100px; /* 🔥 Abstand vom Header */
+    margin-bottom: 100px; /* 🔥 Abstand vom Footer */
+}
+
+/* 🔹 Titel der Buchungsübersicht */
+.bookings-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* 🔹 Stil für die gesamte Buchungsliste */
+.bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 🔹 Labels (Header über den Buchungen) */
+.booking-labels {
+    display: grid;
+    grid-template-columns: 10% 20% 20% 20% 15% 15%;
+    align-items: center;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: white;
+    border-bottom: 2px solid black;
+    text-align: left;
+}
+
+/* 🔹 Jede Buchungskarte */
+.booking-card {
+    display: grid;
+    grid-template-columns: 10% 20% 20% 20% 15% 15%;
+    align-items: center;
+    background: #333;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+/* 🔹 Linke Seite (Auto-Bild, nimmt eine Spalte ein) */
+.booking-image {
+    width: 100%;
+    height: auto;
+}
+
+.booking-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* 🔹 Falls keine Buchungen vorhanden */
+.no-bookings {
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+    margin-top: 20px;
+}
