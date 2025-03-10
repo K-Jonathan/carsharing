@@ -2199,3 +2199,8 @@ body.car-details .navbar {
     background: white;
     color: black;
 }
+
+/* Auf bestimmten Seiten: Grauer Header */
+body.car-details-page .navbar {
+    background-color: #333 !important; /* Grau */
+}
