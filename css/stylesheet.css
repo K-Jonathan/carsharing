@@ -2022,3 +2022,56 @@ body.car-details .navbar {
     margin-bottom: 20px;
     filter: brightness(0) invert(1);
 }
+
+/* 🔹 Dunkler Hintergrund (wenn Pop-up aktiv ist) */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* 🔹 Pop-up-Box */
+.popup-box {
+    background: white;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+
+/* 🔹 Titel */
+.popup-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* 🔹 Fehlermeldung */
+.popup-message {
+    color: black;
+    font-size: 14px;
+}
+
+/* 🔹 Schließen-Button */
+.popup-close {
+    margin-top: 10px;
+    background: #EFCFD8;
+    color: black;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.popup-close:hover {
+    background: #e3b9c6;
+}

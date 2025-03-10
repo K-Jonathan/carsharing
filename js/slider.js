@@ -738,7 +738,7 @@ document.addEventListener("DOMContentLoaded", function () {
             selectedAges.push(button.innerText);
         });
 
-        // 🔹 Kofferraumvolumen-Filter (Mehrfachauswahl) **🔹 NEU**
+        // 🔹 Kofferraumvolumen-Filter
         document.querySelectorAll("#trunk-dropdown button.active").forEach(button => {
             selectedTrunks.push(button.innerText);
         });
@@ -770,7 +770,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (selectedSeats.length > 0) params.push(`seats=${selectedSeats.join(",")}`);
         if (selectedDrives.length > 0) params.push(`drive=${selectedDrives.join(",")}`);
         if (selectedAges.length > 0) params.push(`min_age=${selectedAges.join(",")}`);
-        if (selectedTrunks.length > 0) params.push(`trunk=${selectedTrunks.join(",")}`); // **🔹 NEU**
+        if (selectedTrunks.length > 0) params.push(`trunk=${selectedTrunks.join(",")}`);
         if (maxPrice) params.push(`max_price=${maxPrice}`);
         if (airCondition === 1) params.push(`air_condition=1`);
         if (gps === 1) params.push(`gps=1`);
@@ -793,60 +793,75 @@ document.addEventListener("DOMContentLoaded", function () {
                 data.cars.forEach(car => {
                     const carElement = document.createElement("div");
                     carElement.classList.add("car-card");
-                
+
                     // Falls img_file_name existiert, nutzen wir es. Falls nicht, Standardbild verwenden.
                     const imageName = car.img_file_name ? car.img_file_name : "default.jpg";
-                
+
                     carElement.innerHTML = `
-    <div class="car-image">
-        <img src="images/cars/${imageName}" alt="${car.vendor_name} ${car.type}" 
-             onerror="this.onerror=null; this.src='images/cars/default.jpg';">
-    </div>
-    <div class="car-info">
-        <div class="car-info-left">
-            <h3 class="car-title">${car.vendor_name} ${car.name} ${car.type}</h3>
-            <p class="car-price">${car.price}€/Tag</p>
-        </div>
-        <button class="book-button" data-car-id="${car.car_id}">
-            Buchen
-        </button>
-    </div>
-`;
+                        <div class="car-image">
+                            <img src="images/cars/${imageName}" alt="${car.vendor_name} ${car.type}" 
+                                 onerror="this.onerror=null; this.src='images/cars/default.jpg';">
+                        </div>
+                        <div class="car-info">
+                            <div class="car-info-left">
+                                <h3 class="car-title">${car.vendor_name} ${car.name} ${car.type}</h3>
+                                <p class="car-price">${car.price}€/Tag</p>
+                            </div>
+                            <button class="book-button" data-car-id="${car.car_id}">
+                                Details
+                            </button>
+                        </div>
+                    `;
 
-
-
-
-                
                     container.appendChild(carElement);
-                    // Füge Event Listener für den Button hinzu
-carElement.querySelector(".book-button").addEventListener("click", function () {
-    const carId = this.getAttribute("data-car-id");
-    redirectToDetails(carId);
-});
 
-                });   
-                                           
+                    // Event Listener für "Details"-Button
+                    carElement.querySelector(".book-button").addEventListener("click", function () {
+                        const carId = this.getAttribute("data-car-id");
+                        redirectToDetails(carId);
+                    });
+                });
             })
             .catch(error => console.error("Fehler beim Laden der Car-IDs:", error));
     }
 
-    // ✅ Sicherstellen, dass ALLE Filter das fetchCarIds() auslösen
+    // ✅ Funktion zur Weiterleitung mit Prüfung auf Buchungszeitraum UND Standort
+    function redirectToDetails(carId) {
+        const location = document.querySelector(".city-label").textContent.trim();
+        const pickupDate = document.querySelector(".date-time:nth-of-type(1)").textContent.trim();
+        const pickupTime = document.querySelector(".date-time:nth-of-type(2)").textContent.trim();
+        const returnDate = document.querySelector(".date-time:nth-of-type(3)").textContent.trim();
+        const returnTime = document.querySelector(".date-time:nth-of-type(4)").textContent.trim();
+
+        if (location === "Stadt" || pickupDate === "Datum" || pickupTime === "--:--" || returnDate === "Datum" || returnTime === "--:--") {
+            showPopup("Wählen Sie bitte Ihren gewünschten Buchungszeitraum und Standort aus.");
+            return;
+        }
+
+        let currentParams = new URLSearchParams(window.location.search);
+        currentParams.set("car_id", carId);
+        window.location.href = "car_details.php?" + currentParams.toString();
+    }
+
+    // ✅ Funktion für das Pop-up bei Fehler
+    function showPopup(message) {
+        document.getElementById("popupMessage").textContent = message;
+        document.getElementById("popupOverlay").style.display = "flex";
+    }
+
+    document.getElementById("popupClose").addEventListener("click", function () {
+        document.getElementById("popupOverlay").style.display = "none";
+    });
+
+    // ✅ Event Listener für Filter-Buttons
     document.querySelectorAll("#sort-dropdown button, #type-dropdown button, #gear-dropdown button, #manufacturer-dropdown button, #doors-dropdown button, #seats-dropdown button, #drive-dropdown button, #age-dropdown button, #price-dropdown button, #climate-filter, #gps-filter, #trunk-dropdown button").forEach(button => {
         button.addEventListener("click", function () {
             fetchCarIds();
         });
     });
 
-    // Erste Datenabfrage beim Laden der Seite
+    // ✅ Erste Datenabfrage beim Laden der Seite
     fetchCarIds();
-    function redirectToDetails(carId) {
-        let currentParams = new URLSearchParams(window.location.search);
-        currentParams.set("car_id", carId);
-        window.location.href = "car_details.php?" + currentParams.toString();
-    }
-    
-    
-    
 });
 
 
@@ -942,4 +957,55 @@ document.addEventListener("DOMContentLoaded", function () {
         searchPopup.style.display = "none"; // Pop-up ausblenden
         body.style.overflow = "auto"; // Scrollen wieder erlauben
     });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    function fetchCarIds() {
+        // (Der restliche fetch-Code bleibt unverändert)
+    }
+
+    function redirectToDetails(carId) {
+        // 📌 Werte direkt aus der URL holen
+        const urlParams = new URLSearchParams(window.location.search);
+        const location = urlParams.get("search-location") ? urlParams.get("search-location").trim() : "";
+        const pickupDate = urlParams.get("pickup") ? urlParams.get("pickup").trim() : "";
+        const pickupTime = urlParams.get("pickup-time") ? urlParams.get("pickup-time").trim() : "";
+        const returnDate = urlParams.get("return") ? urlParams.get("return").trim() : "";
+        const returnTime = urlParams.get("return-time") ? urlParams.get("return-time").trim() : "";
+
+        // 📌 Prüfen, ob Werte leer sind oder Platzhalter enthalten
+        if (!location || location === "Stadt" || 
+            !pickupDate || pickupDate === "Datum" || 
+            !pickupTime || pickupTime === "--:--" || 
+            !returnDate || returnDate === "Datum" || 
+            !returnTime || returnTime === "--:--") {
+            
+            showPopup("Wählen Sie bitte Ihren gewünschten Buchungszeitraum und Standort aus.");
+            return;
+        }
+
+        // 📌 Falls alles passt, weiterleiten
+        urlParams.set("car_id", carId);
+        window.location.href = "car_details.php?" + urlParams.toString();
+    }
+
+    function showPopup(message) {
+        document.getElementById("popupMessage").textContent = message;
+        document.getElementById("popupOverlay").style.display = "flex";
+    }
+
+    document.getElementById("popupClose").addEventListener("click", function () {
+        document.getElementById("popupOverlay").style.display = "none";
+    });
+
+    // 📌 Event Listener für ALLE "Details"-Buttons
+    document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("book-button")) {
+            const carId = event.target.getAttribute("data-car-id");
+            redirectToDetails(carId);
+        }
+    });
+
+    fetchCarIds(); // 🚀 Erste Datenabfrage beim Laden der Seite
 });

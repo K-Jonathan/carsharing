@@ -250,6 +250,14 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
 
 
 
+<!-- ❌ Pop-up für fehlenden Buchungszeitraum -->
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+        <p class="popup-title">Fehlende Eingabe</p>
+        <p id="popupMessage" class="popup-message"></p>
+        <button class="popup-close" id="popupClose">Schließen</button>
+    </div>
+</div>
 
 <div style="height: 500px;"></div>
 </body>
