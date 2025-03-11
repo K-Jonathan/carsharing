@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_once('fetch_car_details.php');
+require_once('helpers.php'); // ✅ Hilfsfunktionen einbinden
 
 include 'includes/header.php';
 
@@ -72,11 +73,11 @@ if (!$car) {
                 <?php endif; ?>
 
                 <!-- 🔹 Buchungsformular -->
-<form action="bookings_process.php" method="POST">
+                <form action="bookings_process.php" method="POST"> 
     <input type="hidden" name="car_id" value="<?php echo htmlspecialchars($car['car_id']); ?>">
-    <input type="hidden" name="pickup_date" value="<?php echo htmlspecialchars($_GET['pickup'] ?? ''); ?>">
+    <input type="hidden" name="pickup_date" value="<?php echo convertDate($_GET['pickup'] ?? ''); ?>">
     <input type="hidden" name="pickup_time" value="<?php echo htmlspecialchars($_GET['pickup-time'] ?? ''); ?>">
-    <input type="hidden" name="return_date" value="<?php echo htmlspecialchars($_GET['return'] ?? ''); ?>">
+    <input type="hidden" name="return_date" value="<?php echo convertDate($_GET['return'] ?? ''); ?>">
     <input type="hidden" name="return_time" value="<?php echo htmlspecialchars($_GET['return-time'] ?? ''); ?>">
 
     <button type="submit" class="book-button <?php echo !$logged_in ? 'disabled' : ''; ?>" <?php echo !$logged_in ? 'disabled' : ''; ?>>

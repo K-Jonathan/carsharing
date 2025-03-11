@@ -209,22 +209,31 @@ document.addEventListener("DOMContentLoaded", function () {
         container.innerHTML = "";
         let firstDay = new Date(year, month, 1).getDay();
         if (firstDay === 0) firstDay = 7; // Sonntag als 7 setzen
-
+    
         let daysInMonth = new Date(year, month + 1, 0).getDate();
         let prevMonthDays = new Date(year, month, 0).getDate();
-
+    
+        let today = new Date();
+        today.setHours(0, 0, 0, 0); // Setzt die Uhrzeit auf 00:00 für einen korrekten Vergleich
+    
         let daysHTML = "";
         for (let i = firstDay - 1; i > 0; i--) {
             daysHTML += `<span class="calendar-day outside">${prevMonthDays - i + 1}</span>`;
         }
-
+    
         for (let day = 1; day <= daysInMonth; day++) {
-            daysHTML += `<span class="calendar-day" data-day="${day}" data-month="${month}" data-year="${year}">${day}</span>`;
+            let currentDate = new Date(year, month, day);
+            let isPast = currentDate < today; // Prüft, ob das Datum in der Vergangenheit liegt
+    
+            daysHTML += `<span class="calendar-day ${isPast ? 'disabled' : ''}" 
+                         data-day="${day}" data-month="${month}" data-year="${year}">
+                         ${day}
+                         </span>`;
         }
-
+    
         container.innerHTML = daysHTML;
         addDateSelectionListeners(container);
-    }
+    }    
 
     function updateCalendar() {
         generateMonthGrid(document.getElementById("calendar-prev"), currentYear, currentMonth);
