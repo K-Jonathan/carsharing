@@ -23,7 +23,7 @@ include 'session_handler.php'; // 🔹 Stellt sicher, dass `userid` immer verfü
 
             <nav>
                 <ul>
-                    <li><a href="#" class="icon-text"><img src="images/car-icon.png" alt="My bookings icon"><span>Meine Buchungen</span></a></li>
+                    <li><a href="bookings.php" class="icon-text"><img src="images/car-icon.png" alt="My bookings icon"><span>Meine Buchungen</span></a></li>
                     <li><a href="#" class="icon-text"><img src="images/world-icon.png" alt="World icon"><span>DE</span></a></li>
 
                     <!-- 🔹 Anmelden/Login oder Abmelden/Logout abhängig vom Status -->

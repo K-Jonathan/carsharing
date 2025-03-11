@@ -39,7 +39,7 @@ require_once('fetch_bookings.php');
     </tr>
 </table>
 <div class="booking-buttons">
-    <button class="cancel-button">Stornieren</button>
+    <button class="cancel-booking-button" data-booking-id="<?php echo $row['booking_id']; ?>">Stornieren</button>
     <button class="details-button">Details</button>
 </div>
 
@@ -50,6 +50,18 @@ require_once('fetch_bookings.php');
             <p class="no-bookings">Sie haben noch keine Buchungen.</p>
         <?php endif; ?>
     </div>
+    <!-- Stornierungs-Pop-up -->
+<!-- Stornierungs-Pop-up -->
+<div id="cancel-booking-popup" class="cancel-popup-overlay">
+    <div class="cancel-popup-box">
+        <p class="cancel-popup-title">Möchten Sie Ihre Buchung wirklich stornieren?</p>
+        <div class="cancel-popup-buttons">
+            <button id="cancel-booking-confirm" class="cancel-popup-confirm">Ja, stornieren</button>
+            <button id="cancel-booking-close" class="cancel-popup-close">Nein</button>
+        </div>
+    </div>
+</div>
+<script src="js/cancel_booking.js"></script>
 </body>
 
 <?php include 'includes/footer.php'; ?>
