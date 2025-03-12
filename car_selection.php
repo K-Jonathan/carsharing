@@ -14,8 +14,27 @@ include 'includes/header.php'; // Header einfügen
 <?php
 function formatDate($date) {
     if (!$date || $date === 'Datum') return 'Datum';
-    $timestamp = strtotime($date);
-    return date('d.m.', $timestamp); // z. B. "04.04."
+
+    // Mapping von Monatsnamen (Kurzform) zu Zahlen
+    $monthMapping = [
+        'Jan' => '01', 'Feb' => '02', 'Mär' => '03', 'Apr' => '04', 'Mai' => '05', 'Jun' => '06', 
+        'Jul' => '07', 'Aug' => '08', 'Sep' => '09', 'Okt' => '10', 'Nov' => '11', 'Dez' => '12'
+    ];
+
+    // Extrahiere Tag und Monat aus dem String (z. B. "15. Mär")
+    $parts = explode('. ', trim($date));
+    if (count($parts) !== 2) return 'Datum'; // Falls Format falsch ist
+
+    $day = $parts[0]; // "15"
+    $monthShort = $parts[1]; // "Mär"
+
+    // Falls der Monat im Mapping ist, ersetze ihn durch die Zahl
+    if (isset($monthMapping[$monthShort])) {
+        $month = $monthMapping[$monthShort];
+        return sprintf("%02d.%02d.", $day, $month);
+    }
+
+    return 'Datum'; // Falls der Monat nicht gefunden wurde
 }
 
 // 🏁 Pickup- und Return-Date aus URL oder Session setzen
