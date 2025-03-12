@@ -17,6 +17,35 @@ if ($location) {
     $types .= "s"; 
 }
 
+// 🔹 Verfügbarkeitsprüfung (neue Logik)
+$pickupDate = isset($_SESSION['pickupDate']) ? $_SESSION['pickupDate'] : null;
+$returnDate = isset($_SESSION['returnDate']) ? $_SESSION['returnDate'] : null;
+
+if ($pickupDate && $returnDate && $pickupDate !== 'Datum' && $returnDate !== 'Datum') {
+    // DD.MM. -> YYYY-MM-DD Umwandlung
+    $pickupDateSQL = DateTime::createFromFormat('d.m.', $pickupDate)->format('Y-m-d');
+    $returnDateSQL = DateTime::createFromFormat('d.m.', $returnDate)->format('Y-m-d');
+
+    $whereClauses[] = "car_id NOT IN (
+        SELECT DISTINCT car_id FROM bookings
+        WHERE 
+            (STR_TO_DATE(pickup_date, '%Y-%m-%d') <= ? AND STR_TO_DATE(return_date, '%Y-%m-%d') >= ?) 
+            OR 
+            (STR_TO_DATE(pickup_date, '%Y-%m-%d') BETWEEN ? AND ?) 
+            OR 
+            (STR_TO_DATE(return_date, '%Y-%m-%d') BETWEEN ? AND ?)
+    )";
+    
+    $params[] = $returnDateSQL;
+    $params[] = $pickupDateSQL;
+    $params[] = $pickupDateSQL;
+    $params[] = $returnDateSQL;
+    $params[] = $pickupDateSQL;
+    $params[] = $returnDateSQL;
+    
+    $types .= "ssssss";
+}
+
 // 🔹 Sortierung
 $orderBy = "car_id ASC";
 if (!empty($_GET['sort'])) {

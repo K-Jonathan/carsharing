@@ -11,11 +11,25 @@ include 'includes/header.php'; // Header einfügen
 ?>
 <body class="car-selection">
 
+<?php
+function formatDate($date) {
+    if (!$date || $date === 'Datum') return 'Datum';
+    $timestamp = strtotime($date);
+    return date('d.m.', $timestamp); // z. B. "04.04."
+}
+
+// 🏁 Pickup- und Return-Date aus URL oder Session setzen
+$_SESSION['pickupDate'] = isset($_GET['pickup']) && !empty($_GET['pickup']) ? formatDate($_GET['pickup']) : 'Datum';
+$_SESSION['returnDate'] = isset($_GET['return']) && !empty($_GET['return']) ? formatDate($_GET['return']) : 'Datum';
+
+$pickupDate = $_SESSION['pickupDate'];
+$returnDate = $_SESSION['returnDate'];
+?>
+
+
 <?php 
 $location = isset($_SESSION['search-location']) && !empty($_SESSION['search-location']) ? $_SESSION['search-location'] : "Stadt";
-$pickupDate = isset($_GET['pickup']) && !empty($_GET['pickup']) ? htmlspecialchars($_GET['pickup']) : 'Datum';
 $pickupTime = isset($_GET['pickup-time']) && !empty($_GET['pickup-time']) ? htmlspecialchars($_GET['pickup-time']) : '--:--';
-$returnDate = isset($_GET['return']) && !empty($_GET['return']) ? htmlspecialchars($_GET['return']) : 'Datum';
 $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? htmlspecialchars($_GET['return-time']) : '--:--';
 ?>
 
