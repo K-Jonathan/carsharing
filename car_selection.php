@@ -289,6 +289,10 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
     </div>
 </div>
 
+<div class="pagination-container">
+    <button id="prev-cars" class="pagination-btn" disabled>⬅ Zurück</button>
+    <button id="next-cars" class="pagination-btn">Weiter ➡</button>
+</div>
 
 
 <div id="car-list">
@@ -306,7 +310,6 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
     </div>
 </div>
 
-<div style="height: 500px;"></div>
 </body>
 
 
