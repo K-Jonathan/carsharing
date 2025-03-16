@@ -23,8 +23,13 @@ $returnDate = isset($_SESSION['returnDate']) ? $_SESSION['returnDate'] : null;
 
 if ($pickupDate && $returnDate && $pickupDate !== 'Datum' && $returnDate !== 'Datum') {
     // DD.MM. -> YYYY-MM-DD Umwandlung
-    $pickupDateSQL = DateTime::createFromFormat('d.m.', $pickupDate)->format('Y-m-d');
-    $returnDateSQL = DateTime::createFromFormat('d.m.', $returnDate)->format('Y-m-d');
+    if (preg_match('/(\d{2})\.(\d{2})\.(\d{2})/', $pickupDate, $matches)) {
+        $pickupDateSQL = "20" . $matches[3] . "-" . $matches[2] . "-" . $matches[1]; // YYYY-MM-DD
+    }
+    if (preg_match('/(\d{2})\.(\d{2})\.(\d{2})/', $returnDate, $matches)) {
+        $returnDateSQL = "20" . $matches[3] . "-" . $matches[2] . "-" . $matches[1]; // YYYY-MM-DD
+    }
+    
 
     $whereClauses[] = "car_id NOT IN (
         SELECT DISTINCT car_id FROM bookings

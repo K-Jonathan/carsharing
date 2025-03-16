@@ -31,8 +31,22 @@ function formatDate($date) {
     // Falls der Monat im Mapping ist, ersetze ihn durch die Zahl
     if (isset($monthMapping[$monthShort])) {
         $month = $monthMapping[$monthShort];
-        return sprintf("%02d.%02d.", $day, $month);
-    }
+    
+        $today = new DateTime();
+        $today->setTime(0, 0); // Setzt die Uhrzeit auf Mitternacht für exakte Vergleiche
+    
+        $currentYear = $today->format('Y');
+        $nextYear = $currentYear + 1;
+    
+        // Erstelle das Datum aus der Auswahl
+        $selectedDate = DateTime::createFromFormat('d.m.Y', "$day.$month.$currentYear");
+        
+        // Falls das Datum existiert und vor HEUTE liegt → nächstes Jahr nehmen
+        $year = ($selectedDate && $selectedDate < $today) ? $nextYear : $currentYear;
+    
+        // Rückgabe mit zwei Ziffern fürs Jahr
+        return sprintf("%02d.%02d.%02d", $day, $month, $year % 100);
+    }    
 
     return 'Datum'; // Falls der Monat nicht gefunden wurde
 }

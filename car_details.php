@@ -88,6 +88,14 @@ if (!$car) {
         </div>
     </div>
 </div>
+<div id="booking-popup" class="popup-overlay">
+    <div class="popup-box">
+        <h2 class="popup-title">Buchungsfehler</h2> <!-- 🔥 NEUE Überschrift -->
+        <p id="popup-message"></p>
+        <button class="popup-close" onclick="closePopup()">Schließen</button>
+    </div>
+</div>
+<script src="js/car_details_popup.js" defer></script>
 </body>
 
 <?php include 'includes/footer.php'; ?>
