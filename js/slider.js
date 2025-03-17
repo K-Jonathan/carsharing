@@ -754,17 +754,59 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // 🔹 Neue Funktion: Gebuchte Autos nachladen & anzeigen
     function fetchUnavailableCars() {
-        fetch("fetch_unavailable_cars.php")
+        let url = `fetch_unavailable_cars.php`;
+        let params = [];
+    
+        // 🔹 Dieselben Filter wie für verfügbare Autos sammeln
+        const activeSortButton = document.querySelector("#sort-dropdown button.active");
+        if (activeSortButton) {
+            const sortOrder = activeSortButton.innerText.includes("absteigend") ? "price_desc" : "price_asc";
+            params.push(`sort=${sortOrder}`);
+        }
+    
+        function collectActiveValues(selector, paramName) {
+            const activeValues = [...document.querySelectorAll(selector + " button.active")]
+                .map(button => button.innerText.trim());
+            if (activeValues.length > 0) {
+                params.push(`${paramName}=${activeValues.join(",")}`);
+            }
+        }
+    
+        collectActiveValues("#type-dropdown", "type");
+        collectActiveValues("#gear-dropdown", "gear");
+        collectActiveValues("#manufacturer-dropdown", "vendor");
+        collectActiveValues("#doors-dropdown", "doors");
+        collectActiveValues("#seats-dropdown", "seats");
+        collectActiveValues("#drive-dropdown", "drive");
+        collectActiveValues("#age-dropdown", "min_age");
+        collectActiveValues("#trunk-dropdown", "trunk");
+    
+        const activePriceButton = document.querySelector("#price-dropdown button.active");
+        if (activePriceButton) params.push(`max_price=${activePriceButton.innerText}`);
+    
+        if (document.getElementById("climate-filter").classList.contains("active")) {
+            params.push(`air_condition=1`);
+        }
+        if (document.getElementById("gps-filter").classList.contains("active")) {
+            params.push(`gps=1`);
+        }
+    
+        if (params.length > 0) {
+            url += `?${params.join("&")}`;
+        }
+    
+        // 🔹 Daten abrufen
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 if (data.cars && data.cars.length > 0) {
                     const groupedUnavailableCars = groupUnavailableCars(data.cars);
-                    allCars.push(...groupedUnavailableCars); // 🚀 Füge gruppierte gebuchte Autos zur Liste hinzu
+                    allCars.push(...groupedUnavailableCars); // 🚀 Füge gefilterte, gebuchte Autos hinzu
                     renderCars(); // 🔄 Aktualisiere die Anzeige mit den neuen Autos
                 }
             })
             .catch(error => console.error("Fehler beim Laden der gebuchten Autos:", error));
-    }    
+    }      
     
     function groupUnavailableCars(cars) {
         const grouped = {};
@@ -813,9 +855,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="car-info">
                         <div class="car-info-left">
                             <h3 class="car-title">${car.vendor_name} ${car.name} ${car.name_extension}</h3>
-                            <p class="car-location">${car.loc_name}  
-                                <span class="availability">- Ausgebucht: ${car.count}</span>
-                            </p>
+                            <p class="car-location">${car.loc_name}</p>
                             <p class="car-price">${car.price}€/Tag</p>
                         </div>
                     </div>
