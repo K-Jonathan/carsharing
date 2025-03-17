@@ -534,7 +534,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const button = document.getElementById(buttonId);
         const dropdown = document.getElementById(dropdownId);
         const options = dropdown.querySelectorAll("button");
-
+        
         button.addEventListener("click", function () {
             const rect = button.getBoundingClientRect(); // Position des Buttons holen
 
@@ -701,32 +701,46 @@ document.addEventListener("DOMContentLoaded", function () {
     function fetchCarIds() {
         let url = `fetch_cars.php`;
         let params = [];
-
+    
         const activeSortButton = document.querySelector("#sort-dropdown button.active");
         if (activeSortButton) {
             const sortOrder = activeSortButton.innerText.includes("absteigend") ? "price_desc" : "price_asc";
             params.push(`sort=${sortOrder}`);
         }
-
-        // 🔹 Filterwerte auslesen (Filter NICHT ÄNDERN!)
-        document.querySelectorAll("#type-dropdown button.active").forEach(button => params.push(`type=${button.innerText}`));
-        document.querySelectorAll("#gear-dropdown button.active").forEach(button => params.push(`gear=${button.innerText}`));
-        document.querySelectorAll("#manufacturer-dropdown button.active").forEach(button => params.push(`vendor=${button.innerText}`));
-        document.querySelectorAll("#doors-dropdown button.active").forEach(button => params.push(`doors=${button.innerText}`));
-        document.querySelectorAll("#seats-dropdown button.active").forEach(button => params.push(`seats=${button.innerText}`));
-        document.querySelectorAll("#drive-dropdown button.active").forEach(button => params.push(`drive=${button.innerText}`));
-        document.querySelectorAll("#age-dropdown button.active").forEach(button => params.push(`min_age=${button.innerText}`));
-        document.querySelectorAll("#trunk-dropdown button.active").forEach(button => params.push(`trunk=${button.innerText}`));
-
+    
+        // 🔹 Mehrfachwerte korrekt als kommagetrennte Strings speichern
+        function collectActiveValues(selector, paramName) {
+            const activeValues = [...document.querySelectorAll(selector + " button.active")]
+                .map(button => button.innerText.trim()); // Nur Textwerte holen & trimmen
+    
+            if (activeValues.length > 0) {
+                params.push(`${paramName}=${activeValues.join(",")}`); // Komma-getrennte Liste
+            }
+        }
+    
+        collectActiveValues("#type-dropdown", "type");
+        collectActiveValues("#gear-dropdown", "gear");
+        collectActiveValues("#manufacturer-dropdown", "vendor");
+        collectActiveValues("#doors-dropdown", "doors");
+        collectActiveValues("#seats-dropdown", "seats");
+        collectActiveValues("#drive-dropdown", "drive");
+        collectActiveValues("#age-dropdown", "min_age");
+        collectActiveValues("#trunk-dropdown", "trunk");
+    
         const activePriceButton = document.querySelector("#price-dropdown button.active");
         if (activePriceButton) params.push(`max_price=${activePriceButton.innerText}`);
-        if (document.getElementById("climate-filter").classList.contains("active")) params.push(`air_condition=1`);
-        if (document.getElementById("gps-filter").classList.contains("active")) params.push(`gps=1`);
-
+    
+        if (document.getElementById("climate-filter").classList.contains("active")) {
+            params.push(`air_condition=1`);
+        }
+        if (document.getElementById("gps-filter").classList.contains("active")) {
+            params.push(`gps=1`);
+        }
+    
         if (params.length > 0) {
             url += `?${params.join("&")}`;
         }
-
+    
         fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -735,7 +749,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 renderCars(); // 🔥 Paging aktivieren
             })
             .catch(error => console.error("Fehler beim Laden der Car-IDs:", error));
-    }
+    }    
 
     function renderCars() {
         const container = document.getElementById("car-list");
@@ -753,9 +767,9 @@ document.addEventListener("DOMContentLoaded", function () {
         visibleCars.forEach(car => {
             const carElement = document.createElement("div");
             carElement.classList.add("car-card");
-
+        
             const imageName = car.img_file_name ? car.img_file_name : "default.jpg";
-
+        
             carElement.innerHTML = `
                 <div class="car-image">
                     <img src="images/cars/${imageName}" alt="${car.vendor_name} ${car.type}" 
@@ -763,7 +777,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
                 <div class="car-info">
                     <div class="car-info-left">
-                        <h3 class="car-title">${car.vendor_name} ${car.name} - ${car.loc_name}</h3>
+                        <h3 class="car-title">${car.vendor_name} ${car.name} ${car.name_extension}</h3>
+                        <p class="car-location">${car.loc_name}  
+                            <span class="availability">- Verfügbar: ${car.availability_count}</span>
+                        </p>
                         <p class="car-price">${car.price}€/Tag</p>
                     </div>
                     <button class="book-button" data-car-id="${car.car_id}">
@@ -771,15 +788,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     </button>
                 </div>
             `;
-
+        
             container.appendChild(carElement);
-
+        
             // ✅ Event Listener für "Details"-Button
             carElement.querySelector(".book-button").addEventListener("click", function () {
                 const carId = this.getAttribute("data-car-id");
                 redirectToDetails(carId);
             });
-        });
+        });        
 
         updatePaginationButtons();
     }

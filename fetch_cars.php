@@ -151,10 +151,32 @@ if (!empty($_GET['trunk'])) {
 }
 
 // 🔹 SQL-Abfrage erstellen
-$sql = "SELECT car_id, vendor_name, loc_name, gear, doors, seats, drive, min_age, price, air_condition, gps, trunk, img_file_name, name FROM cars";
+$sql = "SELECT 
+            MIN(car_id) as car_id, 
+            vendor_name, 
+            vendor_name_abbr, 
+            name_extension,
+            name, 
+            loc_name, 
+            gear, 
+            doors, 
+            seats, 
+            drive, 
+            min_age, 
+            price, 
+            air_condition, 
+            gps, 
+            trunk, 
+            img_file_name,
+            COUNT(*) as availability_count 
+        FROM cars";
+
+// Falls Filter aktiv sind, wende sie an
 if (!empty($whereClauses)) {
     $sql .= " WHERE " . implode(" AND ", $whereClauses);
 }
+
+$sql .= " GROUP BY vendor_name, vendor_name_abbr, name, loc_name";
 $sql .= " ORDER BY $orderBy";
 
 $stmt = $conn->prepare($sql);
