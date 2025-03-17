@@ -1953,6 +1953,7 @@ body.car-details .navbar {
     display: flex;
     align-items: center;
     margin-right: 20px; /* Abstand zum Logo */
+    background-color: #313131;
 }
 
 .logged-in-user strong {
