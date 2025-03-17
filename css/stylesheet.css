@@ -2467,12 +2467,11 @@ body.bookings-page {
 }
 
 .pagination-container {
-    position: absolute;
-    transform: translateX(-50%);
     display: flex;
+    justify-content: center;
     gap: 20px;
-    margin-top: 40px;
-    margin-left: 217.5px;
+    margin-top: 65px; /* Abstand nach oben */
+    margin-bottom: -55px; /* Abstand nach unten */
 }
 
 .pagination-btn {
