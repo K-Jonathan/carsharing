@@ -96,6 +96,27 @@ include("includes/header.php");
     <h2>Nachhaltige Autovermietung einfach gemacht</h2>
  </section>
 
+ <section class="car-categories">
+    <div class="category">
+        <span>Limousine</span>
+        <img src="images/categories/limousine.jpg" alt="Limousine" class="category-image" data-type="Limousine"> 
+    </div>
+    <div class="category">
+        <span>Combi</span>
+        <img src="images/categories/limousine.jpg" alt="Combi" class="category-image" data-type="Combi">
+    </div>
+    <div class="category">
+        <span>Cabriolet</span>
+        <img src="images/categories/limousine.jpg" alt="Cabriolet" class="category-image" data-type="Cabriolet">
+    </div>
+    <div class="category">
+        <span>SUV</span>
+        <img src="images/categories/limousine.jpg" alt="SUV" class="category-image" data-type="SUV">
+    </div>
+</section>
+<hr class="category-divider">
+
+
  <section class="features">
     <div class="feature">
         <div class="feature-header">
@@ -175,7 +196,7 @@ include("includes/header.php");
         </div>
     </a>
 </section>
-
+<script src="js/category_redirect.js"></script>
 <?php
 //STRG + U auf beliebigen Websites für Insights
 //header

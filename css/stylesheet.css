@@ -252,6 +252,7 @@ html, body {
     justify-content: space-between; /* Gleichmäßiger Abstand */
     align-items: center;
     padding: 40px 20px;
+    margin-bottom: 25px;
 }
 
 .feature {
@@ -2488,4 +2489,46 @@ body.bookings-page {
 .pagination-btn:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+
+.car-categories {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 30px;
+}
+
+.category {
+    text-align: center;
+}
+
+.category img {
+    width: 325px; /* Größe der Bilder anpassen */
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.category img:hover {
+    transform: scale(1.025);
+    cursor: pointer;
+}
+
+.category span {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: black; /* Pink wie der Rest des Designs */
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+/* 🔹 Dünne schwarze Linie unter den Kategorien */
+.category-divider {
+    width: 95%;  /* Breite der Linie (relativ zur Seite) */
+    margin: 50px auto 20px auto; /* 50px Abstand nach oben, 20px nach unten */
+    border: none;
+    border-top: 0.5px solid black; /* Dünne schwarze Linie */
 }

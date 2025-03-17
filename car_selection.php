@@ -311,6 +311,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
     </div>
 </div>
 <script src="js/reset_filters.js" defer></script>
+<script src="js/apply_filter.js"></script>
 </body>
 
 
