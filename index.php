@@ -103,15 +103,15 @@ include("includes/header.php");
     </div>
     <div class="category">
         <span>Combi</span>
-        <img src="images/categories/limousine.jpg" alt="Combi" class="category-image" data-type="Combi">
+        <img src="images/categories/combi.jpg" alt="Combi" class="category-image" data-type="Combi">
     </div>
     <div class="category">
         <span>Cabriolet</span>
-        <img src="images/categories/limousine.jpg" alt="Cabriolet" class="category-image" data-type="Cabriolet">
+        <img src="images/categories/cabriolet.jpg" alt="Cabriolet" class="category-image" data-type="Cabriolet">
     </div>
     <div class="category">
         <span>SUV</span>
-        <img src="images/categories/limousine.jpg" alt="SUV" class="category-image" data-type="SUV">
+        <img src="images/categories/suv.jpg" alt="SUV" class="category-image" data-type="SUV">
     </div>
 </section>
 <hr class="category-divider">
