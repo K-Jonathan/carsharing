@@ -90,6 +90,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
 
         <!-- ✅ Filter ist jetzt innerhalb der richtigen Box -->
         <div class="filter-options">
+        <button class="filter-btn reset-filter" id="reset-filters">Zurücksetzen</button>
         <button class="filter-btn" id="sort-filter">Sortierung ▼</button>
 
 <!-- 🔹 Dropdown-Box für Sortierung -->
@@ -309,7 +310,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
         <button class="popup-close" id="popupClose">Schließen</button>
     </div>
 </div>
-
+<script src="js/reset_filters.js" defer></script>
 </body>
 
 
