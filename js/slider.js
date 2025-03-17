@@ -708,13 +708,11 @@ document.addEventListener("DOMContentLoaded", function () {
             params.push(`sort=${sortOrder}`);
         }
     
-        // 🔹 Mehrfachwerte korrekt als kommagetrennte Strings speichern
         function collectActiveValues(selector, paramName) {
             const activeValues = [...document.querySelectorAll(selector + " button.active")]
-                .map(button => button.innerText.trim()); // Nur Textwerte holen & trimmen
-    
+                .map(button => button.innerText.trim());
             if (activeValues.length > 0) {
-                params.push(`${paramName}=${activeValues.join(",")}`); // Komma-getrennte Liste
+                params.push(`${paramName}=${activeValues.join(",")}`);
             }
         }
     
@@ -744,62 +742,115 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                allCars = data.cars; // 🚀 Speichere alle Autos (gefiltert)
-                currentPage = 0; // Zurück zur ersten Seite
-                renderCars(); // 🔥 Paging aktivieren
+                allCars = data.cars;
+                currentPage = 0;
+                renderCars();
+    
+                // 🚀 Danach gebuchte Autos nachladen
+                fetchUnavailableCars();
             })
             .catch(error => console.error("Fehler beim Laden der Car-IDs:", error));
+    }
+    
+    // 🔹 Neue Funktion: Gebuchte Autos nachladen & anzeigen
+    function fetchUnavailableCars() {
+        fetch("fetch_unavailable_cars.php")
+            .then(response => response.json())
+            .then(data => {
+                if (data.cars && data.cars.length > 0) {
+                    const groupedUnavailableCars = groupUnavailableCars(data.cars);
+                    allCars.push(...groupedUnavailableCars); // 🚀 Füge gruppierte gebuchte Autos zur Liste hinzu
+                    renderCars(); // 🔄 Aktualisiere die Anzeige mit den neuen Autos
+                }
+            })
+            .catch(error => console.error("Fehler beim Laden der gebuchten Autos:", error));
+    }    
+    
+    function groupUnavailableCars(cars) {
+        const grouped = {};
+    
+        cars.forEach(car => {
+            const key = `${car.vendor_name}|${car.vendor_name_abbr}|${car.name}|${car.name_extension}|${car.loc_name}`;
+            
+            if (!grouped[key]) {
+                grouped[key] = { ...car, count: 0 };
+            }
+            grouped[key].count++;
+        });
+    
+        return Object.values(grouped);
     }    
 
     function renderCars() {
         const container = document.getElementById("car-list");
         container.innerHTML = "";
-
+    
         if (allCars.length === 0) {
             container.innerHTML = "<div class='no-results'>Keine Autos gefunden.</div>";
             return;
         }
-
-        // 🔹 Zeige nur die passenden Autos für die aktuelle Seite
+    
+        // 🔹 Zeige nur Autos für die aktuelle Seite (inkl. gebuchter Autos!)
         const start = currentPage * carsPerPage;
         const visibleCars = allCars.slice(start, start + carsPerPage);
-
+    
         visibleCars.forEach(car => {
             const carElement = document.createElement("div");
             carElement.classList.add("car-card");
-        
+    
             const imageName = car.img_file_name ? car.img_file_name : "default.jpg";
-        
-            carElement.innerHTML = `
-                <div class="car-image">
-                    <img src="images/cars/${imageName}" alt="${car.vendor_name} ${car.type}" 
-                         onerror="this.onerror=null; this.src='images/cars/default.jpg';">
-                </div>
-                <div class="car-info">
-                    <div class="car-info-left">
-                        <h3 class="car-title">${car.vendor_name} ${car.name} ${car.name_extension}</h3>
-                        <p class="car-location">${car.loc_name}  
-                            <span class="availability">- Verfügbar: ${car.availability_count}</span>
-                        </p>
-                        <p class="car-price">${car.price}€/Tag</p>
+    
+            if (car.status === "booked") {
+                // 🔹 Stil für gebuchte Autos
+                carElement.classList.add("unavailable");
+                carElement.innerHTML = `
+                    <div class="car-image">
+                        <img src="images/cars/${imageName}" alt="${car.vendor_name} ${car.name}" 
+                             class="grayscale"
+                             onerror="this.onerror=null; this.src='images/cars/default.jpg';">
+                        <div class="overlay-text">Für den gewünschten Zeitraum ausgebucht</div>
                     </div>
-                    <button class="book-button" data-car-id="${car.car_id}">
-                        Details
-                    </button>
-                </div>
-            `;
-        
+                    <div class="car-info">
+                        <div class="car-info-left">
+                            <h3 class="car-title">${car.vendor_name} ${car.name} ${car.name_extension}</h3>
+                            <p class="car-location">${car.loc_name}  
+                                <span class="availability">- Ausgebucht: ${car.count}</span>
+                            </p>
+                            <p class="car-price">${car.price}€/Tag</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // 🔹 Stil für verfügbare Autos
+                carElement.innerHTML = `
+                    <div class="car-image">
+                        <img src="images/cars/${imageName}" alt="${car.vendor_name} ${car.type}" 
+                             onerror="this.onerror=null; this.src='images/cars/default.jpg';">
+                    </div>
+                    <div class="car-info">
+                        <div class="car-info-left">
+                            <h3 class="car-title">${car.vendor_name} ${car.name} ${car.name_extension}</h3>
+                            <p class="car-location">${car.loc_name}  
+                                <span class="availability">- Verfügbar: ${car.availability_count}</span>
+                            </p>
+                            <p class="car-price">${car.price}€/Tag</p>
+                        </div>
+                        <button class="book-button" data-car-id="${car.car_id}">Details</button>
+                    </div>
+                `;
+    
+                // ✅ Event Listener für "Details"-Button
+                carElement.querySelector(".book-button").addEventListener("click", function () {
+                    const carId = this.getAttribute("data-car-id");
+                    redirectToDetails(carId);
+                });
+            }
+    
             container.appendChild(carElement);
-        
-            // ✅ Event Listener für "Details"-Button
-            carElement.querySelector(".book-button").addEventListener("click", function () {
-                const carId = this.getAttribute("data-car-id");
-                redirectToDetails(carId);
-            });
-        });        
-
+        });
+    
         updatePaginationButtons();
-    }
+    }        
 
     function updatePaginationButtons() {
         document.getElementById("prev-cars").disabled = (currentPage === 0);
