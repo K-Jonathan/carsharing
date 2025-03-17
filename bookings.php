@@ -4,6 +4,12 @@ require_once('fetch_bookings.php');
 ?>
 
 <body class="bookings-page">
+
+<div class="pagination-container">
+    <button id="prev-bookings" class="pagination-btn" disabled>⬅ Zurück</button>
+    <button id="next-bookings" class="pagination-btn">Weiter ➡</button>
+</div>
+
     <div class="bookings-container">
         <h2 class="bookings-title">Meine Buchungen</h2>
 
@@ -61,6 +67,7 @@ require_once('fetch_bookings.php');
         </div>
     </div>
 </div>
+<script src="js/bookings_paging.js"></script>
 <script src="js/cancel_booking.js"></script>
 </body>
 
