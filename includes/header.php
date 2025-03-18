@@ -17,35 +17,39 @@ include 'session_handler.php'; // 🔹 Stellt sicher, dass `userid` immer verfü
             
             <nav>
                 <ul>
-                <?php if ($logged_in): ?>
-    <li>
-        <a href="bookings.php" class="icon-text">
-            <img src="images/car-icon.png" alt="My bookings icon">
-            <span>Meine Buchungen</span>
-        </a>
-    </li>
-<?php else: ?>
-    <li>
-        <a href="loginpage.php" class="icon-text">
-            <img src="images/car-icon.png" alt="My bookings icon">
-            <span>Meine Buchungen</span>
-        </a>
-    </li>
-<?php endif; ?>
+                    <?php if ($logged_in): ?>
+                        <li>
+                            <a href="bookings.php" class="icon-text">
+                                <img src="images/car-icon.png" alt="My bookings icon">
+                                <span>Meine Buchungen</span>
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <a href="loginpage.php" class="icon-text">
+                                <img src="images/car-icon.png" alt="My bookings icon">
+                                <span>Meine Buchungen</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
 
                     <li><a href="#" class="icon-text"><img src="images/world-icon.png" alt="World icon"><span>DE</span></a></li>
 
-                    <!-- 🔹 Anmelden/Login oder Abmelden/Logout abhängig vom Status -->
+                    <!-- 🔹 Falls eingeloggt: Führt zu `user_settings.php` statt `logout.php` -->
                     <?php if ($logged_in): ?>
                         <li>
-    <a href="logout.php" class="icon-text">
-        <img src="images/person-icon.png" alt="Person icon">
-        <span><strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong> | Logout</span>
-    </a>
-</li>
-
+                            <a href="user_settings.php" class="icon-text">
+                                <img src="images/person-icon.png" alt="Person icon">
+                                <span><strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong> | Profil</span>
+                            </a>
+                        </li>
                     <?php else: ?>
-                        <li><a href="loginpage.php" class="icon-text"><img src="images/person-icon.png" alt="Person icon"><span>Anmelden | Login</span></a></li>
+                        <li>
+                            <a href="loginpage.php" class="icon-text">
+                                <img src="images/person-icon.png" alt="Person icon">
+                                <span>Anmelden | Login</span>
+                            </a>
+                        </li>
                     <?php endif; ?>
                 </ul>
             </nav>

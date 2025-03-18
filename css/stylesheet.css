@@ -2569,3 +2569,125 @@ body.bookings-page {
 .unavailable .book-button {
     display: none; /* Details-Button ausblenden */
 }
+
+/* 🔹 Container für die Einstellungen */
+.settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px); /* Passt Höhe dynamisch an, um Platz für Header & Footer zu lassen */
+    padding: 80px 20px; /* Abstand nach oben und unten */
+}
+
+/* 🔹 Die zentrale Box */
+.settings-box {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+/* 🔹 Optional: Responsive Anpassung */
+@media (max-width: 768px) {
+    .settings-box {
+        width: 90%;
+        padding: 30px;
+    }
+}
+
+.settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Abstand zum Header & Footer */
+}
+
+.settings-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: center;
+}
+
+.settings-box h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+body.user-settings .navbar {
+    background-color: #333 !important;
+}
+
+/* Standardstil für den Button */
+.loginregisterpage-button {
+    background-color: #EFCFD8; /* Pink */
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover-Effekt für den aktiven Button */
+.loginregisterpage-button:hover {
+    background-color: #e3b9c6; /* Dunkleres Pink */
+}
+
+/* 🔹 Stil für deaktivierten Button */
+.loginregisterpage-button:disabled {
+    background-color: #ccc; /* Grau */
+    color: #888; /* Etwas dunklerer Grauton */
+    cursor: not-allowed; /* Gesperrter Cursor */
+    box-shadow: none;
+}
+
+/* 🔹 Kein Hover-Effekt für deaktivierten Button */
+.loginregisterpage-button:disabled:hover {
+    background-color: #ccc;
+}
+
+.logout-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #d9534f; /* Rotes Design */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.logout-button:hover {
+    background-color: #c9302c; /* Etwas dunkleres Rot */
+}
