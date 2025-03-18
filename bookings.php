@@ -1,64 +1,18 @@
 <?php 
 include 'includes/header.php'; 
-require_once('fetch_bookings.php'); 
 ?>
 
 <body class="bookings-page">
-
-<div class="pagination-container">
-    <button id="prev-bookings" class="pagination-btn" disabled>⬅ Zurück</button>
-    <button id="next-bookings" class="pagination-btn">Weiter ➡</button>
-</div>
-
-    <div class="bookings-container">
-        <h2 class="bookings-title">Meine Buchungen</h2>
-
-        <?php if (!empty($bookings)): ?>
-            <?php foreach ($bookings as $row): ?>
-                <div class="booking-card">
-                    <!-- 🔹 Bildbereich -->
-                    <div class="booking-image">
-                        <img src="images/cars/<?php echo htmlspecialchars($row['img_file_name']); ?>" 
-                             alt="<?php echo htmlspecialchars($row['vendor_name'] . ' ' . $row['car_name']); ?>">
-                    </div>
-
-                    <!-- 🔹 Infobereich -->
-                    <div class="booking-info">
-                    <h2 class="booking-title"><?php echo htmlspecialchars($row['vendor_name'] . ' ' . $row['car_name']); ?></h2>
-<hr class="booking-divider"> <!-- Horizontale Linie -->
-
-<!-- 🔹 Tabelle für Buchungsinformationen -->
-<table class="booking-table">
-    <tr class="booking-table-header">
-        <th>ID</th>
-        <th>Buchung</th>
-        <th>Abholung</th>
-        <th>Abgabe</th>
-        <th>Standort</th>
-    </tr>
-    <tr class="booking-table-data">
-        <td><?php echo $row['booking_id']; ?></td>
-        <td><?php echo date("d.m.y", strtotime($row['booking_time'])); ?></td>
-        <td><?php echo date("d.m.y", strtotime($row['pickup_date'])) . " - " . date("H:i", strtotime($row['pickup_time'])); ?></td>
-        <td><?php echo date("d.m.y", strtotime($row['return_date'])) . " - " . date("H:i", strtotime($row['return_time'])); ?></td>
-        <td><?php echo htmlspecialchars($row['loc_name']); ?></td>
-    </tr>
-</table>
-<div class="booking-buttons">
-    <button class="cancel-booking-button" data-booking-id="<?php echo $row['booking_id']; ?>">Stornieren</button>
-    <button class="details-button">Details</button>
-</div>
-
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p class="no-bookings">Sie haben noch keine Buchungen.</p>
-        <?php endif; ?>
+<div class="bookings-container">
+    <div class="filter-buttons">
+        <button id="future-bookings-btn" class="filter-button active">Zukünftige Buchungen</button>
+        <button id="past-bookings-btn" class="filter-button">Aktuelle/Vergangene Buchungen</button>
     </div>
-    <!-- Stornierungs-Pop-up -->
-<!-- Stornierungs-Pop-up -->
-<div id="cancel-booking-popup" class="cancel-popup-overlay">
+
+    <!-- 🔹 Hier werden die Buchungen per JS geladen -->
+    <div id="bookings-list"></div>
+</div>
+<div id="cancel-booking-popup" class="cancel-popup-overlay" style="display: none;">
     <div class="cancel-popup-box">
         <p class="cancel-popup-title">Möchten Sie Ihre Buchung wirklich stornieren?</p>
         <div class="cancel-popup-buttons">
@@ -67,8 +21,7 @@ require_once('fetch_bookings.php');
         </div>
     </div>
 </div>
-<script src="js/bookings_paging.js"></script>
-<script src="js/cancel_booking.js"></script>
+<script src="js/bookings_filter.js"></script>
 </body>
 
 <?php include 'includes/footer.php'; ?>

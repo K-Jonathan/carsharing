@@ -828,9 +828,13 @@ document.addEventListener("DOMContentLoaded", function () {
         container.innerHTML = "";
     
         if (allCars.length === 0) {
-            container.innerHTML = "<div class='no-results'>Keine Autos gefunden.</div>";
+            container.innerHTML = `
+                <div class="no-results">
+                    <p>Derzeit stehen keine Fahrzeuge, für die von Ihnen gewählten Filteroptionen, zur Verfügung</p>
+                </div>
+            `;
             return;
-        }
+        }        
     
         // 🔹 Zeige nur Autos für die aktuelle Seite (inkl. gebuchter Autos!)
         const start = currentPage * carsPerPage;

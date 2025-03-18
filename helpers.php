@@ -15,17 +15,17 @@ function convertDate($dateString) {
     if (!$month) return null;
 
     // Aktuelles Datum
-    $currentYear = date("Y");
     $today = new DateTime();
-    
+    $today->setTime(0, 0); // 🔹 Exakte Vergleichbarkeit ohne Uhrzeit
+    $currentYear = $today->format("Y");
+    $nextYear = $currentYear + 1;
+
     // Erstelle ein Datum mit dem aktuellen Jahr
     $parsedDate = DateTime::createFromFormat("j F Y", "$day $month $currentYear");
 
-    // Falls das Datum schon in der Vergangenheit liegt, nimm das nächste Jahr
-    if ($parsedDate < $today) {
-        $currentYear++;
-    }
+    // ✅ **Fix: Jahr nur erhöhen, wenn pickup_date KLEINER als heute ist**
+    $year = ($parsedDate < $today) ? $nextYear : $currentYear;
 
-    return date("Y-m-d", strtotime("$day $month $currentYear"));
+    return date("Y-m-d", strtotime("$day $month $year"));
 }
 ?>

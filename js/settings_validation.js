@@ -6,15 +6,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const popupErrors = document.getElementById("popupErrors");
     const popupClose = document.getElementById("popupClose");
 
-    function showPopup(errors) {
-        popupErrors.innerHTML = "";
+    function showPopup(errors, title = "Fehler bei der Aktualisierung") {
+        const popupTitle = document.querySelector(".popup-title");
+        popupErrors.innerHTML = ""; // Vorherige Fehler entfernen
+        popupTitle.textContent = title; // Dynamische Überschrift setzen
+    
         errors.forEach(error => {
             let li = document.createElement("li");
             li.innerHTML = `<span class="bullet">●</span> ${error}`;
             popupErrors.appendChild(li);
         });
+    
         popupOverlay.style.display = "flex";
-    }
+    }    
 
     popupClose.addEventListener("click", function () {
         popupOverlay.style.display = "none";
@@ -58,12 +62,12 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.status === "error") {
-                showPopup(data.errors); // ❌ Falls Fehler → Pop-up mit Fehlern
+                showPopup(data.errors, "Fehler bei der Aktualisierung"); // ❌ Falls Fehler → "Fehler bei der Aktualisierung"
             } else if (data.status === "success") {
-                showPopup(["Änderungen gespeichert!"]); // ✅ Erfolgreich → Bestätigung anzeigen
+                showPopup(["Änderungen gespeichert!"], "Erfolgreiche Aktualisierung"); // ✅ Erfolgreich → "Erfolgreiche Aktualisierung"
                 saveButton.disabled = true; // Button nach erfolgreicher Änderung deaktivieren
             }
         })
-        .catch(error => console.error("Fehler:", error));
+        .catch(error => console.error("Fehler:", error));        
     });
 });
