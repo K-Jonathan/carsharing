@@ -833,10 +833,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p>Derzeit stehen keine Fahrzeuge, für die von Ihnen gewählten Filteroptionen, zur Verfügung</p>
                 </div>
             `;
+            updatePaginationButtons(); // ❗ Direkt nach dem Hinzufügen prüfen!
             return;
-        }        
+        }
     
-        // 🔹 Zeige nur Autos für die aktuelle Seite (inkl. gebuchter Autos!)
+        // 🔹 Zeige nur Autos für die aktuelle Seite
         const start = currentPage * carsPerPage;
         const visibleCars = allCars.slice(start, start + carsPerPage);
     
@@ -893,28 +894,43 @@ document.addEventListener("DOMContentLoaded", function () {
             container.appendChild(carElement);
         });
     
-        updatePaginationButtons();
-    }        
+        updatePaginationButtons(); // ❗ Nach dem Rendern der Autos aufrufen
+    }            
 
     function updatePaginationButtons() {
-        document.getElementById("prev-cars").disabled = (currentPage === 0);
-        document.getElementById("next-cars").disabled = ((currentPage + 1) * carsPerPage >= allCars.length);
+        const prevButton = document.getElementById("prev-cars");
+        const nextButton = document.getElementById("next-cars");
+        const noCarsMessage = document.querySelector(".no-results"); // Prüft, ob keine Autos vorhanden sind
+    
+        // 🔹 Falls keine Autos verfügbar sind → Beide Buttons deaktivieren
+        if (noCarsMessage) {
+            prevButton.disabled = true;
+            nextButton.disabled = true;
+        } else {
+            prevButton.disabled = (currentPage === 0);
+            nextButton.disabled = ((currentPage + 1) * carsPerPage >= allCars.length);
+        }
+    
+        // 🔹 Klassen für deaktivierte Buttons setzen, um das Styling beizubehalten
+        prevButton.classList.toggle("disabled", prevButton.disabled);
+        nextButton.classList.toggle("disabled", nextButton.disabled);
     }
-
+    
+    // 🔹 Event Listener für die Paging-Buttons
     document.getElementById("prev-cars").addEventListener("click", function () {
         if (currentPage > 0) {
             currentPage--;
             renderCars();
         }
     });
-
+    
     document.getElementById("next-cars").addEventListener("click", function () {
         if ((currentPage + 1) * carsPerPage < allCars.length) {
             currentPage++;
             renderCars();
         }
     });
-
+    
     // 🏁 Event Listener für ALLE Filter-Buttons (Sofortige Aktualisierung)
     document.querySelectorAll("#sort-dropdown button, #type-dropdown button, #gear-dropdown button, #manufacturer-dropdown button, #doors-dropdown button, #seats-dropdown button, #drive-dropdown button, #age-dropdown button, #price-dropdown button, #climate-filter, #gps-filter, #trunk-dropdown button")
         .forEach(button => {
@@ -922,8 +938,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 fetchCarIds();
             });
         });
-
-    fetchCarIds(); // 🚀 Starte die erste Datenabfrage
+    
+    fetchCarIds(); // 🚀 Starte die erste Datenabfrage            
 });
 
 

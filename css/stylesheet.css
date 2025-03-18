@@ -2737,3 +2737,8 @@ body.user-settings .navbar {
     padding: 20px;
     margin-top: auto; /* Drückt den Footer an den unteren Rand */
 }
+
+button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
