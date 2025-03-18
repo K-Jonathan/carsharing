@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($classe) || empty($password)) {
         $errors[] = "Bitte füllen Sie alle Felder aus.";
     } else {
-        $stmt = $conn->prepare("SELECT userid, username, email, password FROM users WHERE email = ? OR username = ?");
+        $stmt = $conn->prepare("SELECT userid, username, email, password, birthdate FROM users WHERE email = ? OR username = ?");
         $stmt->bind_param("ss", $classe, $classe);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -28,6 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["userid"] = $user["userid"];
                 $_SESSION["username"] = $user["username"];
                 $_SESSION["email"] = $user["email"];
+                
+                // 🎯 Alter berechnen und in Session speichern
+                $birthdate = new DateTime($user["birthdate"]);
+                $currentDate = new DateTime();
+                $age = $currentDate->diff($birthdate)->y;
+
+                $_SESSION["age"] = $age;
+                $_SESSION["birthdate"] = $user["birthdate"]; // Falls du es später brauchst
 
                 echo json_encode(["success" => true, "redirect" => $redirect_url]);
                 exit;
