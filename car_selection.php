@@ -310,6 +310,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
         <button class="popup-close" id="popupClose">Schließen</button>
     </div>
 </div>
+<script src="js/add_calender_details.js" defer></script>
 <script src="js/reset_filters.js" defer></script>
 <script src="js/apply_filter.js"></script>
 <script src="js/redirect_details.js" defer></script>
