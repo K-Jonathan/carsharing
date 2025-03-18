@@ -98,19 +98,19 @@ include("includes/header.php");
 
  <section class="car-categories">
     <div class="category">
-        <span>Limousine</span>
+        <h3>Limousine</h3>
         <img src="images/categories/limousine.jpg" alt="Limousine" class="category-image" data-type="Limousine"> 
     </div>
     <div class="category">
-        <span>Combi</span>
+        <h3>Combi</h3>
         <img src="images/categories/combi.jpg" alt="Combi" class="category-image" data-type="Combi">
     </div>
     <div class="category">
-        <span>Cabriolet</span>
+        <h3>Cabriolet</h3>
         <img src="images/categories/cabriolet.jpg" alt="Cabriolet" class="category-image" data-type="Cabriolet">
     </div>
     <div class="category">
-        <span>SUV</span>
+        <h3>SUV</h3>
         <img src="images/categories/suv.jpg" alt="SUV" class="category-image" data-type="SUV">
     </div>
 </section>
