@@ -2701,7 +2701,11 @@ body.user-settings .navbar {
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sanfter Schatten */
     width: 400px;
-    margin-left: 655px;
+    margin-left: 755px;
+}
+
+.blocker {
+    height: 100px;
 }
 
 .filter-buttons {

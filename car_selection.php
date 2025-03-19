@@ -300,7 +300,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
     <!-- 🚗 Hier werden die Car-IDs dynamisch eingefügt -->
 </div>
 
-
+<div class="blocker"></div>
 
 <!-- ❌ Pop-up für fehlenden Buchungszeitraum -->
 <div class="popup-overlay" id="popupOverlay">

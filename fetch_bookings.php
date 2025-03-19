@@ -9,7 +9,7 @@ if (!isset($_SESSION['userid'])) {
     die("Fehler: Sie müssen eingeloggt sein, um Ihre Buchungen zu sehen.");
 }
 
-$userid = $_SESSION['userid'];
+$userid = intval($_SESSION['userid']);
 $today = date("Y-m-d");
 
 $sql = "SELECT b.booking_id, c.vendor_name, c.name AS car_name, c.img_file_name, 

@@ -1,28 +1,24 @@
 <?php
-require_once('db_connection.php'); // Stellt die Verbindung zur Datenbank her
+require_once('db_connection.php');
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // 🔹 Formulardaten abrufen & sicher machen
-    $username = trim($_POST["Benutzername"]);
-    $first_name = trim($_POST["Vorname"]);
-    $last_name = trim($_POST["name"]);
-    $birthdate = trim($_POST["birthdate"]); // Format: YYYY-MM-DD
-    $email = trim($_POST["email"]);
+    $username = htmlspecialchars(trim($_POST["Benutzername"]));
+    $first_name = htmlspecialchars(trim($_POST["Vorname"]));
+    $last_name = htmlspecialchars(trim($_POST["name"]));
+    $birthdate = htmlspecialchars(trim($_POST["birthdate"]));
+    $email = htmlspecialchars(trim($_POST["email"]));
     $password = $_POST["password"];
     $password_repeat = $_POST["password_repeat"];
 
-    // 🔹 Validierung: Prüfen, ob alle Felder ausgefüllt sind
     if (empty($username) || empty($first_name) || empty($last_name) || empty($birthdate) || empty($email) || empty($password) || empty($password_repeat)) {
         die("Bitte fülle alle Felder aus!");
     }
 
-    // 🔹 Validierung: Prüfen, ob das Passwort übereinstimmt
     if ($password !== $password_repeat) {
         die("Die Passwörter stimmen nicht überein!");
     }
 
-    // 🔹 Passwort sicher verschlüsseln
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // 🔹 Überprüfung, ob E-Mail oder Benutzername bereits existiert
@@ -43,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
         $stmt->close();
         $conn->close();
-        header("Location: loginpage.php?registered=success"); // Erfolgreich → Zur Loginpage umleiten
+        header("Location: loginpage.php?registered=success");
         exit();
     } else {
         die("Fehler beim Registrieren! Bitte versuche es später erneut.");

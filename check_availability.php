@@ -6,11 +6,12 @@ if (isset($_GET['field']) && isset($_GET['value'])) {
     $value = trim($_GET['value']);
 
     // Nur `username` oder `email` erlauben, um SQL-Injections zu verhindern
-    if ($field !== "email" && $field !== "username") {
+    if (!in_array($field, ["email", "username"])) {
         die("Ungültige Anfrage!");
     }
 
-    $stmt = $conn->prepare("SELECT userid FROM users WHERE $field = ?");
+    // Sicherstellen, dass das Feld dynamisch verwendet wird
+    $stmt = $conn->prepare("SELECT userid FROM users WHERE " . $field . " = ?");
     $stmt->bind_param("s", $value);
     $stmt->execute();
     $stmt->store_result();

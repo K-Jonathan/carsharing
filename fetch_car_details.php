@@ -2,13 +2,14 @@
 require_once('db_connection.php');
 
 function getCarDetails($car_id) {
-    global $conn; // Verbindung zur Datenbank
+    global $conn; 
+
+    $car_id = intval($car_id); // Absicherung gegen SQL-Injection
 
     if (!$car_id) {
         return null;
     }
 
-    // 🔹 Auto-Details aus der Datenbank abrufen
     $stmt = $conn->prepare("SELECT * FROM cars WHERE car_id = ?");
     $stmt->bind_param("i", $car_id);
     $stmt->execute();

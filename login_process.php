@@ -7,10 +7,10 @@ if (session_status() === PHP_SESSION_NONE) {
 header('Content-Type: application/json');
 
 $errors = [];
-$redirect_url = isset($_POST["redirect"]) && !empty($_POST["redirect"]) ? $_POST["redirect"] : "index.php";
+$redirect_url = isset($_POST["redirect"]) && !empty($_POST["redirect"]) ? htmlspecialchars(trim($_POST["redirect"])) : "index.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $classe = trim($_POST["Classe"]);
+    $classe = htmlspecialchars(trim($_POST["Classe"])); // XSS-Schutz
     $password = $_POST["Classf"];
 
     if (empty($classe) || empty($password)) {
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $age = $currentDate->diff($birthdate)->y;
 
                 $_SESSION["age"] = $age;
-                $_SESSION["birthdate"] = $user["birthdate"]; // Falls du es später brauchst
+                $_SESSION["birthdate"] = $user["birthdate"];
 
                 echo json_encode(["success" => true, "redirect" => $redirect_url]);
                 exit;
@@ -48,6 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// ❌ Falls Fehler vorhanden sind, sende sie zurück
 echo json_encode(["success" => false, "errors" => $errors]);
 exit;
+?>

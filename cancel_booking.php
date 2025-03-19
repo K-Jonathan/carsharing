@@ -5,12 +5,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Prüfen, ob der Nutzer eingeloggt ist
 if (!isset($_SESSION['userid'])) {
     die("Fehler: Sie müssen eingeloggt sein, um eine Buchung zu stornieren.");
 }
 
-// Prüfen, ob eine gültige booking_id übergeben wurde
 if (!isset($_GET['booking_id']) || !is_numeric($_GET['booking_id'])) {
     die("Fehler: Ungültige Buchungs-ID.");
 }

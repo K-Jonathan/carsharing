@@ -2,7 +2,7 @@
 require_once('db_connection.php');
 
 if (isset($_GET['q'])) {
-    $search = $_GET['q'] . '%'; // Für die LIKE-Suche
+    $search = htmlspecialchars(trim($_GET['q'])) . '%';
 
     $stmt = $conn->prepare("SELECT DISTINCT loc_name FROM cars WHERE loc_name LIKE ?");
     $stmt->bind_param("s", $search);
