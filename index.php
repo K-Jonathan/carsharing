@@ -150,20 +150,20 @@ include("includes/header.php");
 
             <!-- TEXT SLIDER -->
             <div class="review-text active">
-                <p><strong>Bester Mietwagen meines Lebens. Endlich kann ich auch grün Autofahren. Ich bin begeistert.</strong></p>
-                <span>- Rudi Völler</span>
+                <p><strong>Flamin-Go hat meine Mobilität völlig verändert – umweltfreundlich, flexibel und zuverlässig. Perfekt für spontane Ausflüge!</strong></p>
+                <span>- Ole Hansen</span>
             </div>
             <div class="review-text">
-                <p><strong>Super Starker Wagen.</strong></p>
+                <p><strong>Ich liebe das nachhaltige Konzept von Flamin-Go! Jede Fahrt hinterlässt nicht nur keinen CO₂-Fußabdruck, sondern pflanzt sogar einen Baum.</strong></p>
                 <span>- Maleen Zemla</span>
             </div>
             <div class="review-text">
-                <p><strong>Sau Stark.</strong></p>
+                <p><strong>Moderne, top-gepflegte Autos zu fairen Preisen. Einfach buchen und losfahren – besser geht’s nicht!</strong></p>
                 <span>- Tiago Jung</span>
             </div>
             <div class="review-text">
-                <p><strong>Mega Sache.</strong></p>
-                <span>- Jonathan Könning</span>
+                <p><strong>Super einfacher Buchungsprozess, tolle Auswahl an Fahrzeugen und ein erstklassiger Kundenservice – Flamin-Go macht Carsharing richtig!</strong></p>
+                <span>- Lasse Abram</span>
             </div>
 
             <!-- Navigation innerhalb des Bild-Containers -->

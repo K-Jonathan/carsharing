@@ -2880,8 +2880,8 @@ button.disabled {
 }
 .contboxvid {
     position: relative;
-    width: 200px; /* Feste Breite für das Video */
-    height: 355px; /* Höhe passend zum 9:16-Verhältnis (340 * 16 / 9) */
+    width: 300px; /* Feste Breite für das Video */
+    height: 515px; /* Höhe passend zum 9:16-Verhältnis (340 * 16 / 9) */
     margin: 0;
     border-radius: 20px;
     display: flex;
@@ -2894,7 +2894,7 @@ button.disabled {
 /* Video-Styling */
 .contboxvid video {
     width: 90%;
-    height: 95%;
+    height: auto;
     object-fit:contain; 
 }
 
