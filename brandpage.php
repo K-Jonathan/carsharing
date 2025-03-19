@@ -11,7 +11,7 @@
     
     <div class="features-container">
         <div class="feature-box">
-            <div class="feature-header">
+            <div class="feature-header2">
                 <img src="images/maps-icon.png" alt="Zuverlässig">
                 <p class="feature-title">Naturbewusst mieten</p>
             </div>
@@ -19,7 +19,7 @@
         </div>
 
         <div class="feature-box">
-            <div class="feature-header">
+            <div class="feature-header2">
                 <img src="images/tree-icon.png" alt="Naturbewusst">
                 <p class="feature-title">7.500</p>
             </div>
