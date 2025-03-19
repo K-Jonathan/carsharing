@@ -1,29 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // 🔹 Get elements related to search popup
     const editSearchBtn = document.getElementById("edit-search-btn");
     const searchPopup = document.getElementById("search-popup");
     const closePopupBtn = document.getElementById("close-hero-popup");
     const body = document.body;
 
-    // 🖊 Öffnet das Such-Pop-up
+    // 🖊 Open the search popup
     editSearchBtn.addEventListener("click", function () {
-        searchPopup.style.display = "flex"; // Pop-up anzeigen
-        body.style.overflow = "hidden"; // Scrollen deaktivieren
+        searchPopup.style.display = "flex"; // Show the popup
+        body.style.overflow = "hidden"; // Disable scrolling
     });
 
-    // ❌ Schließt das Pop-up
+    // ❌ Close the popup when clicking the close button
     closePopupBtn.addEventListener("click", function () {
         searchPopup.style.display = "none";
-        body.style.overflow = "auto"; // Scrollen wieder erlauben
+        body.style.overflow = "auto"; // Re-enable scrolling
     });
 
-    // 🚀 Funktion für Datumsauswahl (Kalender)
+    // 🚀 Handle date selection in calendar
     const pickupInput = document.getElementById("pickup");
     const returnInput = document.getElementById("return");
     const calendarContainer = document.getElementById("calendar-container");
 
     function openCalendar(input) {
         calendarContainer.style.display = "block";
-        calendarContainer.dataset.target = input.id; // Speichert, welches Feld editiert wird
+        calendarContainer.dataset.target = input.id; // Store which input is being edited
     }
 
     pickupInput.addEventListener("click", function () {
@@ -34,14 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
         openCalendar(returnInput);
     });
 
-    // Klick außerhalb des Kalenders schließt diesen
+    // Close calendar when clicking outside
     document.addEventListener("click", function (event) {
         if (!calendarContainer.contains(event.target) && event.target !== pickupInput && event.target !== returnInput) {
             calendarContainer.style.display = "none";
         }
     });
 
-    // 🚀 Funktion für Uhrzeitauswahl
+    // 🚀 Function to handle time selection
     function setupTimeDropdown(inputId, dropdownId) {
         const input = document.getElementById(inputId);
         const dropdown = document.getElementById(dropdownId);
@@ -80,11 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
     setupTimeDropdown("pickup-time", "time-dropdown");
     setupTimeDropdown("return-time", "return-time-dropdown");
 
-    // 🚀 Schließt das Pop-up, wenn auf "Suchen" geklickt wird
+    // 🚀 Close search popup when submitting the form
     const searchForm = document.querySelector("#search-popup form");
 
     searchForm.addEventListener("submit", function () {
-        searchPopup.style.display = "none"; // Pop-up ausblenden
-        body.style.overflow = "auto"; // Scrollen wieder erlauben
+        searchPopup.style.display = "none"; // Hide popup
+        body.style.overflow = "auto"; // Re-enable scrolling
     });
 });

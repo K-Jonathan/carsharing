@@ -1,41 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // URL-Parameter auslesen
+    // 🔹 Read URL parameters
     const urlParams = new URLSearchParams(window.location.search);
-    const carType = urlParams.get("car_type"); // `car_type` aus URL holen
+    const carType = urlParams.get("car_type"); // Extract the "car_type" filter from the URL
 
     if (carType) {
-        // ✅ Haupt-Button für "Typ" aktiv setzen
+        // ✅ Highlight the main filter button for "Type"
         const typeFilterBtn = document.getElementById("type-filter");
         if (typeFilterBtn) {
-            typeFilterBtn.classList.add("active");
+            typeFilterBtn.classList.add("active"); // Make it visually active
         } else {
-            console.error("❌ Der Hauptfilter-Button für Typ wurde nicht gefunden!");
+            console.error("❌ The main filter button for 'Type' was not found!");
         }
 
-        // ✅ Prüfen, ob der Typ-Filter existiert
+        // ✅ Check if the type filter dropdown exists
         const typeDropdown = document.getElementById("type-dropdown");
         if (!typeDropdown) {
-            console.error("❌ Das Typ-Dropdown wurde nicht gefunden!");
+            console.error("❌ The type dropdown was not found!");
             return;
         }
 
-        // ✅ Alle Buttons im Typ-Dropdown durchsuchen
+        // ✅ Iterate through all buttons in the dropdown and activate the correct one
         let found = false;
         typeDropdown.querySelectorAll("button").forEach(button => {
+            // Compare button text with the filter value (case-insensitive)
             if (button.innerText.trim().toLowerCase() === carType.trim().toLowerCase()) {
-                button.classList.add("active"); // Aktivieren!
+                button.classList.add("active"); // Activate the correct button
                 found = true;
             } else {
-                button.classList.remove("active"); // Falls ein anderer aktiv war, deaktivieren
+                button.classList.remove("active"); // Deactivate all others
             }
         });
 
         if (!found) {
-            console.error(`❌ Kein passender Filter für '${carType}' gefunden.`);
+            console.error(`❌ No matching filter found for '${carType}'.`);
         }
 
-        
-        // ✅ Autos mit aktualisierten Filtern laden
+        // ✅ Reload cars based on updated filters
         fetchCarIds();
     }
 });

@@ -1,74 +1,80 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("registerForm");
-    const popupOverlay = document.getElementById("popupOverlay");
-    const popupErrors = document.getElementById("popupErrors");
-    const popupClose = document.getElementById("popupClose");
+    const form = document.getElementById("registerForm"); // Get registration form
+    const popupOverlay = document.getElementById("popupOverlay"); // Popup overlay for error messages
+    const popupErrors = document.getElementById("popupErrors"); // Error list container
+    const popupClose = document.getElementById("popupClose"); // Close button for the popup
 
-    // 🔹 Funktion zum Anzeigen des Pop-ups mit Fehlern
+    /**
+     * 🔹 Displays a popup with error messages
+     * @param {Array} errors - List of error messages
+     */
     function showPopup(errors) {
-        popupErrors.innerHTML = ""; // Vorherige Fehler entfernen
+        popupErrors.innerHTML = ""; // Clear previous errors
+
         errors.forEach(error => {
             let li = document.createElement("li");
             li.innerHTML = `<span class="bullet">●</span> ${error}`;
             popupErrors.appendChild(li);
         });
-        popupOverlay.style.display = "flex";
+
+        popupOverlay.style.display = "flex"; // Show the popup
     }
 
-    // 🔹 Funktion zum Verstecken des Pop-ups
+    // 🔹 Close the popup when the close button is clicked
     popupClose.addEventListener("click", function () {
         popupOverlay.style.display = "none";
     });
 
-    // 🔹 Registrierung prüfen
+    // 🔹 Validate registration input when the form is submitted
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Verhindert das Absenden
+        event.preventDefault(); // Prevent default form submission
 
         let errors = [];
-        let username = document.getElementById("Benutzername").value;
-        let email = document.getElementById("email").value;
-        let password = document.getElementById("password").value;
-        let passwordRepeat = document.getElementById("password_repeat").value;
-        let birthdate = new Date(document.getElementById("birthdate").value);
+        let username = document.getElementById("Benutzername").value; // Get username input
+        let email = document.getElementById("email").value; // Get email input
+        let password = document.getElementById("password").value; // Get password input
+        let passwordRepeat = document.getElementById("password_repeat").value; // Get password confirmation
+        let birthdate = new Date(document.getElementById("birthdate").value); // Convert birthdate to Date object
         let today = new Date();
-        let age = today.getFullYear() - birthdate.getFullYear();
-        let checkbox = document.getElementById("meineCheckbox").checked; // Datenschutz-Checkbox
+        let age = today.getFullYear() - birthdate.getFullYear(); // Calculate age
+        let checkbox = document.getElementById("meineCheckbox").checked; // Check if user agreed to data policy
 
-        // 🔹 Alter prüfen (mind. 18 Jahre)
+        // 🔹 Age validation (Minimum 18 years old)
         if (age < 18) {
-            errors.push("Sie müssen mindestens 18 Jahre alt sein");
+            errors.push("You must be at least 18 years old");
         }
 
-        // 🔹 Passwort-Überprüfung
+        // 🔹 Password match validation
         if (password !== passwordRepeat) {
-            errors.push("Die Passwörter stimmen nicht überein");
+            errors.push("Passwords do not match");
         }
 
-        // 🔹 Datenschutz-Checkbox prüfen
+        // 🔹 Data policy agreement validation
         if (!checkbox) {
-            errors.push("Zustimmen der Datenschutzrichtlinien");
+            errors.push("You must accept the data policy");
         }
 
-        // 🔹 Benutzername & E-Mail per AJAX prüfen
+        // 🔹 Check if username and email are already taken via AJAX
         let requests = [
             fetch(`check_availability.php?field=username&value=${username}`).then(res => res.text()),
             fetch(`check_availability.php?field=email&value=${email}`).then(res => res.text())
         ];
 
+        // 🔹 Wait for both AJAX requests to complete
         Promise.all(requests).then(results => {
             if (results[0] === "exists") {
-                errors.push("Der Benutzername ist bereits vergeben");
+                errors.push("This username is already taken");
             }
             if (results[1] === "exists") {
-                errors.push("Die E-Mail-Adresse ist bereits vergeben");
+                errors.push("This email is already registered");
             }
 
-            // 🔹 Falls Fehler → Pop-up anzeigen
+            // 🔹 Show popup if there are errors, otherwise submit the form
             if (errors.length > 0) {
                 showPopup(errors);
             } else {
-                form.submit(); // ✅ Wenn keine Fehler → Formular absenden
+                form.submit(); // ✅ If no errors, proceed with form submission
             }
-        }).catch(error => console.error("Fehler:", error));
+        }).catch(error => console.error("Error:", error));
     });
 });
