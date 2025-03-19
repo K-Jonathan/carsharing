@@ -196,7 +196,33 @@ include("includes/header.php");
         </div>
     </a>
 </section>
+
+<hr class="category-divider">
+
+<section class="locations-section">
+<h1>Unsere Standorte</h1>
+<div class="map-spacer">
+    <div class="map-container">
+        <div class="map-marker" data-city="Berlin" style="left: 70%; top: 28%;"></div>
+        <div class="map-marker" data-city="Bielefeld" style="left: 35%; top: 35%;"></div>
+        <div class="map-marker" data-city="Bochum" style="left: 27%; top: 43%;"></div>
+        <div class="map-marker" data-city="Bremen" style="left: 37%; top: 24%;"></div>
+        <div class="map-marker" data-city="Dortmund" style="left: 29%; top: 41%;"></div>
+        <div class="map-marker" data-city="Dresden" style="left: 73%; top: 51%;"></div>
+        <div class="map-marker" data-city="Freiburg" style="left: 30%; top: 87%;"></div>
+        <div class="map-marker" data-city="Hamburg" style="left: 45%; top: 20%;"></div>
+        <div class="map-marker" data-city="Köln" style="left: 23%; top: 50%;"></div>
+        <div class="map-marker" data-city="Leipzig" style="left: 65%; top: 46%;"></div>
+        <div class="map-marker" data-city="München" style="left: 60%; top: 85%;"></div>
+        <div class="map-marker" data-city="Nürnberg" style="left: 56%; top: 72%;"></div>
+        <div class="map-marker" data-city="Paderborn" style="left: 36%; top: 39%;"></div>
+        <div class="map-marker" data-city="Rostock" style="left: 62%; top: 14%;"></div>
+    </div>
+</div>
+</section>
+
 <script src="js/category_redirect.js"></script>
+<script src="js/map_interaction.js"></script>
 <?php
 //STRG + U auf beliebigen Websites für Insights
 //header

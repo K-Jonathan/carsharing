@@ -3242,3 +3242,77 @@ button.disabled {
     color: #FE5F86 ;
     font-size: 25px;
 }
+
+/* Deutschlandkarte */
+.map-spacer {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+.map-container {
+    position: relative;
+    width: 600px;
+    height: 600px; /* Höhe der Karte */
+    background-image: url('../images/Deutschlandkarte.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+ 
+.map-marker {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: #EFCFD8;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+    border: 2px solid #3d3d3d;
+}
+ 
+.map-marker:hover {
+    background-color: #e07793;
+}
+ 
+/* Tooltip-Styling */
+.map-marker::after {
+    content: attr(data-city); /* Holt den Namen aus dem data-city-Attribut */
+    position: absolute;
+    top: -35px; /* Über dem Marker */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Verhindert Interaktionen mit dem Tooltip */
+    z-index: 15;
+}
+ 
+.map-marker:hover::after {
+    opacity: 1; /* Tooltip anzeigen */
+}
+
+.locations-section {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: white; /* Weißer Hintergrund */
+}
+
+.locations-section h1 {
+    color: #313131;
+    font-size: 80px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    line-height: 1.4;
+    margin-bottom: 40px;
+}
