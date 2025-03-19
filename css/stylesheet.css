@@ -3326,9 +3326,9 @@ button.disabled {
     color: white; 
 }
 
-/* 2) Header-Hintergrundfarbe auf #333 setzen */
-header {
-    background-color: #333 !important;
+/* Auf bestimmten Seiten: Grauer Header */
+body.booking-details-page .navbar {
+    background-color: #333 !important; /* Grau */
 }
 
 /* 3) Gesamtpreis in Weiß und Bold */

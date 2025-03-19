@@ -23,7 +23,7 @@
                 <div class="footer-column">
                     <a href="Contact.php" class="footer-btn dark">KONTAKT</a>
                     <a href="brandpage.php" class="footer-btn dark">FLAMIN-GO</a>
-                    <a href="#" class="footer-btn dark">FAQ</a>
+                    <a href="car_selection.php" class="footer-btn dark">AUTOSUCHE</a>
                     <a href="carriere.php" class="footer-btn dark">KARRIERE</a>
                 </div>
                 <!-- Rechte Spalte (helle Buttons) -->
