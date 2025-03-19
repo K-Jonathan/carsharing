@@ -2742,3 +2742,503 @@ button.disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+/* Contactpage */
+.Contacta {
+    width: 550px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Titel */
+.Contactb {
+    margin-bottom: 15px;
+    color: #444;
+}
+
+/* Eingabefelder */
+.Contactd {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.Contactd:focus {
+    border-color: #f28aa7; 
+    outline: none;
+    box-shadow: 0 0 5px rgba(242, 138, 167, 0.5);
+}
+
+/* Textarea Contact*/
+.Contacte {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+    resize: none;
+}
+
+.Contacte:focus {
+    border-color: #f28aa7;
+    outline: none;
+    box-shadow: 0 0 5px rgba(242, 138, 167, 0.5);
+}
+
+/* Button */
+.Contactf {
+    width: 100%;
+    padding: 12px;
+    background: #f28aa7; /* Rosa */
+    color: white;
+    border: none;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.Contactf:hover {
+    background: #e07793; /* Dunkleres Rosa */
+}
+.contbox1 {
+    background-color:#ffffffc4; 
+    width: 100%; 
+    height: 850px;
+    padding: 45px;  
+    text-align: center; 
+    margin: 60px; 
+    border-radius: 10px;
+    align-items: center;
+    
+}
+/* Container */
+.contact-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Für Mobilgeräte */
+    background-color: #ffffff; 
+    padding: 80px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Text-Bereich */
+.text-contact {
+    max-width: 25%;
+    text-align: left;
+}
+
+
+/* Buttons */
+.button-containercont {
+    margin-top: 35px;
+}
+
+.btncont {
+    display: inline-block;
+    background-color: #ff4b78;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-right: 10px;
+}
+
+.btncont:hover {
+    background-color: #e63960;
+}
+
+.contover {
+    background-color:#ffffff; 
+    width:100%;
+    height:60px;
+    top:0;
+    z-index: 1;
+}
+.contover2 {
+    background-color:#ffffff; 
+    width:100%;
+    height:60px;
+  
+}
+.contboxvid {
+    position: relative;
+    width: 200px; /* Feste Breite für das Video */
+    height: 355px; /* Höhe passend zum 9:16-Verhältnis (340 * 16 / 9) */
+    margin: 0;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #e07793;
+}
+
+/* Video-Styling */
+.contboxvid video {
+    width: 90%;
+    height: 95%;
+    object-fit:contain; 
+}
+
+.Contback {
+    background: url('/Carsharing/images/Contact1.jpg') no-repeat center center;
+    background-size: cover;
+}
+.startbild {
+    
+    background-size: cover;
+    text-align: center;
+   min-width: 100%;
+    min-height: 1200px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+   margin-top: -150px;
+   align-items: center ;
+  }
+
+  .blacksmall, .blackbig, .whitebig, .whitemedium, .whiteandthin, .testclass {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+
+.blacksmall {
+    color: rgb(0, 0, 0);
+    font-weight: normal;
+    font-size: 140%;
+}
+.whitesmall {
+    color: rgb(255, 255, 255);
+    font-weight: normal;
+    font-size: 140%;
+    
+}
+
+.whiteboxR1 {
+    background-color:rgb(255, 255, 255); 
+    width:100%;
+    height:80px;
+
+}
+.blackbig {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 250%;
+}
+.blackbigxl {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 350%;
+}
+.whitebig {
+    color: white;
+    font-weight: bold;
+    font-size: 500%;
+}
+
+.whitemedium {
+    color: white;
+    font-weight: bold;
+    font-size: 350%;
+}
+.blackmedium {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 350%;
+}
+.blackmedium1 {
+    color: rgba(0, 0, 0, 0.685);
+    font-weight: bold;
+    font-size: 350%;
+}
+
+.whiteandthin {
+    color: white;
+    font-weight: 200;
+    font-size: 200%;
+}
+
+.blackandthin {
+    color: rgba(0, 0, 0, 0.637);
+    font-weight: 200;
+    font-size: 200%;
+}
+.blackandthinbig {
+    color: rgba(0, 0, 0, 0.884);
+    font-weight: 200;
+    font-size: 300%;
+}
+.blackandthinsmall {
+    color: rgba(0, 0, 0, 0.637);
+    font-weight: 200;
+    font-size: 100%;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+.pinkboxR1 {
+    background-color:#EFCFD8; 
+    width:100%;
+    height:60px;
+
+}
+
+/* ========== Brandpage Styles ========== */
+/* Hintergrundbild mit schwarzer Transparenz */
+.brandpage-header {
+    position: relative;
+    background: url('/Carsharing/images/EcoCar1.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 250px 20px; /* Bild wurde größer gemacht */
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: -150px;
+    min-height: 1200px;
+    z-index: -1;
+}
+
+.brandpage-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Schwarze Transparenz */
+    z-index: 1;
+    margin-bottom: 100px;
+}
+
+.brandpage-header * {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 100px;
+}
+
+.brandpage-title {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.brandpage-subtitle {
+    font-size: 26px;
+    font-weight: 300;
+}
+
+.brandpage-highlight {
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Abschnitt: Umwelt & Verantwortung */
+.brandpage-content {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.section-title {
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+/* Breitere Boxen für Naturbewusst & 7.500 */
+.features-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.feature-box {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+    width: 600px; /* Boxen verbreitert */
+    text-align: center;
+}
+
+.feature-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.feature-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.feature-text {
+    font-size: 20px;
+}
+
+/* Abschnitt: Umweltbewusstsein & Design */
+.brandpage-commitment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 80px;
+    background: #f4f4f4;
+}
+
+/* Text größer und Blocksatz */
+.commitment-text {
+    width: 55%;
+    text-align: justify; /* Blocksatz */
+}
+
+.commitment-text h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.commitment-text p {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+/* Video mit schwarzer Transparenz */
+.commitment-video {
+    position: relative;
+    width: 45%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    height: auto;
+}
+
+.commitment-video::before {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Schwarze Transparenz */
+    z-index: 1;
+}
+
+.bg-video {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Mehr Abstand zum Footer */
+.brandpage-spacing {
+    height: 000px;
+}
+
+/* Karrierepage */
+ 
+.Karriere-bg-image{
+    background: url('/Carsharing/images/BG-Karriere.png') no-repeat center center;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+ 
+.Karriere-box {
+    background: transparent;
+    width: 600px;
+    height: 400px;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+.Karriere-box h6 {
+    font-size: 20px;
+    color: #EFCFD8
+    ;
+}
+.Karriere-box h1 {
+    font-size: 75px;
+}
+ 
+/* Stil für den Button */
+.bewerbung-button {
+    background-color: #EFCFD8;
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 40%;
+}
+ 
+.bewerbung-button:hover {
+    background-color: #FE5F86;
+}
+ 
+.Karriere-spacer {
+    display: flex;          
+    justify-content: center;
+    gap: 100px;              
+    padding: 20px;
+    flex-wrap: wrap;        
+    background-color: #3d3d3d;
+    height: 600px;
+    align-items: center;
+}
+ 
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+    height: 380px;
+}
+.card h2 {
+    font-size: 40px;
+    font-weight: 500;
+}
+.card h5 {
+    font-size: 25px;
+    font-weight: 500;
+}
+.card h6 {
+    color: #FE5F86 ;
+    font-size: 25px;
+}

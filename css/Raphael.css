@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap');
+
+/* backgrounds & more*/
 .Loginhinter {
     background: url('/car_sharing/images/Autoaufstellung.jpg') no-repeat center center;
     background-size: cover;
@@ -11,6 +13,10 @@
     background: url('/car_sharing/images/EcoCar1.jpg') no-repeat center center;
     background-size: cover;
 }
+.Contback {
+    background: url('/car_sharing/images/Contact1.jpg') no-repeat center center;
+    background-size: cover;
+}
 .startbild {
     
     background-size: cover;
@@ -21,14 +27,10 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-   margin-top: -100px;
+   margin-top: -150px;
    align-items: center ;
   }
-.verdunkelt {
-    background-color: rgba(0, 0, 0, 0.2); /* 20% Schwarz-Overlay */
-}
-
-.blacksmall, .blackbig, .whitebig, .whitemedium, .whiteandthin, .testclass {
+  .blacksmall, .blackbig, .whitebig, .whitemedium, .whiteandthin, .testclass {
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -43,6 +45,7 @@
     color: rgb(255, 255, 255);
     font-weight: normal;
     font-size: 140%;
+    
 }
 
 .whiteboxR1 {
@@ -56,7 +59,11 @@
     font-weight: bold;
     font-size: 250%;
 }
-
+.blackbigxl {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 350%;
+}
 .whitebig {
     color: white;
     font-weight: bold;
@@ -73,6 +80,11 @@
     font-weight: bold;
     font-size: 350%;
 }
+.blackmedium1 {
+    color: rgba(0, 0, 0, 0.685);
+    font-weight: bold;
+    font-size: 350%;
+}
 
 .whiteandthin {
     color: white;
@@ -80,16 +92,266 @@
     font-size: 200%;
 }
 
-.testclass {
-    font-weight: 900;
+.blackandthin {
+    color: rgba(0, 0, 0, 0.637);
+    font-weight: 200;
+    font-size: 200%;
 }
+.blackandthinbig {
+    color: rgba(0, 0, 0, 0.884);
+    font-weight: 200;
+    font-size: 300%;
+}
+.blackandthinsmall {
+    color: rgba(0, 0, 0, 0.637);
+    font-weight: 200;
+    font-size: 100%;
+}
+
 
 .container {
     position: relative;
     text-align: center;
 }
+.pinkboxR1 {
+    background-color:#EFCFD8; 
+    width:100%;
+    height:60px;
+
+}
+
+/* Contactpage */
+.Contacta {
+    width: 550px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Titel */
+.Contactb {
+    margin-bottom: 15px;
+    color: #444;
+}
+
+/* Eingabefelder */
+.Contactd {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.Contactd:focus {
+    border-color: #f28aa7; 
+    outline: none;
+    box-shadow: 0 0 5px rgba(242, 138, 167, 0.5);
+}
+
+/* Textarea Contact*/
+.Contacte {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+    resize: none;
+}
+
+.Contacte:focus {
+    border-color: #f28aa7;
+    outline: none;
+    box-shadow: 0 0 5px rgba(242, 138, 167, 0.5);
+}
+
+/* Button */
+.Contactf {
+    width: 100%;
+    padding: 12px;
+    background: #f28aa7; /* Rosa */
+    color: white;
+    border: none;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.Contactf:hover {
+    background: #e07793; /* Dunkleres Rosa */
+}
+.contbox1 {
+    background-color:#ffffffc4; 
+    width: 100%; 
+    height: 850px;
+    padding: 45px;  
+    text-align: center; 
+    margin: 60px; 
+    border-radius: 10px;
+    align-items: center;
+    
+}
+/* Container */
+.contact-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Für Mobilgeräte */
+    background-color: #ffffff; 
+    padding: 80px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Text-Bereich */
+.text-contact {
+    max-width: 25%;
+    text-align: left;
+}
 
 
+/* Buttons */
+.button-containercont {
+    margin-top: 35px;
+}
+
+.btncont {
+    display: inline-block;
+    background-color: #ff4b78;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-right: 10px;
+}
+
+.btncont:hover {
+    background-color: #e63960;
+}
+
+.contover {
+    background-color:#ffffff; 
+    width:100%;
+    height:60px;
+    top:0;
+    z-index: 1;
+}
+.contover2 {
+    background-color:#ffffff; 
+    width:100%;
+    height:60px;
+  
+}
+.contboxvid {
+    position: relative;
+    width: 200px; /* Feste Breite für das Video */
+    height: 355px; /* Höhe passend zum 9:16-Verhältnis (340 * 16 / 9) */
+    margin: 0;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #e07793;
+}
+
+/* Video-Styling */
+.contboxvid video {
+    width: 90%;
+    height: 95%;
+    object-fit:contain; 
+}
+
+
+/*brandpage */
+.video-container video {
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 70%;
+    min-height: auto;
+    z-index: 1; /* Video in the Front */
+    object-fit: cover; /* Stellt sicher, dass das Video den gesamten Bereich füllt */
+    border-radius: 200px; 
+    
+}
+
+
+  .featuresR {
+    display: flex;
+    justify-content: space-between; /* Gleichmäßiger Abstand */
+    align-items: center;
+    justify-content: center;
+}
+.greybox {
+    background-color:grey; 
+    width: 45%; 
+    height: 400px;
+    padding: 45px;  
+    text-align: center; 
+    margin: 60px; 
+    border-radius: 10px;
+    align-items: center;
+    
+}
+
+
+
+.greyboxvid {
+    position: relative;
+    width: 45%;
+    height: 400px;
+    padding: 30px;  
+    text-align: center; 
+    margin: 60px; 
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.greybox2 {
+    width: 45%; 
+    height: 400px;
+    padding: 30px;  
+    text-align: center; 
+    margin: 60px; 
+    border-radius: 10px;
+    align-items: center;
+    background: url('/car_sharing/images/planttree3.jpg') no-repeat center center;
+    background-size: cover;
+}
+.featureR {
+    background-color: white; /* Weiße Boxen */
+    padding: 80px;
+    border-radius: 10px;
+    flex: 1; /* Alle Boxen gleich groß */
+    margin: 40px; /* Abstand zwischen den Boxen */
+}
+
+.feature-headerR {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Abstand zwischen Icon und Text */
+    margin-bottom: 10px;
+}
+
+
+
+
+
+/*login register */
 input {
     width: 100%;
     padding: 10px;
@@ -113,21 +375,17 @@ button:hover {
     background-color: #e3b9c6;
 }
 
-
-.whiteboxend {
-    background-color:rgb(255, 255, 255);
-     width:100%;
-      height:180px;
-
-
+.Classg {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+    text-decoration: none;
 }
-.whiteboxend2 {
-    background-color:rgb(0, 0, 255);
-     width:100%;
-      height:180px;
 
-
+.Classg:hover {
+    text-decoration: underline;
 }
+
 .registerbox {
     background: white;
     padding: 30px;
@@ -154,6 +412,7 @@ button:hover {
     transform: translate(-50%, -50%);
     
 }
+
 .staticPos {
     align-items: center;
     width: 100%;
@@ -161,420 +420,27 @@ button:hover {
     position: relative;
     margin-top: -500px;
     }
-    .checkboxA {
+.checkboxA {
         display: flex;
         align-items: center; /* Sorgt für vertikale Ausrichtung */
         gap: 10px; /* Abstand zwischen Checkbox und Text */
     }
     
-    .checkboxB {
+.checkboxB {
         margin: 0;
         padding: 0;
         width: auto;
         height: auto;
     }
-        
-    .checkboxC {
+    
+    
+    
+.checkboxC {
         margin: 0;
         padding: 0;
         display: inline;
         white-space: nowrap; /* Verhindert Zeilenumbruch */
     }
+
     
-   
  
-/* Leon Styles */
-
-.impressumbox {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    width: 65%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.2s ease-out;
-}
-    
-
-
-.Karriere-spacer {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: #3d3d3d;
-    background-size: cover;
-    text-align: center;
-}
-
-.scroll-box {
-    width: 100%;
-    height: 600px;
-    border: 5px solid #777777; 
-    overflow-y: scroll;
-    background-color: white;
-    border-radius: 10px;
-    text-align: left;
-    padding: 10px;
-}
-
-.AGB-box {
-    width: 800px;
-    height: 687px;
-    text-align: center;
-}
-
-
-.Karriere-bg-image{
-    background: url('/Car-rental/images/BG-Karriere.png') no-repeat center center;
-    background-size: cover;
-}
-.Agb-bg-image {
-    background: url('/Car-rental/images/BG-AGB.png') no-repeat center center;
-    background-size: cover;
-}
-
-.Impressum-bg-image {
-    background: url('/Car-rental/images/BG-Impressum.png') no-repeat center center;
-    background-size: cover;
-}
-
-.Datenschutz-bg-image {
-    background: url('/Car-rental/images/BG-Datenschutz.png') no-repeat center center;
-    background-size: cover;
-}
-
-.Logout-bg-image {
-    background: url('/Car-rental/images/BG-Logout.png') no-repeat center center;
-    background-size: cover;
-}
-
-.Datenschutz-box {
-    width: 1000px; 
-    height: 600px;
-    text-align: center;
-
-}
-
-.Logout-box {
-    background: transparent;
-    width: 1000px;
-    height: 400px; 
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 58%;
-    transform: translate(-50%, -50%);
-}
-.Karriere-box {
-    background: transparent;
-    width: 600px;
-    height: 400px; 
-    text-align: left;
-    position: absolute;
-    top: 50%;
-    left: 30%;
-    transform: translate(-50%, -50%); 
-    color: white;
-}
-.Karriere-box h6 {
-    font-size: 20px;
-    color: #EFCFD8
-    ;
-}
-.Karriere-box h1 {
-    font-size: 75px;
-}
-.Logout-box h1 {
-    font-size: 65px;
-}
-.Immpressum-box {
-    width: 1000px;
-    height: 400px;
-    text-align: left;
-}
-
-.box-format {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.impressum-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.impressum-table td {
-    vertical-align: top;
-    padding: 10px; 
-}
-.accordion-content {
-    padding: 0 15px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
-}
-
-.accordion-content.open {
-    max-height: 500px;
-    opacity: 1;
-    visibility: visible;
-    padding: 10px 15px;
-}
-
-/* Stile für den Accordion-Container */
-.accordion-container {
-    width: 80%;
-    background: white;
-    padding: 10px;
-    margin: auto;
-    border: 1px solid white;
-}
-
-.accordion-item {
-    border-bottom: 1px solid #3d3d3d; /* Schwarze Trennlinie */
-}
-
-/* Button-Styling für das Accordion */
-.accordion-button {
-    width: 100%;
-    background: none;
-    color: #3d3d3d;
-    cursor: pointer;
-    padding: 15px;
-    text-align: left;
-    border: none;
-    font-size: 16px;
-    font-weight: normal;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Icon für Plus / Kreuz */
-.accordion-button .icon {
-    font-size: 18px;
-    font-weight: bold;
-    transition: transform 0.3s ease;
-}
-
-.accordion-button.active {
-    font-weight: bold;
-}
-
-.accordion-item:last-child {
-    border-bottom: none;
-}
-
-
-
-
-/* Stil für den Button */
-.bewerbung-button {
-    background-color: #EFCFD8;
-    color: black;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    width: 40%;
-}
-
-.bewerbung-button:hover {
-    background-color: #FE5F86;
-}
-
-/* Modal Hintergrund */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-/* Inhalt des Modals */
-.modal-content {
-    background-color: #d8bebe;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 600px;
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-}
-
-/* Schließen-Button */
-.close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Formularstil */
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-input, textarea {
-    width: 90%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-textarea {
-    resize: none;
-}
-
-/* Absenden-Button */
-.absenden-button {
-    background-color: #f5a9b8;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.absenden-button:hover {
-    background-color: #f28ea5;
-}
-
-
-/*Carousel Karriere*/
-
-/* Karussell Container */
-.carousel-container {
-    position: absolur;
-    width: 90%;
-    max-width: 1200px;
-    overflow: hidden;
-}
-
-/* Sichtbarer Karussellbereich */
-.carousel {
-    width: 100%;
-    overflow: hidden;
-}
-
-/* Track für die Slides */
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-/* Einzelne Slide */
-.carousel-slide {
-    min-width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-/* Kachel-Stil */
-.card {
-    width: 30%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 1.2em;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Buttons */
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px 15px;
-    border-radius: 50%;
-}
-
-.carousel-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
-
-
-
-
-
-
-
-.login-bg-image{
-    background: url('/Car-rental/images/Autoaufstellung.jpg') no-repeat center center;
-    background-size: cover;
-}
-.login-box{
-    width: 600px; 
-    height: 300px;
-    text-align: center;
-}
-
-.background-static {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-}
-
-.Classg {
-    display: block;
-    margin-top: 10px;
-    color: #333;
-    text-decoration: none;
-}
-
-.Classg:hover {
-    text-decoration: underline;
-}
-
-.static-spacer {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: transparent;
-    background-size: cover;
-}

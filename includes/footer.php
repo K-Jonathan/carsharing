@@ -21,12 +21,14 @@
             <div class="footer-buttons">
                 <!-- Linke Spalte (dunkle Buttons) -->
                 <div class="footer-column">
-                    <a href="#" class="footer-btn dark">FLAMIN-GO</a>
+                    <a href="Contact.php" class="footer-btn dark">KONTAKT</a>
+                    <a href="brandpage.php" class="footer-btn dark">FLAMIN-GO</a>
                     <a href="#" class="footer-btn dark">FAQ</a>
-                    <a href="#" class="footer-btn dark">KARRIERE</a>
+                    <a href="carriere.php" class="footer-btn dark">KARRIERE</a>
                 </div>
                 <!-- Rechte Spalte (helle Buttons) -->
                 <div class="footer-column">
+                    <a href="/carsharing" class="footer-btn light">HOMEPAGE</a>
                     <a href="agb.php" class="footer-btn light">AGB</a>
                     <a href="impressum.php" class="footer-btn light">IMPRESSUM</a>
                     <a href="datenschutz.php" class="footer-btn light">DATENSCHUTZ</a>

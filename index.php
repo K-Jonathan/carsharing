@@ -185,7 +185,7 @@ include("includes/header.php");
 
 <section class="earth-section">
     <h1>FÜR UNSERE ERDE</h1>
-    <a href="#" class="earth-link">
+    <a href="brandpage.php" class="earth-link">
         <div class="earth-image">
             <div class="earth-overlay"></div>
             <img src="images/brand-1.png" alt="Flamin-Go Konzept">
