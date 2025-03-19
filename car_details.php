@@ -18,6 +18,7 @@ if (!$car) {
 ?>
 
 <body class="car-details-page">
+<div class="blocker"></div>
 <div class="car-details-wrapper">
     <div class="car-details-container">
         <div class="car-image-section">

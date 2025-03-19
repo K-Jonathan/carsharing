@@ -22,15 +22,17 @@ include 'includes/header.php';
                         continue;
                     }
 
-                    // 🔹 Falls die Spalte `birthdate` ist, dann `type="date"` setzen!
-                    $inputType = ($column === "birthdate") ? "date" : "text";
+                    // Falls die Spalte `birthdate` ist, dann type="text" setzen und Format-Validierung einfügen
+                    $inputType = ($column === "birthdate") ? "text" : "text";
+                    $placeholder = ($column === "birthdate") ? "YYYY-MM-DD" : "";
                 ?>
                     <label for="<?php echo htmlspecialchars($column); ?>">
                         <?php echo ucfirst(str_replace("_", " ", $column)); ?>
                     </label>
                     <input class="registerpage-input" type="<?php echo $inputType; ?>" name="<?php echo htmlspecialchars($column); ?>" 
                            id="<?php echo htmlspecialchars($column); ?>" 
-                           value="<?php echo htmlspecialchars($value); ?>">
+                           value="<?php echo htmlspecialchars($value); ?>"
+                           placeholder="<?php echo $placeholder; ?>">
                 <?php endforeach; ?>
 
                 <button class="loginregisterpage-button" type="submit">Änderungen speichern</button>

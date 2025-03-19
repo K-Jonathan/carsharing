@@ -22,16 +22,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function renderBookings(type) {
         bookingsList.innerHTML = "";
-
+    
         if (!bookingsData[type] || bookingsData[type].length === 0) {
             bookingsList.innerHTML = `<p class="no-bookings">Keine ${type === "future" ? "zukünftigen" : "vergangenen"} Buchungen gefunden.</p>`;
             return;
         }
-
+    
         bookingsData[type].forEach(row => {
             const bookingCard = document.createElement("div");
             bookingCard.classList.add("booking-card");
-
+    
             bookingCard.innerHTML = `
                 <div class="booking-image">
                     <img src="images/cars/${row.img_file_name}" alt="${row.vendor_name} ${row.car_name}">
@@ -53,14 +53,26 @@ document.addEventListener("DOMContentLoaded", function () {
                     </table>
                     <div class="booking-buttons">
                         ${type === "future" ? `<button class="cancel-booking-button" data-booking-id="${row.booking_id}">Stornieren</button>` : ""}
-                        <button class="details-button">Details</button>
+                        <button class="details-button" data-booking-id="${row.booking_id}">Details</button>
                     </div>
                 </div>
             `;
-
+    
+            // Füge die Buchungskarte in die Liste ein
             bookingsList.appendChild(bookingCard);
         });
+    
+        // 🔹 Event-Listener für die "Details"-Buttons
+        document.querySelectorAll(".details-button").forEach(button => {
+            button.addEventListener("click", function () {
+                const bookingId = this.getAttribute("data-booking-id");
+                if (bookingId) {
+                    window.location.href = `booking_details.php?booking_id=${bookingId}`;
+                }
+            });
+        });
     }
+    
 
     function formatDate(dateString) {
         const date = new Date(dateString);
@@ -98,4 +110,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     fetchBookings();
+    
 });

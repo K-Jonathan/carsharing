@@ -3320,3 +3320,34 @@ button.disabled {
     line-height: 1.4;
     margin-bottom: 40px;
 }
+
+/* 1) Überschrift "Buchungsdetails..." in Weiß */
+.car-info-section h2.car-title {
+    color: white; 
+}
+
+/* 2) Header-Hintergrundfarbe auf #333 setzen */
+header {
+    background-color: #333 !important;
+}
+
+/* 3) Gesamtpreis in Weiß und Bold */
+.car-info-section .car-price {
+    color: white;
+    font-weight: bold;
+}
+
+.back-button {
+    padding: 10px 15px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-left: 355px;
+}
+
+.back-button:hover {
+    background-color: #555;
+}
