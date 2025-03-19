@@ -220,7 +220,9 @@ include("includes/header.php");
     </div>
 </div>
 </section>
-
+<script src="js/calendar_elements.js"></script>
+<script src="js/calender.js"></script>
+<script src="js/quote.js"></script>
 <script src="js/category_redirect.js"></script>
 <script src="js/map_interaction.js"></script>
 <?php
