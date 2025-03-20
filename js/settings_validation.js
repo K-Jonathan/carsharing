@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const popupClose = document.getElementById("popupClose");
     const firstNameInput = document.getElementById("first_name");
     const lastNameInput = document.getElementById("last_name");
+    const birthdateInput = document.getElementById("birthdate");
 
     function showPopup(errors, title = "Fehler bei der Aktualisierung") {
         const popupTitle = document.querySelector(".popup-title");
@@ -24,10 +25,23 @@ document.addEventListener("DOMContentLoaded", function () {
         popupOverlay.style.display = "none";
     });
 
-    // Function to check if name input is valid (only letters & spaces)
     function validateName(input) {
         const namePattern = /^[A-Za-zÄÖÜäöüß\s]+$/;
         return namePattern.test(input.value.trim());
+    }
+
+    function validateBirthdate() {
+        let birthdate = new Date(birthdateInput.value);
+        let today = new Date();
+        let age = today.getFullYear() - birthdate.getFullYear();
+        let monthDiff = today.getMonth() - birthdate.getMonth();
+        let dayDiff = today.getDate() - birthdate.getDate();
+
+        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+            age--;
+        }
+
+        return age >= 18;
     }
 
     function checkChanges() {
@@ -52,9 +66,13 @@ document.addEventListener("DOMContentLoaded", function () {
             errors.push("Nachname darf nur Buchstaben enthalten.");
             hasChanges = false;
         }
+        if (!validateBirthdate()) {
+            errors.push("Sie müssen mindestens 18 Jahre alt sein.");
+            hasChanges = false;
+        }
 
         saveButton.disabled = !hasChanges || hasEmptyFields;
-        
+
         if (errors.length > 0) {
             showPopup(errors);
         }
@@ -89,4 +107,17 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Fehler:", error));
         }
     });
+});
+
+popupClose.addEventListener("click", function () {
+    fetch("refresh_session.php")
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                location.reload(); // 🔄 Seite neu laden, damit neue Daten sichtbar sind
+            }
+        })
+        .catch(error => console.error("Fehler beim Aktualisieren der Session:", error));
+
+    popupOverlay.style.display = "none";
 });
