@@ -3,10 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const popupOverlay = document.getElementById("popupOverlay");
     const popupErrors = document.getElementById("popupErrors");
     const popupClose = document.getElementById("popupClose");
+    const firstNameInput = document.getElementById("Vorname");
+    const lastNameInput = document.getElementById("name");
 
-    // 🔹 Funktion zum Anzeigen des Pop-ups mit Fehlern
     function showPopup(errors) {
-        popupErrors.innerHTML = ""; // Vorherige Fehler entfernen
+        popupErrors.innerHTML = "";
         errors.forEach(error => {
             let li = document.createElement("li");
             li.innerHTML = `<span class="bullet">●</span> ${error}`;
@@ -15,16 +16,19 @@ document.addEventListener("DOMContentLoaded", function () {
         popupOverlay.style.display = "flex";
     }
 
-    // 🔹 Funktion zum Verstecken des Pop-ups
     popupClose.addEventListener("click", function () {
         popupOverlay.style.display = "none";
     });
 
-    // 🔹 Registrierung prüfen
-    form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Verhindert das Absenden
+    function validateName(input) {
+        const namePattern = /^[A-Za-zÄÖÜäöüß\s]+$/;
+        return namePattern.test(input.value.trim());
+    }
 
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
         let errors = [];
+
         let username = document.getElementById("Benutzername").value;
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
@@ -32,24 +36,24 @@ document.addEventListener("DOMContentLoaded", function () {
         let birthdate = new Date(document.getElementById("birthdate").value);
         let today = new Date();
         let age = today.getFullYear() - birthdate.getFullYear();
-        let checkbox = document.getElementById("meineCheckbox").checked; // Datenschutz-Checkbox
+        let checkbox = document.getElementById("meineCheckbox").checked;
 
-        // 🔹 Alter prüfen (mind. 18 Jahre)
+        if (!validateName(firstNameInput)) {
+            errors.push("Vorname darf nur Buchstaben enthalten.");
+        }
+        if (!validateName(lastNameInput)) {
+            errors.push("Nachname darf nur Buchstaben enthalten.");
+        }
         if (age < 18) {
-            errors.push("Sie müssen mindestens 18 Jahre alt sein");
+            errors.push("Sie müssen mindestens 18 Jahre alt sein.");
         }
-
-        // 🔹 Passwort-Überprüfung
         if (password !== passwordRepeat) {
-            errors.push("Die Passwörter stimmen nicht überein");
+            errors.push("Die Passwörter stimmen nicht überein.");
         }
-
-        // 🔹 Datenschutz-Checkbox prüfen
         if (!checkbox) {
-            errors.push("Zustimmen der Datenschutzrichtlinien");
+            errors.push("Sie müssen den Datenschutzrichtlinien zustimmen.");
         }
 
-        // 🔹 Benutzername & E-Mail per AJAX prüfen
         let requests = [
             fetch(`check_availability.php?field=username&value=${username}`).then(res => res.text()),
             fetch(`check_availability.php?field=email&value=${email}`).then(res => res.text())
@@ -57,17 +61,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         Promise.all(requests).then(results => {
             if (results[0] === "exists") {
-                errors.push("Der Benutzername ist bereits vergeben");
+                errors.push("Der Benutzername ist bereits vergeben.");
             }
             if (results[1] === "exists") {
-                errors.push("Die E-Mail-Adresse ist bereits vergeben");
+                errors.push("Die E-Mail-Adresse ist bereits vergeben.");
             }
 
-            // 🔹 Falls Fehler → Pop-up anzeigen
             if (errors.length > 0) {
                 showPopup(errors);
             } else {
-                form.submit(); // ✅ Wenn keine Fehler → Formular absenden
+                form.submit();
             }
         }).catch(error => console.error("Fehler:", error));
     });

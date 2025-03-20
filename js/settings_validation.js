@@ -5,35 +5,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const popupOverlay = document.getElementById("popupOverlay");
     const popupErrors = document.getElementById("popupErrors");
     const popupClose = document.getElementById("popupClose");
+    const firstNameInput = document.getElementById("first_name");
+    const lastNameInput = document.getElementById("last_name");
 
     function showPopup(errors, title = "Fehler bei der Aktualisierung") {
         const popupTitle = document.querySelector(".popup-title");
-        popupErrors.innerHTML = ""; // Vorherige Fehler entfernen
-        popupTitle.textContent = title; // Dynamische Überschrift setzen
-    
+        popupErrors.innerHTML = "";
+        popupTitle.textContent = title;
         errors.forEach(error => {
             let li = document.createElement("li");
             li.innerHTML = `<span class="bullet">●</span> ${error}`;
             popupErrors.appendChild(li);
         });
-    
         popupOverlay.style.display = "flex";
-    }    
+    }
 
     popupClose.addEventListener("click", function () {
         popupOverlay.style.display = "none";
     });
 
-    // 🔹 Deaktiviert den Button, wenn keine Änderungen gemacht wurden
-    const initialValues = {};
-    inputs.forEach(input => {
-        initialValues[input.name] = input.value;
-        input.addEventListener("input", checkChanges);
-    });
+    // Function to check if name input is valid (only letters & spaces)
+    function validateName(input) {
+        const namePattern = /^[A-Za-zÄÖÜäöüß\s]+$/;
+        return namePattern.test(input.value.trim());
+    }
 
     function checkChanges() {
         let hasChanges = false;
         let hasEmptyFields = false;
+        let errors = [];
 
         inputs.forEach(input => {
             if (input.value.trim() !== initialValues[input.name]) {
@@ -44,30 +44,49 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
+        if (!validateName(firstNameInput)) {
+            errors.push("Vorname darf nur Buchstaben enthalten.");
+            hasChanges = false;
+        }
+        if (!validateName(lastNameInput)) {
+            errors.push("Nachname darf nur Buchstaben enthalten.");
+            hasChanges = false;
+        }
+
         saveButton.disabled = !hasChanges || hasEmptyFields;
+        
+        if (errors.length > 0) {
+            showPopup(errors);
+        }
     }
 
-    checkChanges(); // Direkt prüfen, falls der Button beim Laden deaktiviert sein soll
+    const initialValues = {};
+    inputs.forEach(input => {
+        initialValues[input.name] = input.value;
+        input.addEventListener("input", checkChanges);
+    });
 
-    // **🔹 Formulardaten per AJAX senden**
+    checkChanges();
+
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Standardformularverhalten verhindern
-
-        let formData = new FormData(form);
-
-        fetch("update_user.php", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === "error") {
-                showPopup(data.errors, "Fehler bei der Aktualisierung"); // ❌ Falls Fehler → "Fehler bei der Aktualisierung"
-            } else if (data.status === "success") {
-                showPopup(["Änderungen gespeichert!"], "Erfolgreiche Aktualisierung"); // ✅ Erfolgreich → "Erfolgreiche Aktualisierung"
-                saveButton.disabled = true; // Button nach erfolgreicher Änderung deaktivieren
-            }
-        })
-        .catch(error => console.error("Fehler:", error));        
+        event.preventDefault();
+        let errors = checkChanges();
+        if (!errors) {
+            let formData = new FormData(form);
+            fetch("update_user.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "error") {
+                    showPopup(data.errors, "Fehler bei der Aktualisierung");
+                } else if (data.status === "success") {
+                    showPopup(["Änderungen gespeichert!"], "Erfolgreiche Aktualisierung");
+                    saveButton.disabled = true;
+                }
+            })
+            .catch(error => console.error("Fehler:", error));
+        }
     });
 });
