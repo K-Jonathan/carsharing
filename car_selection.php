@@ -80,7 +80,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
         <span class="date-time"><?php echo $returnTime; ?></span>
     <!-- 🖊 Stift-Button -->
     <button id="edit-search-btn">
-        ✏️
+        🖊
     </button>
     </div>
 

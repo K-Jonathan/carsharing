@@ -18,7 +18,7 @@ if (!$logged_in) {
 
 <body class="booking-details-page">
 <div class="blocker"></div>
-<a href="bookings.php" class="back-button">← Zurück</a>
+<a href="bookings.php" class="back-button-details">← Zurück</a>
 
 <div class="car-details-wrapper">
     <div class="car-details-container">
