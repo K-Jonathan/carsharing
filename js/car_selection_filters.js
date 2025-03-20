@@ -320,7 +320,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (allCars.length === 0) {
                 container.innerHTML = `
                     <div class="no-results">
-                        <p>No vehicles available for the selected filter options.</p>
+                        <p>Keine Autos für die von Ihnen ausgewählten Filter verfügbar.</p>
                     </div>
                 `;
                 updatePaginationButtons(); // ❗ Ensure pagination buttons are updated
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <img src="images/cars/${imageName}" alt="${car.vendor_name} ${car.name}" 
                                  class="grayscale"
                                  onerror="this.onerror=null; this.src='images/cars/default.jpg';">
-                            <div class="overlay-text">Unavailable for the selected period</div>
+                            <div class="overlay-text">Für den gewünschten Zeitraum nicht verfügbar.</div>
                         </div>
                         <div class="car-info">
                             <div class="car-info-left">
@@ -366,9 +366,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             <div class="car-info-left">
                                 <h3 class="car-title">${car.vendor_name} ${car.name} ${car.name_extension}</h3>
                                 <p class="car-location">${car.loc_name}  
-                                    <span class="availability">- Available: ${car.availability_count}</span>
+                                    <span class="availability">- Verfügbar: ${car.availability_count}</span>
                                 </p>
-                                <p class="car-price">${car.price}€/day</p>
+                                <p class="car-price">${car.price}€/Tag</p>
                             </div>
                             <button class="book-button" data-car-id="${car.car_id}">Details</button>
                         </div>

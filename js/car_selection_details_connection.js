@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             !returnDate || returnDate === "Datum" || 
             !returnTime || returnTime === "--:--") {
             
-            showPopup("Please select your preferred booking period and location.");
+            showPopup("Bitte wählen Sie ihren gewünschten Standort und Zeitraum aus.");
             return;
         }
 

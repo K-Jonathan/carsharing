@@ -2701,7 +2701,7 @@ body.user-settings .navbar {
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sanfter Schatten */
     width: 400px;
-    margin-left: 755px;
+    margin-left: 650px;
 }
 
 .blocker {
@@ -3345,7 +3345,7 @@ body.booking-details-page .navbar {
     font-weight: bold;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-    margin-left: 355px;
+    margin-left: 250px;
 }
 
 .back-button:hover {
