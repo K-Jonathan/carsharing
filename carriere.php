@@ -1,10 +1,24 @@
+<?php
+/**
+ * Careers Page – Job Listings and Company Mission
+ * 
+ * - Presents FLAMIN-GO!'s career philosophy and eco-conscious company culture.
+ * - Encourages users to apply via the contact page with a prominent call-to-action button.
+ * - Displays open job positions in a clean card layout including:
+ *   - Job title, location, employment type, salary, and description.
+ * - Background visuals (e.g. hero image, spacer elements) enhance the visual appeal.
+ * - Includes standard header and footer for consistent page design.
+ * 
+ * This page aims to attract talent by combining clear job info with a strong brand identity.
+ */
+?>
 <!--Insert Header-->
 <?php include("includes/header.php"); ?>
-<!--Foto background-->
+
 <div class="Karriere-bg-image"></div>
-<!--Invisible positioning Box-->
+
 <div class="static-spacer">
-    <!--White rounded Textbox-->
+
     <div class="Karriere-box">
         <h6>Karriere bei Famin-GO!</h6>
         <h1>Arbeite mit uns!</h1> <br>
@@ -12,13 +26,13 @@
             Erkunde unsere Philosophie von einer besseren Autovermietung, welche nicht nur Autos vermietet, sondern auch etwas für die Umwelt macht!
         </p><br><br>
  
-        <!-- Button zum Öffnen des Popups -->
+  
         <a href="contact.php" class="bewerbung-button">Bewirb dich hier, über unsere Kontaktseite! </a>
  
     </div>
 </div>
  
-<!--Grey Job description Background-->
+
 <div class="Karriere-spacer">
     <div class="card">
         <h2>Filialleiter</h2><br>
@@ -49,5 +63,5 @@
     </div>
 </div>
  
-<!--Insert Footer-->
+
 <?php include("includes/footer.php"); ?>

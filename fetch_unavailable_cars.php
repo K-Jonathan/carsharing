@@ -1,10 +1,32 @@
 <?php
+/**
+ * Booked Cars Filter – Show Fully Booked Cars by Location & Filters (AJAX Endpoint)
+ * 
+ * - Identifies and lists cars that are fully booked within a selected date range at a specific location.
+ * 
+ * Features:
+ * - Requires `search-location` in session and valid pickup/return dates.
+ * - Applies date conflict checks via subquery in `WHERE` clause to ensure only booked vehicles are shown.
+ * - Supports additional secure filtering via `applyFilter()`:
+ *   - Type, gear, vendor, doors, seats, drive, min_age, trunk.
+ *   - Price ceiling, air conditioning, and GPS.
+ * - Validates and applies secure sorting (`price_desc`, `price_asc`, or default).
+ * - Counts availability via `COUNT(*)` and labels result rows with `status = "booked"`.
+ * - Appends note to `loc_name` to indicate fully booked status and availability count.
+ * 
+ * Output:
+ * - Returns a JSON array of cars that match all filter criteria and are currently unavailable.
+ * 
+ * This endpoint supports UI elements that highlight unavailable cars matching the user's search.
+ */
+?>
+<?php
 require_once('db_connection.php');
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// 🔹 Standort aus Session holen (Eingaben bereinigen)
+
 $location = isset($_SESSION['search-location']) ? htmlspecialchars(trim($_SESSION['search-location'])) : null;
 if (!$location) {
     echo json_encode(["cars" => []]);
@@ -15,7 +37,7 @@ $params = [$location];
 $types = "s";
 $whereClauses = ["c.loc_name = ?"];
 
-// 🔹 Falls Datum gesetzt wurde → Buchungsprüfung machen
+
 $pickupDate = isset($_SESSION['pickupDate']) ? htmlspecialchars(trim($_SESSION['pickupDate'])) : null;
 $returnDate = isset($_SESSION['returnDate']) ? htmlspecialchars(trim($_SESSION['returnDate'])) : null;
 $pickupDateSQL = $returnDateSQL = null;
@@ -46,7 +68,7 @@ if ($pickupDate && $returnDate && $pickupDate !== 'Datum' && $returnDate !== 'Da
     exit;
 }
 
-// ✅ **Filter-Funktion mit Schutz**
+
 function applyFilter($paramName, $columnName, $typeChar) {
     global $whereClauses, $params, $types;
     
@@ -59,7 +81,7 @@ function applyFilter($paramName, $columnName, $typeChar) {
     }
 }
 
-// 🔹 Filter sicher anwenden
+
 applyFilter("type", "type", "s");
 applyFilter("gear", "gear", "s");
 applyFilter("vendor", "vendor_name", "s");
@@ -83,15 +105,15 @@ if (!empty($_GET['gps']) && $_GET['gps'] === "1") {
     $whereClauses[] = "c.gps = 1";
 }
 
-// ✅ **Sortierung absichern**
+
 $allowedSortOptions = ["price_desc", "price_asc", "c.car_id ASC"];
-$orderBy = "c.car_id ASC"; // Standard-Sortierung
+$orderBy = "c.car_id ASC"; 
 
 if (!empty($_GET['sort']) && in_array($_GET['sort'], $allowedSortOptions)) {
     $orderBy = $_GET['sort'] === "price_desc" ? "c.price DESC" : "c.price ASC";
 }
 
-// 🔹 SQL-Abfrage für ausgebuchte Autos mit Filter & Sortierung
+
 $sql = "SELECT 
             c.vendor_name, 
             c.vendor_name_abbr, 

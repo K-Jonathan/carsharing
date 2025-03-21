@@ -1,3 +1,16 @@
+<?php
+/**
+ * Brand Concept Page – FLAMIN-GO!
+ * 
+ * - Introduces the company's eco-conscious car rental philosophy.
+ * - Highlights the brand's mission: planting one tree for every booking.
+ * - Features a clean layout with titles, feature sections, and sustainability stats.
+ * - Showcases the company's identity: pink cars, green values ("Rent pink and drive green").
+ * - Includes a looping video to visually reinforce the eco-luxury branding.
+ * 
+ * This page blends storytelling and branding to convey FLAMIN-GO!'s commitment to sustainable mobility.
+ */
+?>
 <?php include("includes/header.php"); ?>
 
 <div class="brandpage-header">
@@ -46,7 +59,7 @@
     </div>
 </section>
 
-<!-- Abstand zum Footer -->
+
 <div class="brandpage-spacing"></div>
 
 <?php include("includes/footer.php"); ?>

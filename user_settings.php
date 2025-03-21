@@ -1,4 +1,23 @@
 <?php
+/**
+ * User Settings Page – Profile Management
+ * 
+ * - Ensures the user is logged in before accessing settings.
+ * - Fetches current user data using `fetch_user_data.php`.
+ * - Displays a form with pre-filled user information:
+ *   - Prevents editing of sensitive fields (`userid`, `password`, `created_at`).
+ *   - Uses `type="date"` for `birthdate` field.
+ * - Includes:
+ *   - A button to save profile changes (`update_user.php` handles updates).
+ *   - A logout button for session termination.
+ *   - A pop-up (`#popupOverlay`) to display validation errors.
+ * - Uses JavaScript (`settings_validation.js`) for client-side validation.
+ * - Includes a header and footer for consistent UI.
+ * 
+ * This page provides a secure and user-friendly interface for managing account details.
+ */
+?>
+<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -22,7 +41,7 @@ include 'includes/header.php';
                         continue;
                     }
 
-                    // Falls die Spalte `birthdate` ist, dann type="date" setzen
+                    
                     $inputType = ($column === "birthdate") ? "date" : "text";
                 ?>
                     <label for="<?php echo htmlspecialchars($column); ?>">
@@ -36,14 +55,14 @@ include 'includes/header.php';
                 <button class="loginregisterpage-button" type="submit">Änderungen speichern</button>
             </form>
 
-            <!-- 🔴 Logout-Button -->
+           
             <form action="logout.php" method="POST">
                 <button class="logout-button" type="submit">Abmelden | Logout</button>
             </form>
         </div>
     </div>
 
-    <!-- ❌ Pop-up für Fehleranzeige -->
+   
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-box">
             <p class="popup-title">Fehler bei der Aktualisierung:</p>

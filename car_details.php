@@ -1,9 +1,25 @@
+<?php
+/**
+ * Car Details Page
+ * 
+ * - Retrieves and displays detailed information for a selected car.
+ * - Checks if a valid car ID is provided via GET; otherwise, shows an error.
+ * - Shows vehicle specs (seats, doors, trunk, gear, AC, GPS, drive type, minimum age).
+ * - Displays booking price per day and includes a form to proceed with the booking.
+ * - Uses hidden fields to pass pickup and return dates/times to the booking processor.
+ * - If the user is not logged in, a login button is shown instead of allowing booking.
+ * - Contains a popup element to handle and show any booking errors.
+ * - JavaScript (`car_details_popup.js`) handles dynamic popup logic.
+ * 
+ * This page serves as a key interaction point for users to review and book a vehicle.
+ */
+?>
 <?php 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_once('fetch_car_details.php');
-require_once('helpers.php'); // ✅ Hilfsfunktionen einbinden
+require_once('helpers.php'); 
 
 include 'includes/header.php';
 
@@ -68,12 +84,12 @@ if (!$car) {
             <div class="car-booking">
                 <h3 class="car-price">Preis – <?php echo number_format($car['price'], 2); ?>€/Tag</h3>
 
-                <!-- Falls nicht eingeloggt, Login-Button anzeigen -->
+                
                 <?php if (!$logged_in): ?>
                     <a href="loginpage.php?redirect=<?php echo urlencode($current_url); ?>" class="login-button">Login</a>
                 <?php endif; ?>
 
-                <!-- 🔹 Buchungsformular -->
+              
                 <form action="bookings_process.php" method="POST"> 
     <input type="hidden" name="car_id" value="<?php echo htmlspecialchars($car['car_id']); ?>">
     <input type="hidden" name="pickup_date" value="<?php echo convertDate($_GET['pickup'] ?? ''); ?>">
@@ -91,7 +107,7 @@ if (!$car) {
 </div>
 <div id="booking-popup" class="popup-overlay">
     <div class="popup-box">
-        <h2 class="popup-title">Buchungsfehler</h2> <!-- 🔥 NEUE Überschrift -->
+        <h2 class="popup-title">Buchungsfehler</h2> 
         <p id="popup-message"></p>
         <button class="popup-close" onclick="closePopup()">Schließen</button>
     </div>

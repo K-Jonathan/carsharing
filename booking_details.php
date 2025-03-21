@@ -1,10 +1,24 @@
+<?php
+/**
+ * Booking Details Page
+ * 
+ * - Ensures the user is logged in; redirects to login page with a return URL if not.
+ * - Displays detailed information about a specific car booking using the booking ID from the URL.
+ * - Uses JavaScript to fetch booking data dynamically from `fetch_booking_details.php`.
+ * - Populates vehicle specifications, pricing, and pickup/return details based on fetched data.
+ * - Displays error messages and redirects appropriately if booking data is unavailable or invalid.
+ * - Includes header and footer for consistent layout.
+ * 
+ * This dynamic page provides users with an overview of their individual booking details.
+ */
+?>
 <?php 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 include 'includes/header.php';
-require_once('helpers.php'); // ✅ Hilfsfunktionen einbinden
+require_once('helpers.php');
 
 $logged_in = isset($_SESSION['userid']);
 $current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";

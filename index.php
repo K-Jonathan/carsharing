@@ -1,6 +1,27 @@
 <?php
-//STRG + U auf beliebigen Websites für Insights
-//header
+/**
+ * Homepage – FLAMIN-GO! Carsharing
+ * 
+ * - Provides an interactive search and booking interface for car rentals.
+ * - Features:
+ *   - Location-based search with date & time selection.
+ *   - Interactive calendar for easier date picking.
+ *   - Car category selection with direct filtering.
+ *   - Key benefits section highlighting reliability, service, and sustainability.
+ *   - Customer testimonials in a dynamic review slider.
+ *   - Company mission section linking to brand philosophy.
+ *   - Visualized map with rental locations.
+ * - Includes multiple JavaScript functionalities:
+ *   - `calendar_elements.js`, `calender.js` → Date & time selection.
+ *   - `quote.js` → Testimonial slider.
+ *   - `category_redirect.js` → Redirects for car category selection.
+ *   - `map_interaction.js` → Interactive rental location map.
+ * 
+ * This homepage serves as the central entry point, combining functionality and branding.
+ */
+?>
+<?php
+
 include("includes/header.php");
 ?>
 
@@ -47,7 +68,7 @@ include("includes/header.php");
         </form>
     </div>
 
-    <!-- Kalender Container -->
+
     <div id="calendar-container" class="calendar-box">
         <div class="calendar-header">
             <button id="prev-month" class="calendar-nav">&lt;</button>
@@ -148,7 +169,7 @@ include("includes/header.php");
             <div class="review-overlay"></div>
             <img src="images/review-1.png" alt="Review-1">
 
-            <!-- TEXT SLIDER -->
+
             <div class="review-text active">
                 <p><strong>Flamin-Go hat meine Mobilität völlig verändert – umweltfreundlich, flexibel und zuverlässig. Perfekt für spontane Ausflüge!</strong></p>
                 <span>- Ole Hansen</span>
@@ -166,13 +187,13 @@ include("includes/header.php");
                 <span>- Lasse Abram</span>
             </div>
 
-            <!-- Navigation innerhalb des Bild-Containers -->
+
             <div class="review-navigation">
                 <button id="prevBtn">&#10094;</button>
                 <button id="nextBtn">&#10095;</button>
             </div>
 
-            <!-- Punkte für den Slider -->
+
             <div class="review-dots">
                 <span class="dot active-dot"></span>
                 <span class="dot"></span>
@@ -226,7 +247,6 @@ include("includes/header.php");
 <script src="js/category_redirect.js"></script>
 <script src="js/map_interaction.js"></script>
 <?php
-//STRG + U auf beliebigen Websites für Insights
-//header
+
 include("includes/footer.php");
 ?>

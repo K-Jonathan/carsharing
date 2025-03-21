@@ -1,4 +1,18 @@
 <?php
+/**
+ * Fetch Logged-In User Data
+ * 
+ * - Ensures the user is logged in via session.
+ * - Retrieves the current user's data from the `users` table using their session `userid`.
+ * - Uses a prepared statement to prevent SQL injection.
+ * - Stores the result as an associative array in `$user`.
+ * - Redirects to login page if user is not authenticated.
+ * - Stops execution with error message if no user record is found.
+ * 
+ * This script is typically included to pre-fill user settings or profile pages.
+ */
+?>
+<?php
 require_once('db_connection.php');
 
 if (session_status() === PHP_SESSION_NONE) {

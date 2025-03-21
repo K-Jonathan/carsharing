@@ -1,3 +1,20 @@
+<?php
+/**
+ * Bookings Overview Page
+ * 
+ * - Displays a user's bookings split into future and current/past using dynamic filters.
+ * - Includes pagination for navigating through large numbers of bookings.
+ * - Uses JavaScript to fetch, filter, and display bookings in the `#bookings-list` container.
+ * - Provides a cancellation popup for users to confirm booking cancellation.
+ * - Scripts:
+ *   - `cancel_booking.js` handles the cancellation logic.
+ *   - `bookings_filter.js` manages booking filter switching.
+ *   - `bookings_paging.js` controls pagination behavior.
+ * - Layout includes top navigation for filters and pagination, dynamically updated content area, and modal popup.
+ * 
+ * Designed to give users a clean and interactive view of all their bookings.
+ */
+?>
 <?php 
 include 'includes/header.php'; 
 ?>
@@ -11,18 +28,18 @@ include 'includes/header.php';
             <button id="past-bookings-btn" class="filter-button">Aktuelle/Vergangene Buchungen</button>
         </div>
 
-        <!-- Pagination-Buttons (jetzt neben den Filter-Buttons) -->
+        
         <div class="pagination-buttons">
             <button id="prev-bookings" class="pagination-button" disabled>←</button>
             <button id="next-bookings" class="pagination-button">→</button>
         </div>
     </div>
 
-    <!-- 🔹 Hier werden die Buchungen per JS geladen -->
+    
     <div id="bookings-list"></div>
 </div>
 
-<!-- 🔹 Stornierungs-Pop-up -->
+
 <div id="cancel-booking-popup" class="cancel-popup-overlay" style="display: none;">
     <div class="cancel-popup-box">
         <p class="cancel-popup-title">Möchten Sie Ihre Buchung wirklich stornieren?</p>

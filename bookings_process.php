@@ -1,4 +1,19 @@
 <?php
+/**
+ * Booking Submission Handler
+ * 
+ * - Handles booking requests for logged-in users.
+ * - Verifies user session and calculates age based on birthdate (if not already set).
+ * - Checks if the user meets the minimum age requirement for the selected car.
+ * - Validates booking input (car ID, pickup and return dates/times).
+ * - Checks for booking conflicts in the specified time range.
+ * - Inserts the new booking into the database if validations pass.
+ * - Returns a JSON response with the booking status and message.
+ * 
+ * This script ensures valid and conflict-free bookings with age and session checks.
+ */
+?>
+<?php
 require_once('db_connection.php');
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -50,7 +65,7 @@ if ($age < $min_age) {
     exit();
 }
 
-// Eingaben absichern
+
 $userid = $_SESSION['userid'];
 $pickup_date = isset($_POST['pickup_date']) ? htmlspecialchars(trim($_POST['pickup_date'])) : null;
 $pickup_time = isset($_POST['pickup_time']) ? htmlspecialchars(trim($_POST['pickup_time'])) : null;
@@ -63,7 +78,7 @@ if (!$car_id || !$pickup_date || !$pickup_time || !$return_date || !$return_time
     exit();
 }
 
-// Verfügbarkeitsprüfung
+
 $query = "SELECT COUNT(*) AS count FROM bookings 
           WHERE car_id = ? 
           AND (
@@ -90,7 +105,7 @@ if ($row['count'] > 0) {
     exit();
 }
 
-// Buchung speichern
+
 $sql = "INSERT INTO bookings (userid, car_id, booking_time, pickup_date, pickup_time, return_date, return_time) 
         VALUES (?, ?, ?, ?, ?, ?, ?)";
 

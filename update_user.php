@@ -1,4 +1,27 @@
 <?php
+/**
+ * User Profile Update (AJAX Endpoint)
+ * 
+ * - Ensures the user is logged in before making changes.
+ * - Retrieves and sanitizes updated user data from POST request.
+ * - Performs validation:
+ *   - Ensures required fields are filled.
+ *   - Validates email format.
+ *   - Checks if the username or email is already in use by another user.
+ *   - Verifies birthdate format (if provided).
+ * - Updates user details in the database if validation passes.
+ * - Returns a JSON response:
+ *   - `"status": "success"` if update is successful.
+ *   - `"status": "error"` with validation messages if any checks fail.
+ * 
+ * Security Measures:
+ * - Uses `htmlspecialchars()` and `trim()` to prevent XSS.
+ * - Utilizes prepared statements to prevent SQL injection.
+ * 
+ * This script enables secure profile updates while maintaining data integrity.
+ */
+?>
+<?php
 require_once('db_connection.php');
 session_start();
 
@@ -16,17 +39,17 @@ $birthdate = isset($_POST["birthdate"]) ? trim($_POST["birthdate"]) : null;
 
 $errors = [];
 
-// 🔹 Pflichtfelder prüfen
+
 if (empty($email) || empty($username) || empty($first_name) || empty($last_name)) {
     $errors[] = "Alle Felder müssen ausgefüllt sein.";
 }
 
-// 🔹 E-Mail-Adresse validieren
+
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors[] = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
 }
 
-// 🔹 Falls Geburtsdatum gesetzt ist, prüfen, ob es korrekt formatiert ist
+
 if (!empty($birthdate)) {
     if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $birthdate)) {
         $errors[] = "Das Geburtsdatum muss im Format YYYY-MM-DD eingegeben werden.";
@@ -38,7 +61,7 @@ if (!empty($birthdate)) {
     }
 }
 
-// 🔹 Prüfen, ob Benutzername bereits existiert
+
 $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE username = ? AND userid != ?");
 $stmt->bind_param("si", $username, $userid);
 $stmt->execute();
@@ -50,7 +73,7 @@ if ($userCount > 0) {
     $errors[] = "Der Benutzername ist bereits vergeben.";
 }
 
-// 🔹 Prüfen, ob die E-Mail bereits existiert
+
 $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE email = ? AND userid != ?");
 $stmt->bind_param("si", $email, $userid);
 $stmt->execute();
@@ -62,13 +85,13 @@ if ($emailCount > 0) {
     $errors[] = "Diese E-Mail-Adresse ist bereits vergeben.";
 }
 
-// 🔹 Falls Fehler existieren, sende sie zurück
+
 if (!empty($errors)) {
     echo json_encode(["status" => "error", "errors" => $errors]);
     exit;
 }
 
-// 🔹 Benutzer aktualisieren
+
 $stmt = $conn->prepare("UPDATE users SET email = ?, username = ?, first_name = ?, last_name = ?, birthdate = ? WHERE userid = ?");
 $stmt->bind_param("sssssi", $email, $username, $first_name, $last_name, $birthdate, $userid);
 

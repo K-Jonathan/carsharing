@@ -1,4 +1,19 @@
 <?php
+/**
+ * Fetch All User Bookings (Future & Past)
+ * 
+ * - Requires the user to be logged in (session-based).
+ * - Retrieves all bookings from the database for the logged-in user.
+ * - Joins `bookings` with `cars` to enrich results with vehicle and location data.
+ * - Separates bookings into two categories:
+ *   - `future`: bookings with a pickup date after today.
+ *   - `past`: bookings with a pickup date today or earlier.
+ * - Returns a JSON object with `future` and `past` arrays.
+ * 
+ * This endpoint powers the booking history and upcoming trips overview.
+ */
+?>
+<?php
 require_once('db_connection.php');
 
 if (session_status() === PHP_SESSION_NONE) {

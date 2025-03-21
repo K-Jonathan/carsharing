@@ -1,3 +1,21 @@
+<?php
+/**
+ * Car Selection Page
+ * 
+ * - Serves as the main interface for users to browse and filter available cars for booking.
+ * - Stores selected pickup/return dates, times, and location in the session for persistence.
+ * - Implements `formatDate()` to correctly parse and transform localized date strings.
+ * - Displays a live filter bar with dropdowns for vehicle attributes (type, gear, price, etc.).
+ * - Includes an interactive popup-based search form with autocomplete, date/time pickers, and a full calendar UI.
+ * - Shows cars dynamically within the `#car-list` section, updated via JS (`car_selection_details_connection.js`).
+ * - Adds advanced filters such as manufacturer, doors, seats, drive type, climate, GPS, and trunk size.
+ * - Pagination controls allow users to navigate through car pages.
+ * - Displays warning popups if booking input is missing or invalid.
+ * - Integrates various JS scripts for filtering, calendar navigation, UI control, and filter application.
+ * 
+ * This page offers a rich and dynamic UX for selecting the perfect rental car based on user-defined criteria.
+ */
+?>
 <?php 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -7,7 +25,7 @@ $_SESSION['search-location'] = isset($_GET['search-location']) && !empty($_GET['
     ? $_GET['search-location'] 
     : null;
 
-include 'includes/header.php'; // Header einfügen
+include 'includes/header.php';
 ?>
 <body class="car-selection">
 
@@ -15,43 +33,43 @@ include 'includes/header.php'; // Header einfügen
 function formatDate($date) {
     if (!$date || $date === 'Datum') return 'Datum';
 
-    // Mapping von Monatsnamen (Kurzform) zu Zahlen
+    
     $monthMapping = [
         'Jan' => '01', 'Feb' => '02', 'Mär' => '03', 'Apr' => '04', 'Mai' => '05', 'Jun' => '06', 
         'Jul' => '07', 'Aug' => '08', 'Sep' => '09', 'Okt' => '10', 'Nov' => '11', 'Dez' => '12'
     ];
 
-    // Extrahiere Tag und Monat aus dem String (z. B. "15. Mär")
+    
     $parts = explode('. ', trim($date));
-    if (count($parts) !== 2) return 'Datum'; // Falls Format falsch ist
+    if (count($parts) !== 2) return 'Datum'; 
 
-    $day = $parts[0]; // "15"
-    $monthShort = $parts[1]; // "Mär"
+    $day = $parts[0];
+    $monthShort = $parts[1];
 
-    // Falls der Monat im Mapping ist, ersetze ihn durch die Zahl
+    
     if (isset($monthMapping[$monthShort])) {
         $month = $monthMapping[$monthShort];
     
         $today = new DateTime();
-        $today->setTime(0, 0); // Setzt die Uhrzeit auf Mitternacht für exakte Vergleiche
+        $today->setTime(0, 0); 
     
         $currentYear = $today->format('Y');
         $nextYear = $currentYear + 1;
     
-        // Erstelle das Datum aus der Auswahl
+        
         $selectedDate = DateTime::createFromFormat('d.m.Y', "$day.$month.$currentYear");
         
-        // Falls das Datum existiert und vor HEUTE liegt → nächstes Jahr nehmen
+        
         $year = ($selectedDate && $selectedDate < $today) ? $nextYear : $currentYear;
     
-        // Rückgabe mit zwei Ziffern fürs Jahr
+        
         return sprintf("%02d.%02d.%02d", $day, $month, $year % 100);
     }    
 
-    return 'Datum'; // Falls der Monat nicht gefunden wurde
+    return 'Datum'; 
 }
 
-// 🏁 Pickup- und Return-Date aus URL oder Session setzen
+
 $_SESSION['pickupDate'] = isset($_GET['pickup']) && !empty($_GET['pickup']) ? formatDate($_GET['pickup']) : 'Datum';
 $_SESSION['returnDate'] = isset($_GET['return']) && !empty($_GET['return']) ? formatDate($_GET['return']) : 'Datum';
 
@@ -78,7 +96,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
         <span class="date-time"><?php echo $returnDate; ?></span>
         <span class="divider"></span>
         <span class="date-time"><?php echo $returnTime; ?></span>
-    <!-- 🖊 Stift-Button -->
+
     <button id="edit-search-btn">
         🖊
     </button>
@@ -88,19 +106,19 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
 </div>
 
 
-        <!-- ✅ Filter ist jetzt innerhalb der richtigen Box -->
+        
         <div class="filter-options">
         <button class="filter-btn reset-filter" id="reset-filters">Zurücksetzen</button>
         <button class="filter-btn" id="sort-filter">Sortierung ▼</button>
 
-<!-- 🔹 Dropdown-Box für Sortierung -->
+
 <div id="sort-dropdown" class="dropdown-box hidden">
     <button>Preis absteigend</button>
     <button>Preis aufsteigend</button>
 </div>
             <button class="filter-btn" id="type-filter">Typ ▼</button>
 
-<!-- 🔹 Dropdown-Box für Typ -->
+
 <div id="type-dropdown" class="dropdown-box hidden">
     <button>Limousine</button>
     <button>Combi</button>
@@ -111,7 +129,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
 </div>
             <button class="filter-btn" id="gear-filter">Getriebe ▼</button>
 
-<!-- 🔹 Dropdown-Box für Getriebe -->
+
 <div id="gear-dropdown" class="dropdown-box hidden">
     <button>Automatik</button>
     <button>Manuell</button>
@@ -119,7 +137,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
 
 <button class="filter-btn" id="price-filter">Preis bis ▼</button>
 
-<!-- 🔹 Dropdown-Box für "Preis bis" -->
+
 <div id="price-dropdown" class="dropdown-box hidden">
     <button>150</button>
     <button>300</button>
@@ -133,7 +151,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
 
 
 </div>
-    </div> <!-- ✅ `filter-container` schließt jetzt richtig -->
+    </div>
 
 
 
@@ -142,10 +160,10 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
 </section>
 
 <section class="car_more_filter">
-    <!-- 🔹 Neuer weißer Kasten, der später eingeblendet wird -->
+
     <div id="extra-filters-box" class="hidden">
         <div class="extra-filters">
-            <!-- Hersteller Dropdown -->
+           
             <button class="filter-btn" id="manufacturer-filter">Hersteller ▼</button>
             <div id="manufacturer-dropdown" class="dropdown-box hidden">
                 <button>BMW</button>
@@ -162,7 +180,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
                 <button>Skoda</button>
             </div>
 
-            <!-- Türen Dropdown -->
+   
             <button class="filter-btn" id="doors-filter">Türen ▼</button>
             <div id="doors-dropdown" class="dropdown-box hidden">
                 <button>3</button>
@@ -170,7 +188,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
                 <button>5</button>
             </div>
 
-            <!-- Sitze Dropdown -->
+        
 <button class="filter-btn" id="seats-filter">Sitze ▼</button>
 <div id="seats-dropdown" class="dropdown-box hidden">
     <button>2</button>
@@ -180,13 +198,13 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
     <button>8</button>
     <button>9</button>
 </div>
-            <!-- Antrieb Dropdown -->
+            
 <button class="filter-btn" id="drive-filter">Antrieb ▼</button>
 <div id="drive-dropdown" class="dropdown-box hidden">
     <button>Verbrenner</button>
     <button>Elektrisch</button>
 </div>
-            <!-- Alter Fahrer Dropdown -->
+            
 <button class="filter-btn" id="age-filter">Alter Fahrer ▼</button>
 <div id="age-dropdown" class="dropdown-box hidden">
     <button>18</button>
@@ -196,7 +214,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
 <button class="filter-btn toggle-btn" id="climate-filter">Klima</button>
 <button class="filter-btn toggle-btn" id="gps-filter">GPS</button>
 
-            <!-- Kofferraumvolumen Dropdown -->
+            
 <button class="filter-btn" id="trunk-filter">Kofferraumvolumen ▼</button>
 <div id="trunk-dropdown" class="dropdown-box hidden">
     <button>Klein</button>
@@ -207,10 +225,10 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
     </div>
 </section>
 
-<!-- 🔍 Suchbox Pop-up -->
+
 <div id="search-popup" class="search-popup">
     <div class="search-container">
-        <button id="close-hero-popup" class="close-btn">✖</button> <!-- Schließen-Button -->
+        <button id="close-hero-popup" class="close-btn">✖</button>
 
         <div class="search-field">
             <label for="location">Stadt</label>
@@ -255,7 +273,7 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
         </form>
     </div>
 
-    <!-- 🗓️ Kalender Container (neu hinzugefügt!) -->
+
     <div id="calendar-container" class="calendar-box">
         <div class="calendar-header">
             <button id="prev-month" class="calendar-nav">&lt;</button>
@@ -297,12 +315,12 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
 
 
 <div id="car-list">
-    <!-- 🚗 Hier werden die Car-IDs dynamisch eingefügt -->
+  
 </div>
 
 <div class="blocker"></div>
 
-<!-- ❌ Pop-up für fehlenden Buchungszeitraum -->
+
 <div class="popup-overlay" id="popupOverlay">
     <div class="popup-box">
         <p class="popup-title">Fehlende Eingabe</p>
@@ -326,5 +344,5 @@ $returnTime = isset($_GET['return-time']) && !empty($_GET['return-time']) ? html
 
 
 <?php 
-include 'includes/footer.php'; // Footer einfügen
+include 'includes/footer.php'; 
 ?>

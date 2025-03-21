@@ -1,4 +1,18 @@
 <?php
+/**
+ * Age Verification Endpoint for Car Booking
+ * 
+ * - Validates that the user is logged in and has a recorded age in session.
+ * - Accepts a car ID via POST and retrieves the required minimum age for that car.
+ * - Compares the user’s age with the car’s minimum age requirement.
+ * - Returns a JSON response:
+ *   - "success" if the age requirement is met.
+ *   - "error" with a message if any condition fails (e.g. not logged in, invalid car ID, or too young).
+ * 
+ * This endpoint is designed for use with AJAX to pre-check age restrictions before submitting a booking.
+ */
+?>
+<?php
 session_start();
 require_once('db_connection.php'); 
 

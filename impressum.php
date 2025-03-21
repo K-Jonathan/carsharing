@@ -1,18 +1,35 @@
+<?php
+/**
+ * Impressum Page – Legal Notice
+ * 
+ * - Displays the required company details in compliance with § 5 TMG (German law).
+ * - Includes:
+ *   - Company name, address, contact details (email & phone).
+ *   - VAT identification number (Umsatzsteuer-ID).
+ *   - Legal representatives (managing directors).
+ *   - Liability disclaimer.
+ *   - Copyright notice.
+ * - Uses a structured table format for readability.
+ * - Includes a consistent header and footer.
+ * 
+ * This page ensures legal transparency and compliance with German regulations.
+ */
+?>
 <?php 
 include 'includes/header.php'; // Header einfügen
 ?>
 
 
-<!-- Hintergrund für die Impressum-Seite -->
+
 <div class="impressumpage-background"></div>
 
-<!-- Unsichtbarer Positionierungs-Spacer -->
+
 <div class="impressumpage-spacer">
-    <!-- Weiße abgerundete Box für das Impressum -->
+
     <div class="impressumpage-box">
         <h2 class="impressumpage-title">Impressum</h2>
 
-        <!-- Formatierte Tabelle mit Inhalt -->
+
         <table class="impressumpage-table">
             <tr>
                 <td>
@@ -54,7 +71,7 @@ include 'includes/header.php'; // Header einfügen
 </div>
 
 
-<!--Insert Footer-->
+
 <?php 
-include 'includes/footer.php'; // Footer einfügen
+include 'includes/footer.php';
 ?>

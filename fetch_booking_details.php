@@ -1,4 +1,18 @@
 <?php
+/**
+ * Fetch Booking Details (AJAX Endpoint)
+ * 
+ * - Ensures the user is logged in and owns the requested booking.
+ * - Accepts a `booking_id` via GET and verifies it against the logged-in user's ID.
+ * - Retrieves the full booking record along with car details by joining `bookings` and `cars` tables.
+ * - Returns a JSON response:
+ *   - `status: success` with the booking data if found and owned by user.
+ *   - `status: error` with appropriate message if validation or lookup fails.
+ * 
+ * This endpoint powers the booking details page for user-specific viewing.
+ */
+?>
+<?php
 require_once('db_connection.php');
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -18,7 +32,7 @@ if (!$booking_id) {
     exit();
 }
 
-// 🔹 Buchungsdetails sicher abrufen
+
 $stmt = $conn->prepare("
     SELECT b.*, c.vendor_name, c.name AS car_name, c.img_file_name, 
            c.gear, c.doors, c.seats, c.drive, c.min_age, c.price, 

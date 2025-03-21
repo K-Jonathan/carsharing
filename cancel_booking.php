@@ -1,4 +1,17 @@
 <?php
+/**
+ * Booking Cancellation Handler
+ * 
+ * - Ensures the user is logged in before proceeding.
+ * - Validates the booking ID passed via GET and checks user ownership.
+ * - Prevents users from cancelling bookings that do not belong to them.
+ * - Deletes the booking from the database if validation passes.
+ * - Redirects to the bookings page with a success flag or returns an error on failure.
+ * 
+ * This script provides secure server-side logic to cancel a user’s own booking.
+ */
+?>
+<?php
 require_once('db_connection.php');
 
 if (session_status() === PHP_SESSION_NONE) {

@@ -1,3 +1,18 @@
+<?php
+/**
+ * Contact Page – Help & Communication
+ * 
+ * - Provides users with multiple ways to get in touch with FLAMIN-GO!
+ * - Features:
+ *   - Hero section introducing the help theme.
+ *   - Instagram call-to-action with description and embedded video.
+ *   - Styled contact form for users to send inquiries via email.
+ * - Layout combines visual appeal (background images, videos) with functional elements.
+ * - Includes header and footer for consistent site design.
+ * 
+ * Designed to promote user interaction and support communication with the company.
+ */
+?>
 <?php include("includes/header.php"); ?>
     <div class="startbild Contback">
         <p class="whitebig">

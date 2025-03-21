@@ -1,4 +1,17 @@
 <?php
+/**
+ * Location Autocomplete (AJAX Endpoint)
+ * 
+ * - Handles live search queries for locations.
+ * - Accepts a search term (`q`) via GET request.
+ * - Sanitizes input to prevent XSS attacks.
+ * - Uses a prepared statement to securely query distinct locations (`loc_name`) from the `cars` table.
+ * - Returns matching locations as a JSON array for autocomplete suggestions.
+ * 
+ * This script enables dynamic location search functionality in the booking interface.
+ */
+?>
+<?php
 require_once('db_connection.php');
 
 if (isset($_GET['q'])) {

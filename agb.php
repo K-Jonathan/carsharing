@@ -1,17 +1,30 @@
+<?php
+/**
+ * Terms and Conditions (AGB) Page
+ * 
+ * - Displays the "Allgemeine Geschäftsbedingungen" (AGB) in a styled, scrollable layout.
+ * - Includes a header and footer for consistent site design.
+ * - Uses a visually styled container (`agbpage-box`) with spacing and background elements.
+ * - Content is sectioned by headings, paragraphs, and lists for clarity.
+ * - Covers rental terms, insurance, liability, cancellations, and legal disclaimers.
+ * 
+ * This static content page ensures that users can access and review the company’s rental policies.
+ */
+?>
 <!--Insert Header-->
 <?php include("includes/header.php");?>
 
 
-<!-- Hintergrund für die AGB-Seite -->
+
 <div class="agbpage-background"></div>
 
-<!-- Unsichtbarer Positionierungs-Spacer -->
+
 <div class="agbpage-spacer">  
-    <!-- Weiße abgerundete Box für die AGB-Texte -->
+
     <div class="agbpage-box">
         <h2 class="agbpage-title">Unsere Allgemeinen Geschäftsbedingungen</h2> <br>
         
-        <!-- Scrollbare AGB-Texte -->
+
         <div class="agbpage-scrollbox">
             <h4 class="agbpage-subtitle">1. Geltungsbereich</h4>
             <p class="agbpage-text">
