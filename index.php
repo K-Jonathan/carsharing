@@ -1,11 +1,15 @@
 <?php
-//STRG + U auf beliebigen Websites für Insights
-//header
+/*
+This PHP document creates the homepage of a sustainable car hire company. It dynamically integrates the header and footer and provides an interactive user interface that allows users to search for vehicles by location, pick-up date/time and return date/time. The site also includes a calendar function for date selection, a vehicle category selection, marketing content, customer reviews and an interactive map of Germany with marked rental stations. All entries are sent to "car_selection.php" using the GET method. The interactivity is controlled via several external JavaScript files.
+*/
+//inserter header
 include("includes/header.php");
 ?>
 
+<!-- Hero section with search fields -->
 <section class="hero">
     <div class="search-container">
+        <!-- Location search field -->
         <div class="search-field">
             <label for="location">Stadt</label>
             <div class="location-group">
@@ -17,26 +21,29 @@ include("includes/header.php");
             </div>
         </div>
         <div class="search-field">
-    <label for="pickup">Abholdatum</label>
-    <div class="input-group">
-        <input type="text" id="pickup" placeholder="Datum" readonly>
-        <input type="text" id="pickup-time" placeholder="Uhrzeit" readonly>
-        <div id="time-dropdown" class="time-dropdown">
-        <div id="time-grid" class="time-grid"></div>
-        </div>
-        </div>
+            <!-- Dropoff date and time -->
+            <label for="pickup">Abholdatum</label>
+            <div class="input-group">
+                <input type="text" id="pickup" placeholder="Datum" readonly>
+                <input type="text" id="pickup-time" placeholder="Uhrzeit" readonly>
+                <div id="time-dropdown" class="time-dropdown">
+                    <div id="time-grid" class="time-grid"></div>
+                </div>
+            </div>
         </div>
 
+        <!-- Pickup date and time -->
         <div class="search-field">
             <label for="return">Rückgabedatum</label>
             <div class="input-group">
                 <input type="text" id="return" placeholder="Datum" readonly>
                 <input type="text" id="return-time" placeholder="Uhrzeit" readonly>
                 <div id="return-time-dropdown" class="time-dropdown">
-                <div id="return-time-grid" class="time-grid"></div>
+                    <div id="return-time-grid" class="time-grid"></div>
                 </div>
             </div>
         </div>
+        <!-- Search form -->
         <form action="car_selection.php" method="GET">
             <input type="hidden" name="search-location" id="hidden-search-location">
             <input type="hidden" name="pickup" id="hidden-pickup">
@@ -58,7 +65,7 @@ include("includes/header.php");
             </div>
             <button id="next-month" class="calendar-nav">&gt;</button>
         </div>
-
+        <!-- Calendar grid for previous, current, and next months -->
         <div class="calendar-grid">
             <div class="calendar-column">
                 <div class="calendar-weekdays">
@@ -82,24 +89,17 @@ include("includes/header.php");
     </div>
 </section>
 
-
-
-
-
-
-
-
-
-
+<!-- Section with marketing message -->
 <section class="pink-text">
     <h1>MIETE PINK - FAHR GRÜN</h1>
     <h2>Nachhaltige Autovermietung einfach gemacht</h2>
- </section>
+</section>
 
- <section class="car-categories">
+<!-- Car category selection -->
+<section class="car-categories">
     <div class="category">
         <h3>Limousine</h3>
-        <img src="images/categories/limousine.jpg" alt="Limousine" class="category-image" data-type="Limousine"> 
+        <img src="images/categories/limousine.jpg" alt="Limousine" class="category-image" data-type="Limousine">
     </div>
     <div class="category">
         <h3>Combi</h3>
@@ -116,8 +116,8 @@ include("includes/header.php");
 </section>
 <hr class="category-divider">
 
-
- <section class="features">
+<!-- Features section -->
+<section class="features">
     <div class="feature">
         <div class="feature-header">
             <img src="images/maps-icon.png" alt="Zuverlässig">
@@ -141,6 +141,7 @@ include("includes/header.php");
     </div>
 </section>
 
+<!-- Customer testimonials -->
 <section class="cs">
     <h1>UNSERE KUNDEN</h1>
     <div class="review-slider">
@@ -166,13 +167,13 @@ include("includes/header.php");
                 <span>- Lasse Abram</span>
             </div>
 
-            <!-- Navigation innerhalb des Bild-Containers -->
+            <!-- Review navigation -->
             <div class="review-navigation">
                 <button id="prevBtn">&#10094;</button>
                 <button id="nextBtn">&#10095;</button>
             </div>
 
-            <!-- Punkte für den Slider -->
+            <!-- Review slider dots -->
             <div class="review-dots">
                 <span class="dot active-dot"></span>
                 <span class="dot"></span>
@@ -198,27 +199,27 @@ include("includes/header.php");
 </section>
 
 <hr class="category-divider">
-
+<!-- Sustainability section -->
 <section class="locations-section">
-<h1>Unsere Standorte</h1>
-<div class="map-spacer">
-    <div class="map-container">
-        <div class="map-marker" data-city="Berlin" style="left: 70%; top: 28%;"></div>
-        <div class="map-marker" data-city="Bielefeld" style="left: 35%; top: 35%;"></div>
-        <div class="map-marker" data-city="Bochum" style="left: 27%; top: 43%;"></div>
-        <div class="map-marker" data-city="Bremen" style="left: 37%; top: 24%;"></div>
-        <div class="map-marker" data-city="Dortmund" style="left: 29%; top: 41%;"></div>
-        <div class="map-marker" data-city="Dresden" style="left: 73%; top: 51%;"></div>
-        <div class="map-marker" data-city="Freiburg" style="left: 30%; top: 87%;"></div>
-        <div class="map-marker" data-city="Hamburg" style="left: 45%; top: 20%;"></div>
-        <div class="map-marker" data-city="Köln" style="left: 23%; top: 50%;"></div>
-        <div class="map-marker" data-city="Leipzig" style="left: 65%; top: 46%;"></div>
-        <div class="map-marker" data-city="München" style="left: 60%; top: 85%;"></div>
-        <div class="map-marker" data-city="Nürnberg" style="left: 56%; top: 72%;"></div>
-        <div class="map-marker" data-city="Paderborn" style="left: 36%; top: 39%;"></div>
-        <div class="map-marker" data-city="Rostock" style="left: 62%; top: 14%;"></div>
+    <h1>Unsere Standorte</h1>
+    <div class="map-spacer">
+        <div class="map-container">
+            <div class="map-marker" data-city="Berlin" style="left: 70%; top: 28%;"></div>
+            <div class="map-marker" data-city="Bielefeld" style="left: 35%; top: 35%;"></div>
+            <div class="map-marker" data-city="Bochum" style="left: 27%; top: 43%;"></div>
+            <div class="map-marker" data-city="Bremen" style="left: 37%; top: 24%;"></div>
+            <div class="map-marker" data-city="Dortmund" style="left: 29%; top: 41%;"></div>
+            <div class="map-marker" data-city="Dresden" style="left: 73%; top: 51%;"></div>
+            <div class="map-marker" data-city="Freiburg" style="left: 30%; top: 87%;"></div>
+            <div class="map-marker" data-city="Hamburg" style="left: 45%; top: 20%;"></div>
+            <div class="map-marker" data-city="Köln" style="left: 23%; top: 50%;"></div>
+            <div class="map-marker" data-city="Leipzig" style="left: 65%; top: 46%;"></div>
+            <div class="map-marker" data-city="München" style="left: 60%; top: 85%;"></div>
+            <div class="map-marker" data-city="Nürnberg" style="left: 56%; top: 72%;"></div>
+            <div class="map-marker" data-city="Paderborn" style="left: 36%; top: 39%;"></div>
+            <div class="map-marker" data-city="Rostock" style="left: 62%; top: 14%;"></div>
+        </div>
     </div>
-</div>
 </section>
 <script src="js/calendar_elements.js"></script>
 <script src="js/calender.js"></script>
@@ -226,7 +227,7 @@ include("includes/header.php");
 <script src="js/category_redirect.js"></script>
 <script src="js/map_interaction.js"></script>
 <?php
-//STRG + U auf beliebigen Websites für Insights
-//header
+
+// Include the footer file
 include("includes/footer.php");
 ?>

@@ -1,3 +1,8 @@
+<!--* This script validates if a logged-in user meets the age requirement to book a specific car.
+ * It checks if the user session is valid and the car ID is provided,
+ * fetches the car's minimum age requirement from the database,
+ * and compares it with the user's age from the session.
+ * Returns a JSON response indicating success or an appropriate error message.-->
 <?php
 session_start();
 require_once('db_connection.php'); 

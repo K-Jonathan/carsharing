@@ -1,4 +1,15 @@
 <?php
+/*
+This script returns a list of available cars as a JSON response based on search parameters stored in the session and filters passed via GET.  
+- Starts session and includes the database connection.  
+- Filters cars by location and excludes those already booked during the selected pickup and return period.  
+- Converts German date formats (DD.MM.YY) to SQL format (YYYY-MM-DD) for accurate date comparisons.  
+- Applies optional filters (type, gear, vendor, doors, seats, drive, min_age, trunk, air_condition, GPS, and max_price)  
+  securely using prepared statements to prevent SQL injection.  
+- Supports safe sorting by allowed options (price ascending/descending or car_id).  
+- Retrieves grouped car data from the database and returns a JSON object including car availability counts.
+*/
+
 require_once('db_connection.php');
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -8,7 +19,7 @@ $whereClauses = [];
 $params = [];
 $types = "";
 
-// 🔹 Standort-Filter (Falls gesetzt)
+// Location filter (if set)
 $location = isset($_SESSION['search-location']) ? htmlspecialchars(trim($_SESSION['search-location'])) : null;
 
 if ($location) {
@@ -17,7 +28,7 @@ if ($location) {
     $types .= "s"; 
 }
 
-// 🔹 Verfügbarkeitsprüfung (neue Logik)
+// Availability check (new logic)
 $pickupDate = isset($_SESSION['pickupDate']) ? htmlspecialchars(trim($_SESSION['pickupDate'])) : null;
 $returnDate = isset($_SESSION['returnDate']) ? htmlspecialchars(trim($_SESSION['returnDate'])) : null;
 
@@ -49,7 +60,7 @@ if ($pickupDate && $returnDate && $pickupDate !== 'Datum' && $returnDate !== 'Da
     $types .= "ssssss";
 }
 
-// 🔹 Sortierung (Nur erlaubte Werte zulassen)
+// Sorting (only allow permitted values)
 $allowedSortOptions = ["price_desc", "price_asc", "car_id ASC"];
 $orderBy = "car_id ASC"; // Standard
 
@@ -57,7 +68,7 @@ if (!empty($_GET['sort']) && in_array($_GET['sort'], $allowedSortOptions)) {
     $orderBy = $_GET['sort'] === "price_desc" ? "price DESC" : "price ASC";
 }
 
-// 🔹 Filter mit SQL-Schutz
+// Filter with SQL protection
 function applyFilter($paramName, $columnName, $typeChar) {
     global $whereClauses, $params, $types;
     
@@ -70,7 +81,7 @@ function applyFilter($paramName, $columnName, $typeChar) {
     }
 }
 
-// ✅ Alle Filter sicher anwenden
+// Use all filters safely
 applyFilter("type", "type", "s");
 applyFilter("gear", "gear", "s");
 applyFilter("vendor", "vendor_name", "s");
@@ -94,7 +105,7 @@ if (!empty($_GET['gps']) && $_GET['gps'] === "1") {
     $whereClauses[] = "gps = 1";
 }
 
-// 🔹 SQL-Abfrage erstellen
+// Create SQL query
 $sql = "SELECT 
             MIN(car_id) as car_id, 
             vendor_name, 
@@ -122,6 +133,7 @@ if (!empty($whereClauses)) {
 $sql .= " GROUP BY vendor_name, vendor_name_abbr, name, loc_name";
 $sql .= " ORDER BY $orderBy";
 
+// Prepare and execute the query
 $stmt = $conn->prepare($sql);
 
 if (!empty($params)) {
@@ -131,11 +143,13 @@ if (!empty($params)) {
 $stmt->execute();
 $result = $stmt->get_result();
 
+// Fetch results and store in an array
 $cars = [];
 while ($row = $result->fetch_assoc()) {
     $cars[] = $row;
 }
 
+// Return data as JSON
 header('Content-Type: application/json');
 echo json_encode([
     "cars" => $cars

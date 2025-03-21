@@ -1,3 +1,28 @@
+<!--
+This is the Careers ("Karriere") page for Flamin-Go! car rental, designed to showcase job opportunities and encourage applications.
+
+📸 Header & Intro:
+- Includes global header (`includes/header.php`).
+- Displays a full-width background image (`.Karriere-bg-image`) for visual appeal.
+- A white, rounded text box (`.Karriere-box`) promotes working at Flamin-Go!
+  - Explains the eco-conscious philosophy of the company.
+  - Contains a button linking to the contact form for applications.
+
+💼 Job Listings Section:
+- Set against a grey background (`.Karriere-spacer`) to distinguish job offers.
+- Each job is displayed in a `.card` with:
+  - Job Title, Location, Type (Full-time/Part-time), and Salary.
+  - A short description highlighting responsibilities and key attributes.
+- Example positions:
+  1. **Filialleiter (Branch Manager)** – Hamburg, full-time
+  2. **Service-Mitarbeiter (Service Staff)** – Hamburg, part-time
+  3. **Regionalleiter (Regional Manager)** – North region, full-time
+
+🧩 Footer:
+- Ends with the global footer (`includes/footer.php`).
+
+This page blends company culture with job openings, inviting visitors to join a purpose-driven team.
+-->
 <!--Insert Header-->
 <?php include("includes/header.php"); ?>
 <!--Foto background-->
@@ -12,7 +37,7 @@
             Erkunde unsere Philosophie von einer besseren Autovermietung, welche nicht nur Autos vermietet, sondern auch etwas für die Umwelt macht!
         </p><br><br>
  
-        <!-- Button zum Öffnen des Popups -->
+        <!-- Button to open Pop-Up -->
         <a href="contact.php" class="bewerbung-button">Bewirb dich hier, über unsere Kontaktseite! </a>
  
     </div>

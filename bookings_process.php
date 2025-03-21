@@ -1,3 +1,8 @@
+<!--* This script handles car booking requests via POST.
+ * It verifies user login and calculates age if necessary, ensuring the user meets the car's minimum age requirement.
+ * It validates input data, checks for overlapping bookings in the selected time range,
+ * and inserts a new booking into the database if the car is available.
+ * Responses are returned in JSON format for client-side handling.--> 
 <?php
 require_once('db_connection.php');
 
@@ -50,7 +55,7 @@ if ($age < $min_age) {
     exit();
 }
 
-// Eingaben absichern
+// secure entry
 $userid = $_SESSION['userid'];
 $pickup_date = isset($_POST['pickup_date']) ? htmlspecialchars(trim($_POST['pickup_date'])) : null;
 $pickup_time = isset($_POST['pickup_time']) ? htmlspecialchars(trim($_POST['pickup_time'])) : null;
@@ -63,7 +68,7 @@ if (!$car_id || !$pickup_date || !$pickup_time || !$return_date || !$return_time
     exit();
 }
 
-// Verfügbarkeitsprüfung
+// availability check
 $query = "SELECT COUNT(*) AS count FROM bookings 
           WHERE car_id = ? 
           AND (
@@ -90,7 +95,7 @@ if ($row['count'] > 0) {
     exit();
 }
 
-// Buchung speichern
+// safe booking
 $sql = "INSERT INTO bookings (userid, car_id, booking_time, pickup_date, pickup_time, return_date, return_time) 
         VALUES (?, ?, ?, ?, ?, ?, ?)";
 

@@ -1,3 +1,7 @@
+<!--* This script allows a logged-in user to cancel a specific car booking.
+ * It verifies the user's login status, validates the booking ID, and checks if the booking belongs to the user.
+ * If valid, the booking is deleted from the database.
+ * On success, the user is redirected to the bookings page with a success flag.-->
 <?php
 require_once('db_connection.php');
 

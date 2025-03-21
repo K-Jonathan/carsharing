@@ -1,17 +1,49 @@
+<!--
+This page displays the "Allgemeine Geschäftsbedingungen" (Terms & Conditions) for the car rental platform.
+
+🧩 Structure Overview:
+- Includes the site-wide header (`includes/header.php`).
+- Displays a background specific to the AGB page (`.agbpage-background`).
+- Uses a spacer (`.agbpage-spacer`) to vertically position the content correctly.
+
+📄 AGB Content:
+- The terms are wrapped in a white, rounded container box (`.agbpage-box`).
+- Inside, there's a scrollable text container (`.agbpage-scrollbox`) for better UX on long content.
+- Each section of the AGB is clearly structured with subtitles and paragraphs.
+- Some clauses (e.g., vehicle use rules) use a list format for readability.
+
+🧾 Legal Topics Covered:
+1. Scope of Terms
+2. Contract Conclusion
+3. Rental Duration & Return
+4. Vehicle Use Conditions
+5. Insurance & Liability
+6. Cancellation Policy
+7. Accident Procedure
+8. Payment & Deposit
+9. Data Privacy
+10. Legal Jurisdiction & Final Clauses
+
+🟢 Footer:
+- The page concludes with the global site footer (`includes/footer.php`).
+
+This layout ensures the terms are accessible, legible, and compliant with UX best practices for legal documents.
+-->
 <!--Insert Header-->
 <?php include("includes/header.php");?>
 
 
-<!-- Hintergrund für die AGB-Seite -->
+<!--Background for AGB Page -->
 <div class="agbpage-background"></div>
 
-<!-- Unsichtbarer Positionierungs-Spacer -->
+
+<!-- Invisible Positioning-Spacer -->
 <div class="agbpage-spacer">  
-    <!-- Weiße abgerundete Box für die AGB-Texte -->
+    <!-- White rounded box with agb text -->
     <div class="agbpage-box">
         <h2 class="agbpage-title">Unsere Allgemeinen Geschäftsbedingungen</h2> <br>
         
-        <!-- Scrollbare AGB-Texte -->
+        <!-- Scrollable AGB-Text -->
         <div class="agbpage-scrollbox">
             <h4 class="agbpage-subtitle">1. Geltungsbereich</h4>
             <p class="agbpage-text">

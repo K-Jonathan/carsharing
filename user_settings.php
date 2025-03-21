@@ -1,4 +1,22 @@
 <?php
+/**
+ * User Settings Page
+ * 
+ * - Ensures the user is logged in; redirects to login page if not.
+ * - Fetches user data and pre-fills a form for updating user settings.
+ * - Excludes sensitive fields (user ID, password, created_at) from being editable.
+ * - Uses appropriate input types (e.g., 'date' for birthdate).
+ * - Provides a logout button for user session termination.
+ * - Includes a popup to display errors if the update fails.
+ * - Loads a JavaScript file for client-side validation.
+ * 
+ * Dependencies:
+ * - Requires 'fetch_user_data.php' to retrieve user details.
+ * - Includes 'header.php' and 'footer.php' for consistent layout.
+ * - Uses 'settings_validation.js' for frontend validation.
+ */
+?>
+<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -22,7 +40,7 @@ include 'includes/header.php';
                         continue;
                     }
 
-                    // Falls die Spalte `birthdate` ist, dann type="date" setzen
+                    // Chage type to "date" if column is 'birthdate' 
                     $inputType = ($column === "birthdate") ? "date" : "text";
                 ?>
                     <label for="<?php echo htmlspecialchars($column); ?>">
@@ -36,14 +54,14 @@ include 'includes/header.php';
                 <button class="loginregisterpage-button" type="submit">Änderungen speichern</button>
             </form>
 
-            <!-- 🔴 Logout-Button -->
+            <!-- Logout-Button -->
             <form action="logout.php" method="POST">
                 <button class="logout-button" type="submit">Abmelden | Logout</button>
             </form>
         </div>
     </div>
 
-    <!-- ❌ Pop-up für Fehleranzeige -->
+    <!-- Pop-up for Error-Message -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-box">
             <p class="popup-title">Fehler bei der Aktualisierung:</p>

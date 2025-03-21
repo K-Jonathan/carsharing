@@ -1,8 +1,29 @@
+<!--
+🚪 logout.php – User Logout Script
+
+This script handles **user logout** by terminating the session and clearing all stored session data.
+
+🛠 Key Steps:
+1. **Check if a session is active** → `session_status()`
+2. **Delete all session variables** → `session_unset()`
+3. **Destroy the session** → `session_destroy()`
+4. Render a **logout confirmation page** with:
+   - A background image
+   - A farewell message
+   - A handwave icon
+   - A message informing users their bookings are saved
+
+🔄 Automatic Redirection:
+- Includes `redirect.js`, which handles automatic forwarding after logout.
+
+📌 UI/UX:
+- Encourages users to return and reassures them their bookings are saved.
+-->
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-// 🔹 Alle Session-Daten löschen
+// Delete Session Data
 session_unset();
 session_destroy();
 ?>
@@ -10,12 +31,12 @@ session_destroy();
 <!-- Insert Header -->
 <?php include("includes/header.php"); ?>
  
-<!-- Hintergrundbild für die Logout-Seite -->
+<!-- Background for page -->
 <div class="background-static Logout-bg-image"></div>
  
-<!-- Unsichtbarer Positionierungs-Spacer -->
+<!-- Invisible Positioning Spacer -->
 <div class="static-spacer">
-    <!-- Box für den Logout-Text -->
+    <!-- Box for Logout-Text -->
     <div class="Logout-box">
         <!-- Logout-Container -->
         <div class="Logout-container">
@@ -34,5 +55,5 @@ session_destroy();
 <!-- Insert Footer -->
 <?php include("includes/footer.php"); ?>
  
-<!-- JavaScript für die automatische Weiterleitung -->
+<!-- JavaScript automatic forwarding -->
 <script src="js/redirect.js"></script>

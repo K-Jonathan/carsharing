@@ -1,13 +1,38 @@
+<!--
+This is the "Privacy Policy" (Datenschutzrichtlinien) page of Flamin-Go!, outlining how user data is collected, used, and protected.
+
+🛡️ Overview:
+- Includes global header (`includes/header.php`) and footer (`includes/footer.php`).
+- Displays a background and rounded content box styled specifically for the privacy page.
+
+📅 Dynamic Date:
+- The subtitle `<h6 id="datenschutz-datum">` is intended to be dynamically filled with the policy's last update date via JavaScript.
+
+📚 Accordion Format:
+- Key sections of the privacy policy are presented as expandable/collapsible accordions for improved readability.
+- Each section covers a specific topic:
+  1. **User Rights** – How users can access, correct, or delete their data.
+  2. **Definition of Personal Data** – What information Flamin-Go! collects.
+  3. **Data Retention** – How long personal data is stored.
+  4. **Third-Party Sharing** – Conditions under which data is shared (e.g. payment processing, legal requests).
+  5. **Contact Info** – Instructions for reaching out regarding privacy concerns.
+
+🧩 Interactive Behavior:
+- Accordion logic is handled by an external script (`accordion.js`) to toggle sections open/closed.
+- Enhances UX by keeping the page clean and scannable.
+
+This layout effectively communicates data protection practices while maintaining a user-friendly design.
+-->
 <!--Insert Header-->
 <?php include("includes/header.php");?>
 
 
-<!-- Hintergrund für die Datenschutzseite -->
+<!-- Background for page -->
 <div class="datenschutzpage-background"></div>
 
-<!-- Unsichtbarer Positionierungs-Spacer -->
+<!-- Invisible Positioning Spacer -->
 <div class="datenschutzpage-spacer">
-    <!-- Weiße abgerundete Box für die Datenschutzrichtlinien -->
+    <!-- White rounded box for text -->
     <div class="datenschutzpage-box">
         <h2 class="datenschutzpage-title">Datenschutzrichtlinien</h2>
         <h6 class="datenschutzpage-subtitle" id="datenschutz-datum"></h6>
@@ -16,9 +41,9 @@
             Zusätzlich zu dieser Datenschutzrichtlinie stellen wir Ihnen Hinweise und Datenschutzinformationen zur Verfügung, die in unsere Produkte und bestimmte Funktionen eingebettet sind und Zugriff auf Ihre personenbezogenen Daten erfordern.
         </p>
 
-        <!-- Accordion-Bereich -->
+        <!-- Accordion-Area -->
         <div class="datenschutzpage-accordion">
-            <!-- Erster Accordion-Punkt -->
+            <!-- First Accordion-Bullet-Point -->
             <div class="datenschutzpage-accordion-item">
                 <button class="datenschutzpage-accordion-button">
                     Ihre Datenschutzrechte bei Flamin-Go
@@ -35,7 +60,7 @@
                 </div>
             </div>
             
-            <!-- Zweiter Accordion-Punkt -->
+            <!-- Second Accordion-Bullet-Point -->
             <div class="datenschutzpage-accordion-item">
                 <button class="datenschutzpage-accordion-button">
                     Was sind personenbezogene Daten bei Flamin-Go?
@@ -59,7 +84,7 @@
                 </div>
             </div>
 
-            <!-- Vierter Accordion-Punkt -->
+            <!-- 4th Accordion... -->
             <div class="datenschutzpage-accordion-item">
                 <button class="datenschutzpage-accordion-button">
                     Wie lange speichern wir Ihre Daten?
@@ -75,7 +100,7 @@
                 </div>
             </div>
 
-            <!-- Fünfter Accordion-Punkt -->
+            <!-- 5th Accordion-... -->
             <div class="datenschutzpage-accordion-item">
                 <button class="datenschutzpage-accordion-button">
                     Teilen wir Ihre Daten mit Dritten?
@@ -97,7 +122,7 @@
                 </div>
             </div>
 
-            <!-- Sechster Accordion-Punkt -->
+            <!-- 6th Accordion-... -->
             <div class="datenschutzpage-accordion-item">
                 <button class="datenschutzpage-accordion-button">
                     Fragen zum Datenschutz

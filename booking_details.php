@@ -1,10 +1,15 @@
+<!--* This script displays detailed information about a specific car booking.
+ * It checks if the user is logged in, redirects to login if not, and fetches booking data via AJAX.
+ * Car details such as image, specs, pickup/return times, and total price are dynamically populated.
+ * If no valid booking ID is provided, the user is redirected back to the bookings page.
+-->
 <?php 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 include 'includes/header.php';
-require_once('helpers.php'); // ✅ Hilfsfunktionen einbinden
+require_once('helpers.php'); // include help features
 
 $logged_in = isset($_SESSION['userid']);
 $current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -31,7 +36,7 @@ if (!$logged_in) {
         <div class="car-info-section">
             <h2 class="car-title" id="car-title">Buchungsdetails</h2>
             <hr class="car-title-divider">
-            
+            <!-- icons for car specs--> 
             <div class="car-specs">
                 <div class="spec"><img src="images/icons/seats.png" alt="Sitze"><span id="seats"></span></div>
                 <div class="spec"><img src="images/icons/doors.png" alt="Türen"><span id="doors"></span></div>

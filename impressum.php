@@ -1,18 +1,45 @@
+<!--
+This is the Impressum (Legal Disclosure) page for Flamin-Go!, required under §5 TMG (German Telemedia Act).
+
+📜 Structure:
+- Includes the global header and footer for consistent layout.
+- Uses a background and a styled spacer (`.impressumpage-spacer`) to center content visually.
+- The core content is placed inside a white, rounded box (`.impressumpage-box`) with a structured table layout.
+
+📋 Content Details:
+- **Company Info**:
+  - Flamin-GO! GmbH
+  - Address, contact email, and phone number
+  - VAT ID (Umsatzsteuer-ID)
+
+- **Legal Disclaimers**:
+  - **Liability Disclaimer**: No guarantee for completeness, accuracy, or timeliness of content.
+  - **Copyright**: All content is protected under German copyright law.
+
+- **Representation**:
+  - Lists managing directors or legal representatives.
+
+📐 Layout Note:
+- Two-column layout using `<table>` ensures legal and company details are clearly separated and visually accessible.
+
+This page fulfills the legal requirement for business transparency and accountability in Germany.
+-->
+<!--Insert Header-->
 <?php 
-include 'includes/header.php'; // Header einfügen
+include 'includes/header.php'; 
 ?>
 
 
-<!-- Hintergrund für die Impressum-Seite -->
+<!-- Background for page -->
 <div class="impressumpage-background"></div>
 
-<!-- Unsichtbarer Positionierungs-Spacer -->
+<!-- Invisible Positioning-Spacer -->
 <div class="impressumpage-spacer">
-    <!-- Weiße abgerundete Box für das Impressum -->
+    <!-- White rounded box for content -->
     <div class="impressumpage-box">
         <h2 class="impressumpage-title">Impressum</h2>
 
-        <!-- Formatierte Tabelle mit Inhalt -->
+        <!-- Formated table with content -->
         <table class="impressumpage-table">
             <tr>
                 <td>
@@ -56,5 +83,5 @@ include 'includes/header.php'; // Header einfügen
 
 <!--Insert Footer-->
 <?php 
-include 'includes/footer.php'; // Footer einfügen
+include 'includes/footer.php';
 ?>
