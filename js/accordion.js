@@ -1,3 +1,18 @@
+/**
+ * This script handles two main features on the privacy policy page:
+ * 
+ * 1. Accordion Functionality:
+ *    - Clicking a button with the class ".datenschutzpage-accordion-button"
+ *      toggles the visibility of its associated content section.
+ *    - Only one accordion can be open at a time.
+ *    - A "+" or "−" icon visually indicates the accordion state.
+ *    - Smooth animation is applied for both opening and closing transitions.
+ * 
+ * 2. Dynamic Date Display:
+ *    - Retrieves the current date in German format (e.g., "21. März 2025").
+ *    - Inserts this date into the element with ID "datenschutz-datum"
+ *      to show when the privacy policy was last updated.
+ */
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.querySelectorAll(".datenschutzpage-accordion-button");
     
@@ -7,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let icon = this.querySelector(".datenschutzpage-accordion-icon");
             let isOpen = content.classList.contains("open");
 
-            // Schließt alle anderen geöffneten Accordions
+            // Closes all other open accordions
             document.querySelectorAll(".datenschutzpage-accordion-content").forEach(c => {
                 if (c !== content) {
                     c.style.maxHeight = "0px"; 
@@ -21,23 +36,23 @@ document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll(".datenschutzpage-accordion-icon").forEach(i => i.textContent = "+");
 
             if (!isOpen) {
-                // Öffnet das aktuelle Accordion
+                // Opens the current accordion
                 content.classList.add("open");
                 content.style.visibility = "visible";
                 content.style.opacity = "1";
-                content.style.maxHeight = content.scrollHeight + "px"; // Dynamische Höhe setzen
+                content.style.maxHeight = content.scrollHeight + "px"; // Set dynamic height
                 
                 this.classList.add("active");
                 icon.textContent = "−";
             } else {
-                // **Flüssiges Schließen**
-                content.style.maxHeight = content.scrollHeight + "px"; // Fixiert die aktuelle Höhe
+                // **Fluid closing**
+                content.style.maxHeight = content.scrollHeight + "px"; // Fixes the current height
                 setTimeout(() => {
-                    content.style.maxHeight = "0px"; // Erst nach kurzer Zeit die Höhe auf 0 setzen
+                    content.style.maxHeight = "0px"; // Only set the height to 0 after a short time
                     content.style.opacity = "0";
                     content.style.visibility = "hidden";
                     content.classList.remove("open");
-                }, 10); // Minimale Verzögerung für bessere Animation
+                }, 10); // Minimal delay for better animation
             }
         });
     });
@@ -46,13 +61,13 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     let datumElement = document.getElementById("datenschutz-datum");
     
-    // Aktuelles Datum holen
+    // Get current date
     let heute = new Date();
     
-    // Datum formatieren: 21. März 2025
+    // Format date: March 21, 2025
     let options = { day: "numeric", month: "long", year: "numeric" };
     let formatiertesDatum = heute.toLocaleDateString("de-DE", options);
     
-    // Datum in das HTML-Element einfügen
+    // Insert date in the HTML element
     datumElement.textContent = "Aktualisiert am " + formatiertesDatum;
 });

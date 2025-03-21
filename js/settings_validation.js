@@ -1,3 +1,35 @@
+/**
+ * This script manages the user settings form, handling validation, change detection, 
+ * and AJAX-based form submission.
+ * 
+ * Features:
+ * 
+ * ✅ Input Validation:
+ * - Ensures first and last names contain only letters (including German umlauts).
+ * - Validates that the birthdate input ensures the user is at least 18 years old.
+ * - Prevents submission if any required field is empty or contains invalid data.
+ * 
+ * 🔄 Change Detection:
+ * - Tracks initial input values and detects modifications.
+ * - Enables the "Save" button only when changes are detected.
+ * - Prevents submission if no modifications have been made.
+ * 
+ * 📡 AJAX Form Submission:
+ * - Sends updated user data to `update_user.php` via a POST request.
+ * - Processes JSON response to handle success or error messages.
+ * - Displays a popup with validation errors or a success message.
+ * 
+ * ❌ Error Handling:
+ * - Shows validation errors inside a popup (`showPopup(errors)`).
+ * - Prevents form submission if validation fails.
+ * 
+ * 🔄 Session Refresh:
+ * - After closing the popup, makes a request to `refresh_session.php` to update session data.
+ * - Reloads the page upon successful session refresh to reflect changes.
+ * 
+ * This script enhances the user settings page by ensuring real-time validation, 
+ * preventing unnecessary updates, and providing instant feedback.
+ */
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("settingsForm");
     const inputs = document.querySelectorAll(".registerpage-input");
@@ -114,7 +146,7 @@ popupClose.addEventListener("click", function () {
         .then(response => response.json())
         .then(data => {
             if (data.status === "success") {
-                location.reload(); // 🔄 Seite neu laden, damit neue Daten sichtbar sind
+                location.reload(); // 🔄 Seite ohne `Autotyp` neu laden
             }
         })
         .catch(error => console.error("Fehler beim Aktualisieren der Session:", error));

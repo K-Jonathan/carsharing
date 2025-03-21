@@ -1,3 +1,22 @@
+/**
+ * This script manages the bookings overview interface with pagination, type switching,
+ * and dynamic rendering of booking cards.
+ * 
+ * Main Features:
+ * 
+ * - Fetches booking data from `fetch_bookings.php` and stores it categorized as "future" or "past".
+ * - Allows toggling between future and past bookings using two filter buttons.
+ * - Renders paginated booking cards (3 per page), showing car info and booking details.
+ * - Provides pagination controls (Previous/Next) with correct enabling/disabling logic.
+ * - Dynamically attaches click handlers using event delegation:
+ *    🔹 "Details" button opens booking details in a new page.
+ *    🔹 "Cancel" button triggers a cancellation popup for future bookings.
+ * 
+ * - Each booking card includes:
+ *    🖼️ Car image
+ *    📄 Booking ID, date/time, location
+ *    🎛️ Action buttons (cancel/details)
+ */
 document.addEventListener("DOMContentLoaded", function () {
     const futureBtn = document.getElementById("future-bookings-btn");
     const pastBtn = document.getElementById("past-bookings-btn");
@@ -108,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
         renderBookings("past");
     });
 
-    // 🔹 Event-Delegation für "Details"-Buttons
+    // 🔹 Event delegation for “Details” buttons
     bookingsList.addEventListener("click", function (event) {
         if (event.target.classList.contains("details-button")) {
             const bookingId = event.target.getAttribute("data-booking-id");
@@ -118,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🔹 Event-Delegation für "Stornieren"-Buttons
+    // 🔹 Event delegation for “Cancel” buttons
     bookingsList.addEventListener("click", function (event) {
         if (event.target.classList.contains("cancel-booking-button")) {
             const bookingId = event.target.getAttribute("data-booking-id");

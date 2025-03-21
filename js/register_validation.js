@@ -1,3 +1,28 @@
+/**
+ * This script handles client-side validation and availability checks for the registration form.
+ * 
+ * Features:
+ * 
+ * ✅ Form Validation:
+ * - Ensures first and last names contain only letters (including German umlauts).
+ * - Checks that the user is at least 18 years old based on the birthdate input.
+ * - Verifies that the password and password confirmation match.
+ * - Ensures the user agrees to the privacy policy (checkbox).
+ * 
+ * 🔄 Username & Email Availability Check:
+ * - Sends AJAX requests to `check_availability.php` to verify if the username or email is already taken.
+ * - If unavailable, adds appropriate error messages.
+ * 
+ * ❌ Error Handling:
+ * - Displays errors inside a popup (`showPopup(errors)`).
+ * - Allows users to close the popup manually.
+ * 
+ * 🚀 Submission Logic:
+ * - If validation passes and the username/email are available, the form is submitted.
+ * - Otherwise, errors are displayed without submitting the form.
+ * 
+ * This improves user experience by preventing unnecessary form submissions and providing instant feedback.
+ */
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("registerForm");
     const popupOverlay = document.getElementById("popupOverlay");

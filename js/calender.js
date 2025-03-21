@@ -1,11 +1,38 @@
-// Standortsuche
+// Location search
+/**
+ * This script bundle enhances the booking form UI with a custom-built interactive experience:
+ * 
+ * 1. 🔍 Location Autocomplete:
+ *    - Fetches matching locations from `search_locations.php` based on user input.
+ *    - Displays clickable suggestions with icons.
+ *    - Selects a city by clicking or pressing ENTER (auto-fills input + icon swap).
+ *    - Handles visibility and resets icon when the input is cleared.
+ * 
+ * 2. 📅 Custom Date Picker:
+ *    - Renders a 3-month scrollable calendar view with disabled past and future-unbookable dates.
+ *    - Allows date range selection (pickup and return).
+ *    - Highlights selected dates and in-between days with UI feedback.
+ *    - Auto-fills the pickup/return date fields.
+ * 
+ * 3. ⏰ Time Picker:
+ *    - Dropdown time selection for pickup and return time (30-minute intervals).
+ *    - Displays time options and fills input upon selection.
+ *    - Handles open/close logic on clicks inside/outside the dropdown.
+ * 
+ * 4. 🔁 Input Focus & UI Sync:
+ *    - Manages visibility between overlapping inputs: location, calendar, and time fields.
+ *    - Ensures only one widget is open at a time via `closeAllExcept()`.
+ *    - Maintains visual feedback for active input groups with `focus-within` class toggling.
+ * 
+ * Overall, this script turns a basic booking form into a fully interactive date/time/location selector.
+ */
 document.addEventListener("DOMContentLoaded", function () {
     const inputField = document.getElementById("search-location");
     const suggestionsContainer = document.getElementById("autocomplete-container");
 
     suggestionsContainer.style.display = "none";
 
-    // Finde das bestehende Icon-Element (Lupe)
+    // Find the existing icon element (magnifying glass)
     let icon = document.querySelector(".input-icon");
     if (!icon) {
         console.error("Icon für das Suchfeld nicht gefunden.");
@@ -20,14 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (data.length > 0) {
                     suggestionsContainer.style.display = "block";
-                    suggestionsContainer.style.maxHeight = "200px"; // Maximal 5 Vorschläge sichtbar
-                    suggestionsContainer.style.overflowY = query.length === 0 ? "scroll" : "auto"; // Scrollbar nur wenn leer
+                    suggestionsContainer.style.maxHeight = "200px"; // Maximum 5 suggestions visible
+                    suggestionsContainer.style.overflowY = query.length === 0 ? "scroll" : "auto"; // Scrollbar only if empty
                     
                     data.forEach(location => {
                         const suggestionItem = document.createElement("div");
                         suggestionItem.classList.add("autocomplete-suggestion");
 
-                        // Container für Icon + Text
+                        // Container for icon + text
                         const suggestionContent = document.createElement("div");
                         suggestionContent.classList.add("suggestion-content");
 
@@ -43,10 +70,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         suggestionContent.appendChild(text);
                         suggestionItem.appendChild(suggestionContent);
 
-                        // Wenn eine Stadt ausgewählt wird
+                        // When a city is selected
                         suggestionItem.addEventListener("click", function () {
                             inputField.value = location;
-                            icon.src = "images/city-icon.png"; // Wechsel zur Stadt-Icon
+                            icon.src = "images/city-icon.png"; // Switch to the city icon
                             icon.style.display = "inline-block";
                             suggestionsContainer.innerHTML = "";
                             suggestionsContainer.style.display = "none";
@@ -61,29 +88,29 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Fehler bei der Autovervollständigung:", error));
     }
 
-    // Eventlistener für die Eingabe
+    // Event listener for the input
     inputField.addEventListener("input", function () {
         const query = inputField.value.trim();
         fetchLocations(query);
     });
 
-    // Zeige alle Städte, wenn das Feld leer ist
+    // Show all cities if the field is empty
     inputField.addEventListener("focus", function () {
         if (inputField.value.trim().length === 0) {
             fetchLocations("");
         }
-        suggestionsContainer.style.display = "block"; // Dropdown offen halten, solange das Feld aktiv ist
+        suggestionsContainer.style.display = "block"; // Keep dropdown open as long as the field is active
     });
 
-    // ENTER-Taste: Wenn der Benutzer Enter drückt, wird die erste Stadt aus den Vorschlägen übernommen
+    // ENTER button: When the user presses Enter, the first city from the suggestions is adopted
     inputField.addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
-            event.preventDefault(); // Standardverhalten verhindern
+            event.preventDefault(); // Prevent default behavior
 
             const firstSuggestion = suggestionsContainer.querySelector(".autocomplete-suggestion");
             if (firstSuggestion) {
                 inputField.value = firstSuggestion.textContent.trim();
-                icon.src = "images/city-icon.png"; // Icon aktualisieren
+                icon.src = "images/city-icon.png"; // Update icon
                 icon.style.display = "inline-block";
                 suggestionsContainer.innerHTML = "";
                 suggestionsContainer.style.display = "none";
@@ -91,23 +118,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Fix: Die Standortauswahl bleibt offen, solange das Eingabefeld fokussiert ist
+    // Fix: The location selection remains open as long as the input field is focused
     inputField.addEventListener("click", function (event) {
-        event.stopPropagation(); // Verhindert das Schließen durch andere Klick-Listener
+        event.stopPropagation(); // Prevents closing by other click listeners
         suggestionsContainer.style.display = "block";
     });
 
-    // Klicke außerhalb -> Vorschläge ausblenden
+    // Click outside -> Hide suggestions
     document.addEventListener("click", function (event) {
         if (!inputField.contains(event.target) && !suggestionsContainer.contains(event.target)) {
             suggestionsContainer.style.display = "none";
         }
     });
 
-    // Entferne die Stadt-Icon und setze die Lupe zurück, wenn das Feld leer ist
+    // Remove the city icon and reset the magnifying glass if the field is empty
     inputField.addEventListener("input", function () {
         if (inputField.value.trim().length === 0) {
-            icon.src = "images/lupe-icon.png"; // Zeige die Lupe an, wenn das Feld leer ist
+            icon.src = "images/lupe-icon.png"; // Show the magnifying glass if the field is empty
             icon.style.display = "inline-block";
         }
     });
@@ -133,17 +160,17 @@ document.addEventListener("DOMContentLoaded", function () {
     function generateMonthGrid(container, year, month) {
         container.innerHTML = "";
         let firstDay = new Date(year, month, 1).getDay();
-        if (firstDay === 0) firstDay = 7; // Sonntag als 7 setzen
+        if (firstDay === 0) firstDay = 7; // Set Sunday as 7
     
         let daysInMonth = new Date(year, month + 1, 0).getDate();
         let prevMonthDays = new Date(year, month, 0).getDate();
     
         let today = new Date();
-        today.setHours(0, 0, 0, 0); // Setzt die Uhrzeit auf 00:00 für korrekten Vergleich
+        today.setHours(0, 0, 0, 0); // Sets the time to 00:00 for correct comparison
     
         let maxFutureDate = new Date(today);
         maxFutureDate.setFullYear(today.getFullYear() + 1);
-        maxFutureDate.setDate(maxFutureDate.getDate() - 1); // Maximal ein Jahr voraus buchbar
+        maxFutureDate.setDate(maxFutureDate.getDate() - 1); // Bookable a maximum of one year in advance
     
         let daysHTML = "";
         for (let i = firstDay - 1; i > 0; i--) {
@@ -153,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let day = 1; day <= daysInMonth; day++) {
             let currentDate = new Date(year, month, day);
             let isPast = currentDate < today;
-            let isTooFar = currentDate > maxFutureDate; // Prüfen, ob es mehr als 1 Jahr in der Zukunft liegt
+            let isTooFar = currentDate > maxFutureDate; // Check whether it is more than 1 year in the future
     
             daysHTML += `<span class="calendar-day ${isPast || isTooFar ? 'disabled' : ''}" 
                          data-day="${day}" data-month="${month}" data-year="${year}">
@@ -251,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
-        // Färbt die Tage zwischen den zwei gewählten Daten in hellpink
+        // Colors the days between the two selected dates in light pink
         if (selectedDates.length === 2) {
             let startDate = selectedDates[0];
             let endDate = selectedDates[1];
@@ -263,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let dateObj = new Date(year, month, dayNumber);
 
                 if (dateObj > startDate && dateObj < endDate) {
-                    day.classList.add("in-range"); // Färbt die Tage dazwischen
+                    day.classList.add("in-range"); // Colors the days in between
                 }
             });
         }
@@ -296,7 +323,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const returnTimeGrid = document.getElementById("return-time-grid");
 
     function generateTimeOptions(grid, input, dropdown) {
-        grid.innerHTML = ""; // Leeren, falls schon Inhalte da sind
+        grid.innerHTML = ""; // Empty if content is already there
         for (let hour = 0; hour < 24; hour++) {
             for (let min of ["00", "30"]) {
                 const timeString = `${hour.toString().padStart(2, '0')}:${min}`;
@@ -304,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 timeOption.classList.add("time-option");
                 timeOption.textContent = timeString;
 
-                // Klick-Event für Auswahl der Uhrzeit
+                // Click event for selecting the time
                 timeOption.addEventListener("click", function () {
                     input.value = timeString;
                     dropdown.style.display = "none";
@@ -312,27 +339,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 grid.appendChild(timeOption);
 
-                // Letzte Zeile nur mit einer Uhrzeit
+                // Last line with a time only
                 if (hour === 23 && min === "30") break;
             }
         }
     }
 
-    // Öffnet das Dropdown mit Uhrzeiten für Abholdatum
+    // Opens the dropdown with times for pick-up date
     pickupTimeInput.addEventListener("click", function (event) {
         event.stopPropagation();
         pickupTimeDropdown.style.display = "block";
         generateTimeOptions(pickupTimeGrid, pickupTimeInput, pickupTimeDropdown);
     });
 
-    // Öffnet das Dropdown mit Uhrzeiten für Rückgabedatum
+    // Opens the dropdown with times for return date
     returnTimeInput.addEventListener("click", function (event) {
         event.stopPropagation();
         returnTimeDropdown.style.display = "block";
         generateTimeOptions(returnTimeGrid, returnTimeInput, returnTimeDropdown);
     });
 
-    // Schließt das Dropdown, wenn außerhalb geklickt wird
+    // Closes the dropdown when clicked outside of it
     document.addEventListener("click", function (event) {
         if (!pickupTimeDropdown.contains(event.target) && event.target !== pickupTimeInput) {
             pickupTimeDropdown.style.display = "none";
@@ -350,7 +377,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const returnInput = document.getElementById("return");
     const pickupTimeInput = document.getElementById("pickup-time");
     const returnTimeInput = document.getElementById("return-time");
-    const calendarDays = document.querySelectorAll(".calendar-days span"); // Alle Tage im Kalender
+    const calendarDays = document.querySelectorAll(".calendar-days span"); // All days in the calendar
 
     function closeAllExcept(except) {
         if (except !== "calendar") calendarContainer.style.display = "none";
@@ -359,7 +386,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (except !== "returnTime") document.getElementById("return-time-dropdown").style.display = "none";
     }
 
-    // Öffnet den Kalender
+    // Opens the calendar
     pickupInput.addEventListener("click", function (event) {
         event.stopPropagation();
         closeAllExcept("calendar");
@@ -372,7 +399,7 @@ document.addEventListener("DOMContentLoaded", function () {
         calendarContainer.style.display = "block";
     });
 
-    // Schließt den Kalender nur bei Klick außerhalb oder auf Standort/Uhrzeitfelder
+    // Closes the calendar only when clicking outside or on location/time fields
     document.addEventListener("click", function (event) {
         if (
             !calendarContainer.contains(event.target) &&
@@ -383,14 +410,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // **WICHTIG**: Kalender bleibt offen, wenn ein Tag angeklickt wird
+    // **IMPORTANT**: Calendar remains open when a day is clicked
     calendarDays.forEach(day => {
         day.addEventListener("click", function (event) {
-            event.stopPropagation(); // Verhindert das Schließen beim Anklicken eines Tages
+            event.stopPropagation(); // Prevents closing when clicking on a day
         });
     });
 
-    // Klick auf Standort oder Uhrzeit schließt den Kalender
+    // Click on location or time to close the calendar
     locationInput.addEventListener("click", function () {
         closeAllExcept("location");
     });
@@ -432,7 +459,7 @@ document.addEventListener("DOMContentLoaded", function () {
         returnWrapper.classList.add("focus-within");
     });
 
-    // Klick außerhalb schließt alle Umrandungen
+    // Click outside to close all borders
     document.addEventListener("click", function (event) {
         if (!event.target.closest(".input-group") && !event.target.closest(".location-group")) {
             closeAllExcept(null);

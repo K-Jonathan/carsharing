@@ -5,9 +5,6 @@
 <!-- Hintergrund für die AGB-Seite -->
 <div class="agbpage-background"></div>
 
-<!-- Hintergrund für die AGB-Seite -->
-<div class="agbpage-background"></div>
-
 <!-- Unsichtbarer Positionierungs-Spacer -->
 <div class="agbpage-spacer">  
     <!-- Weiße abgerundete Box für die AGB-Texte -->

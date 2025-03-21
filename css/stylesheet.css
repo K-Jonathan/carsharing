@@ -9,22 +9,22 @@
 body {
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
-    font-weight: normal; /* 100 bis 900 möglich */
+    font-weight: normal; 
     font-style: normal;
 }
 
 html, body {
     width: 100%;
     height: 100%;
-    overflow-x: hidden; /* Verhindert horizontales Scrollen */
+    overflow-x: hidden; 
 }
 
 .navbar {
     width: 100%;
     top: 0;
     left: 0;
-    background: transparent; /* Kein Hintergrund */
-    z-index: 10; /* Stellt sicher, dass er über dem Bild liegt */
+    background: transparent; 
+    z-index: 10; 
     padding: 15px 0;
 }
 
@@ -51,7 +51,7 @@ html, body {
 }
 
 .navbar nav ul li a {
-    color: white; /* Text bleibt sichtbar */
+    color: white; 
     text-decoration: none;
     font-weight: bold;
     font-size: 25px;
@@ -60,13 +60,13 @@ html, body {
 .icon-text {
     display: flex;
     align-items: center;
-    gap: 10px; /* Abstand zwischen Icon & Text */
+    gap: 10px; 
 }
 
 .icon-text:hover {
-    text-decoration: underline; /* Unterstreichung beim Hover */
-    text-underline-offset: 2px; /* Abstand zwischen Text und Linie */
-    text-decoration-thickness: 2px; /* Dicke der Linie */
+    text-decoration: underline; 
+    text-underline-offset: 2px; 
+    text-decoration-thickness: 2px; 
 }
 
 .icon-text img {
@@ -81,7 +81,7 @@ html, body {
     overflow-x: hidden;
 }
 
-/* 🔹 HERO-BEREICH: Hintergrundbild + Höhe anpassen */
+
 .hero {
     width: 100%;
     height: 100%;
@@ -106,26 +106,26 @@ html, body {
 }
 
 .hero .rundeck nav ul{
-    display: flex; /* Stellt sicher, dass die Listenelemente in einer Zeile sind */
-    gap: 50px; /* Abstand zwischen den Einträgen */
+    display: flex; 
+    gap: 50px; 
 }
 
 .search-btn {
-    background-color: #EFCFD8; /* Weiches Pink */
+    background-color: #EFCFD8; 
     color: black;
     border: none;
     padding: 10px 20px;
-    border-radius: 25px; /* Abgerundete Ecken */
+    border-radius: 25px; 
     font-weight: bold;
     font-size: 26px;
     cursor: pointer;
-    width: 275px; /* Gesamtbreite */
+    width: 275px; 
     height: 75px;
     margin-top: 25px;
 }
 
 .search-btn:hover {
-    background-color: #e3b9c6; /* Dunkleres Pink beim Hover */
+    background-color: #e3b9c6; 
 }
 
 .location-group {
@@ -133,31 +133,31 @@ html, body {
     align-items: center;
     border: 1px solid #ccc;
     font-size: 22px;
-    border-radius: 20px; /* Runde Ecken */
+    border-radius: 20px; 
     overflow: hidden;
     padding: 5px;
     background: white;
-    width: 350px; /* Gesamtbreite */
+    width: 350px; 
     height: 75px;
     overflow: visible;
-    box-sizing: border-box; /* Stellt sicher, dass die Gesamtgröße gleich bleibt */
+    box-sizing: border-box; 
 }
 
 .location-group input {
     border: none;
     font-size: 22px;
     outline: none;
-    flex: 1; /* Beide Felder teilen sich den Platz */
-    min-width: 50px; /* Verhindert zu kleine Felder */
-    padding-left: 25px; /* Abstand vom linken Rand */
+    flex: 1; 
+    min-width: 50px; 
+    padding-left: 25px; 
     overflow: visible;
 }
 
-/* Standardgraue Umrandung für die Eingabefelder */
+
 .input-group {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc; /* Standardgrau */
+    border: 1px solid #ccc; 
     border-radius: 20px;
     background: white;
     width: 350px;
@@ -169,16 +169,16 @@ html, body {
 .search-container {
     position: relative;
     display: flex;
-    justify-content: space-between; /* Gleichmäßige Verteilung */
+    justify-content: space-between; 
     align-items: center;
-    width: 85%; /* Breite der gesamten Suchleiste */
+    width: 85%; 
     height: 175px;
     background: white;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.2);
     margin: 0 auto;
-    margin-top: -100px; /* Leicht ins Bild ziehen */
+    margin-top: -100px; 
     overflow: visible;
 }
 
@@ -186,22 +186,22 @@ html, body {
     border: none;
     font-size: 22px;
     outline: none;
-    flex: 1; /* Beide Felder teilen sich den Platz */
-    min-width: 50px; /* Verhindert zu kleine Felder */
-    padding: 12px; /* Standard-Padding */
+    flex: 1; 
+    min-width: 50px; 
+    padding: 12px;
 }
 
-/* 📅 Datum linksbündig mit Abstand */
+
 .input-group input:first-child {
-    border-right: 1px solid #ccc; /* Linie zwischen den Eingaben */
+    border-right: 1px solid #ccc; 
     text-align: left;
-    padding-left: 25px; /* Abstand vom linken Rand */
+    padding-left: 25px; 
 }
 
-/* ⏰ Uhrzeit rechtsbündig mit Abstand */
+
 .input-group input:last-child {
     text-align: left;
-    padding-right: 10px; /* Abstand von der Trennlinie */
+    padding-right: 10px; 
 }
 
 .search-field {
@@ -210,26 +210,26 @@ html, body {
     align-items: left;
 }
 
-/* Sicherstellen, dass sich das Label nicht verschiebt */
+
 .search-field label {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
-    transition: none; /* Kein Springen mehr */
+    transition: none; 
 }
-/* 🔹 PINKER KASTEN unterhalb des Bildes */
+
 .pink-text {
-    background-color: #EFCFD8; /* Pink */
+    background-color: #EFCFD8; 
     padding: 40px 20px;
     text-align: center;
     color: black;
     font-family: "Roboto", sans-serif;
     width: 100%;
-    height: 225px; /* Falls fixe Höhe gewünscht */
+    height: 225px; 
     display: flex;
-    flex-direction: column; /* Stapelt h1 & h2 untereinander */
-    align-items: center; /* Zentriert horizontal */
-    justify-content: center; /* Zentriert vertikal */
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; /
 }
 
 .pink-text h1{
@@ -237,7 +237,7 @@ html, body {
     font-size: 80px;
     font-weight: bold;
     letter-spacing: 5px;
-    line-height: 1.4; /* Erhöht den Abstand */
+    line-height: 1.4;
     margin-top: -25px;
 }
 
@@ -249,37 +249,37 @@ html, body {
 
 .features {
     display: flex;
-    justify-content: space-between; /* Gleichmäßiger Abstand */
+    justify-content: space-between; 
     align-items: center;
     padding: 40px 20px;
     margin-bottom: 25px;
 }
 
 .feature {
-    background-color: white; /* Weiße Boxen */
+    background-color: white; 
     padding: 20px;
     border-radius: 10px;
-    flex: 1; /* Alle Boxen gleich groß */
-    margin: 0 15px; /* Abstand zwischen den Boxen */
+    flex: 1; 
+    margin: 0 15px; 
 }
 
 .feature-header {
     display: flex;
     align-items: center;
-    gap: 10px; /* Abstand zwischen Icon und Text */
+    gap: 10px; 
     margin-bottom: 10px;
 }
 
 .feature img {
-    height: 25px; /* Größe der Icons */
-    margin-bottom: 0; /* Kein extra Abstand nach unten */
+    height: 25px;
+    margin-bottom: 0;
 }
 
 .feature h3 {
     font-size: 22px;
     font-weight: bold;
     text-align: left;
-    margin: 0; /* Kein extra Abstand */
+    margin: 0;
 }
 
 .feature p {
@@ -288,9 +288,9 @@ html, body {
     text-align: left;
 }
 
-/* Gesamtstil */
+
 .cs {
-    background-color: #EFCFD8; /* Pink */
+    background-color: #EFCFD8;
     padding: 40px 20px;
     text-align: center;
     color: black;
@@ -326,7 +326,7 @@ html, body {
     width: 100%;
 }
 
-/* Schatten-Hintergrund */
+
 .review-overlay {
     position: absolute;
     top: 0;
@@ -338,7 +338,7 @@ html, body {
     z-index: 1;
 }
 
-/* Bild */
+
 .review img {
     border-radius: 20px;
     width: 100%;
@@ -347,7 +347,7 @@ html, body {
     z-index: 0;
 }
 
-/* **Textanimation** */
+
 .review-text {
     position: absolute;
     top: 50%;
@@ -372,13 +372,13 @@ html, body {
     font-weight: lighter;
 }
 
-/* **Nur das aktive Zitat sichtbar** */
+
 .review-text.active {
     opacity: 1;
     transform: translate(-50%, -50%);
 }
 
-/* **Animationen für den Textwechsel** */
+
 .review-text.exit-left {
     transform: translate(-150%, -50%);
     opacity: 0;
@@ -399,7 +399,7 @@ html, body {
     opacity: 1;
 }
 
-/* **Navigationsbuttons** */
+
 .review-navigation {
     position: absolute;
     bottom: 20px;
@@ -424,7 +424,7 @@ html, body {
     background: rgba(0, 0, 0, 0.9);
 }
 
-/* **Kreis-Navigation für die Zitate** */
+
 .review-dots {
     position: absolute;
     bottom: 20px;
@@ -449,7 +449,7 @@ html, body {
 .earth-section {
     text-align: center;
     padding: 60px 20px;
-    background-color: white; /* Weißer Hintergrund */
+    background-color: white; 
 }
 
 .earth-section h1 {
@@ -461,22 +461,22 @@ html, body {
     margin-bottom: 40px;
 }
 
-/* Bild-Container */
+
 .earth-link {
     display: inline-block;
-    text-decoration: none; /* Entfernt Link-Unterstreichung */
+    text-decoration: none;
 }
 
 .earth-image {
     position: relative;
-    width: 675px; /* Größe anpassen */
+    width: 675px; 
     height: auto;
     border-radius: 20px;
-    overflow: hidden; /* Damit nichts übersteht */
+    overflow: hidden; 
     margin-top: -25px;
 }
 
-/* Das eigentliche Bild */
+
 .earth-image img {
     width: 100%;
     height: auto;
@@ -484,19 +484,19 @@ html, body {
     border-radius: 20px;
 }
 
-/* Overlay über dem Bild */
+
 .earth-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Halbtransparenter schwarzer Overlay */
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 20px;
     z-index: 1;
 }
 
-/* Text auf dem Bild */
+
 .earth-text {
     position: absolute;
     top: 25%;
@@ -517,18 +517,18 @@ html, body {
     font-size: 26px;
 }
 
-/* Hover-Effekt */
+
 .earth-image:hover .earth-overlay {
-    background: rgba(0, 0, 0, 0.7); /* Overlay dunkler beim Hover */
+    background: rgba(0, 0, 0, 0.7); 
     transition: background 0.7s ease;
 }
 
 .earth-image:hover .earth-text {
-    transform: translate(-50%, -50%) scale(1.05); /* Leichte Vergrößerung */
+    transform: translate(-50%, -50%) scale(1.05); 
     transition: transform 0.3s ease;
 }
 
-/* Footer Grundlayout */
+
 .footer {
     background-color: #e0d8d8;
     padding: 40px 0;
@@ -539,14 +539,14 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;  /* Erhöht die Breite für mehr Abstand */
+    max-width: 1400px;  
     margin: 0 auto;
-    padding: 0 60px; /* Mehr Abstand vom Rand */
+    padding: 0 60px; 
 }
 
-/* Linke Seite */
+
 .footer-left {
-    width: 40%; /* Weniger Breite, um es nach links zu rücken */
+    width: 40%; 
     text-align: left;
     margin-left: -150px;
 }
@@ -570,7 +570,7 @@ html, body {
     margin-top: -5px;
 }
 
-/* Trennlinie */
+
 .footer-divider {
     width: 1px;
     height: 260px;
@@ -578,29 +578,29 @@ html, body {
     margin-right: 100px;
 }
 
-/* Rechte Seite mit Buttons */
+
 .footer-right {
-    width: 45%; /* Weniger Breite, um es nach rechts zu rücken */
+    width: 45%; 
     display: flex;
-    justify-content: flex-end; /* Nach rechts ausrichten */
+    justify-content: flex-end; 
 }
 
-/* Container für die zwei Button-Spalten */
+
 .footer-buttons {
     display: flex;
     justify-content: center;
-    gap: 80px; /* Mehr Abstand zwischen den beiden Spalten */
+    gap: 80px; 
     margin-right: -155px;
 }
 
-/* Jede Spalte */
+
 .footer-column {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Mehr Abstand zwischen den Buttons */
+    gap: 15px; 
 }
 
-/* Buttons */
+
 .footer-btn {
     display: inline-block;
     padding: 14px 30px;
@@ -612,32 +612,32 @@ html, body {
     min-width: 350px;
 }
 
-/* Dunkle Buttons links */
+
 .footer-btn.dark {
     background-color: #6a6a6a;
     color: white;
 }
 
-/* Helle Buttons rechts */
+
 .footer-btn.light {
     background-color: #c6b8b8;
     color: white;
 }
 
-/* Autovervollständigungs-Dropdown */
+
 .autocomplete-suggestions {
     position: absolute;
-    top: calc(100% + 10px); /* Setzt die Box höher, damit sie über die Suchbox ragt */
+    top: calc(100% + 10px); 
     left: 0;
-    width: 350px; /* Genauso breit wie das Eingabefeld */
-    max-width: 500px; /* Falls notwendig, um es visuell anzupassen */
+    width: 350px; 
+    max-width: 500px; 
     background: white;
     border: 1px solid #ccc;
     max-height: 300px;
     overflow-y: auto;
     z-index: 1000;
-    border-radius: 12px; /* Runde Ecken */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6); /* Stärkerer Schatten für mehr Kontrast */
+    border-radius: 12px; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6); 
     font-family: inherit;
     font-size: 16px;
     padding: 5px 0;
@@ -646,7 +646,7 @@ html, body {
     font-size: 22px;
 }
 
-/* Styling für einzelne Vorschläge */
+
 .autocomplete-suggestion {
     padding: 12px;
     cursor: pointer;
@@ -655,7 +655,7 @@ html, body {
     color: black;
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
-    font-weight: normal; /* 100 bis 900 möglich */
+    font-weight: normal; 
     font-style: normal;
     cursor: pointer;
     display: flex;
@@ -663,16 +663,16 @@ html, body {
     transition: background 0.2s ease-in-out;
 }
 
-/* Trennlinie zwischen Vorschlägen */
+
 .autocomplete-suggestion:not(:last-child) {
-    border-bottom: 1px solid #ddd; /* Dünne graue Linie */
+    border-bottom: 1px solid #ddd; 
 }
 
 .autocomplete-suggestion:hover {
     background: #f7f7f7;
 }
 
-/* Eingabefeld mit Icon */
+
 .input-wrapper {
     display: flex;
     align-items: center;
@@ -682,12 +682,12 @@ html, body {
 
 .input-icon {
     position: absolute;
-    left: 10px; /* Stelle sicher, dass das Icon links bleibt */
+    left: 10px; 
     width: 20px;
     height: 20px;
 }
 
-/* Vorschlagsbox mit Icon */
+
 .suggestion-content {
     display: flex;
     align-items: center;
@@ -700,46 +700,46 @@ html, body {
 }
 
 #search-location {
-    padding-left: 40px; /* Platz für die Lupe lassen */
+    padding-left: 40px; 
 }
 
-/* Webkit-Browser (Chrome, Edge, Safari, Opera) */
+
 .autocomplete-suggestions::-webkit-scrollbar {
-    width: 8px; /* Dünne Scrollbar */
-    height: 80%; /* Höhe der Scrollbar */
+    width: 8px; 
+    height: 80%; 
 }
 
-/* Unsichtbarer Hintergrund (Track) */
+
 .autocomplete-suggestions::-webkit-scrollbar-track {
-    background: transparent; /* Track unsichtbar */
+    background: transparent; 
     border-radius: 10px;
 }
 
-/* Pinker Thumb mit abgerundeten Ecken */
+
 .autocomplete-suggestions::-webkit-scrollbar-thumb {
-    background: #EFCFD8; /* Pink */
-    border-radius: 16px; /* Runde Kanten */
+    background: #EFCFD8;
+    border-radius: 16px; 
 }
 
-/* Hover-Effekt für den Thumb */
+
 .autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
-    background: #e5b9c4; /* Etwas dunkleres Pink beim Drüberfahren */
+    background: #e5b9c4; 
 }
 
-/* Unsichtbare Pfeile (Buttons) */
+
 .autocomplete-suggestions::-webkit-scrollbar-button {
-    background: transparent; /* Pink */
+    background: transparent; 
 }
 
-/* Datum-Feld: Schreibgeschützt & Zeiger ändern */
+
 #pickup, #return {
-    cursor: pointer; /* Zeigt eine Hand an */
+    cursor: pointer; 
 }
 
-/* Der Kalender-Kasten */
+
 .calendar-box {
     position: absolute;
-    top: 300px; /* Abstand unterhalb der Suchleiste */
+    top: 300px; 
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
@@ -749,12 +749,12 @@ html, body {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
     display: none;
     z-index: 1000;
-    padding: 15px; /* Abstand für den Inhalt */
+    padding: 15px;
 }
 
-/* Kalender-Header mit Monatsnamen */
+
 .calendar-header {
-    position: relative; /* Stellt sicher, dass wir absolute Positionierung innerhalb nutzen können */
+    position: relative; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -766,9 +766,9 @@ html, body {
 .calendar-months {
     display: flex;
     justify-content: center;
-    position: absolute; /* Dadurch kann es unabhängig von anderen Elementen verschoben werden */
-    left: 50%; /* Mitte des Containers */
-    transform: translateX(-50%); /* Exakte Zentrierung */
+    position: absolute; 
+    left: 50%;
+    transform: translateX(-50%); 
 }
 
 .calendar-month {
@@ -776,10 +776,10 @@ html, body {
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    margin: 0 172.5px; /* Hiermit kannst du den Abstand der Labels verändern */
+    margin: 0 172.5px; 
 }
 
-/* Individuelle Bewegung der Monatslabels */
+
 .calendar-months.move-left {
     transform: translateX(-60%);
 }
@@ -788,19 +788,19 @@ html, body {
     transform: translateX(-40%);
 }
 
-/* Navigations-Buttons */
+
 .calendar-nav {
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
     padding: 5px 10px;
-    position: relative; /* Stellt sicher, dass es nicht von absolut positionierten Elementen überlappt wird */
-    z-index: 10; /* Priorisiert die Klickbarkeit */
+    position: relative; 
+    z-index: 10; 
 }
 
 .calendar-nav:hover {
-    color: #EFCFD8; /* Pink */
+    color: #EFCFD8; 
 }
 
 .calendar-nav:disabled {
@@ -808,49 +808,49 @@ html, body {
     cursor: not-allowed;
 }
 
-/* Kalender-Gitter für 3 Monate */
+
 .calendar-grid {
     display: flex;
     justify-content: space-between;
-    padding: 20px 20px 40px 20px; /* Mehr Platz nach unten */
+    padding: 20px 20px 40px 20px; 
     position: relative;
 }
 
-/* Spalten für die Monate */
+
 .calendar-column {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Sorgt dafür, dass alles mittig bleibt */
+    align-items: center; 
     text-align: center;
-    width: 33%; /* Damit jeder Monat genau ein Drittel einnimmt */
+    width: 33%;
 }
 
 .calendar-weekdays {
     display: flex;
     justify-content: space-between;
     padding: 5px 0;
-    border-bottom: 1px solid #ccc; /* Dünne graue Linie */
+    border-bottom: 1px solid #ccc; 
     width: 80%;
 }
 
 .calendar-weekdays span {
-    flex: 1; /* Gleichmäßige Verteilung */
-    text-align: center; /* Zentriert MO, DI, etc. */
+    flex: 1; 
+    text-align: center;
     font-size: 14px;
     font-weight: 500;
-    color: #6c757d; /* Grau */
+    color: #6c757d; 
 }
 
-/* Styling für die Kalender-Tage */
+
 .calendar-days {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* Sieben gleich große Spalten */
-    gap: 17px; /* Abstand zwischen den Tagen */
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 17px; 
     text-align: center;
     padding-top: 10px;
 }
 
-/* Styling für die Tage */
+
 .calendar-day {
     width: 40px;
     height: 40px;
@@ -863,29 +863,29 @@ html, body {
     cursor: pointer;
 }
 
-/* Hover-Effekt: grauer Hintergrund + pinke Umrandung */
+
 .calendar-day:hover {
     background-color: #f3f3f3;
-    border: 2px solid #EFCFD8; /* Pinke Umrandung */
+    border: 2px solid #EFCFD8; 
 }
 
-/* Tage außerhalb des Monats ausgegraut und deaktiviert */
+
 .calendar-day.outside {
     color: #bbb;
-    pointer-events: none; /* Klicks deaktivieren */
+    pointer-events: none; 
     background: none;
 }
 
-/* Styling für ausgewähltes Datum */
+
 .calendar-day.selected {
-    background-color: #EFCFD8; /* Pink */
+    background-color: #EFCFD8; 
     color: white;
     border-radius: 8px;
 }
 
-/* Tage zwischen den ausgewählten Tagen */
+
 .in-range {
-    background-color: #f3e1e6; /* Helles Pink für Tage zwischen Start- und Enddatum */
+    background-color: #f3e1e6; 
     color: black;
     border-radius: 5px;
     padding: 5px;
@@ -896,7 +896,7 @@ html, body {
     display: inline-block;
 }
 
-/* Dropdown Styling */
+
 .time-dropdown {
     position: absolute;
     top: 100%;
@@ -915,11 +915,11 @@ html, body {
 
 .time-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Zwei Spalten */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 10px;
     padding: 10px;
     max-height: 400px;
-    overflow-y: auto; /* Scrollbar falls nötig */
+    overflow-y: auto;
 }
 
 .time-option {
@@ -937,62 +937,62 @@ html, body {
 
 .time-option:hover {
     background-color: #EFCFD8;
-    border: 2px solid #EFCFD8; /* Pinke Umrandung */
+    border: 2px solid #EFCFD8;
 }
 
-/* Webkit-Browser (Chrome, Edge, Safari, Opera) */
+
 .time-grid::-webkit-scrollbar {
-    width: 8px; /* Dünne Scrollbar */
-    height: 80%; /* Höhe der Scrollbar */
+    width: 8px; 
+    height: 80%; 
 }
 
-/* Unsichtbarer Hintergrund (Track) */
+
 .time-grid::-webkit-scrollbar-track {
-    background: transparent; /* Track unsichtbar */
+    background: transparent; 
     border-radius: 10px;
 }
 
-/* Pinker Thumb mit abgerundeten Ecken */
+
 .time-grid::-webkit-scrollbar-thumb {
-    background: #EFCFD8; /* Pink */
-    border-radius: 16px; /* Runde Kanten */
+    background: #EFCFD8; 
+    border-radius: 16px; 
 }
 
-/* Hover-Effekt für den Thumb */
+
 .time-grid::-webkit-scrollbar-thumb:hover {
-    background: #e5b9c4; /* Etwas dunkleres Pink beim Drüberfahren */
+    background: #e5b9c4; 
 }
 
-/* Unsichtbare Pfeile (Buttons) */
+
 .time-grid::-webkit-scrollbar-button {
-    background: transparent; /* Pink */
+    background: transparent; 
 }
 
-/* Fokussierte Umrandung für Standort, Abhol- & Rückgabedatum */
+
 .location-group:focus-within,
 .input-group:focus-within {
-    border: 1px solid #EFCFD8 !important; /* Pinke Umrandung */
-    outline: 3px solid #EFCFD8 !important; /* Weiche äußere Umrandung */
+    border: 1px solid #EFCFD8 !important; 
+    outline: 3px solid #EFCFD8 !important; 
 }
 
-/* Auf bestimmten Seiten: Grauer Header */
+
 body.car-selection .navbar {
-    background-color: #333 !important; /* Grau */
+    background-color: #333 !important; 
 }
 
-/* Section für den Fahrzeugfilter */
+
 .car_filter {
     width: 100%;
     display: flex;
-    justify-content: center; /* Zentriert die Box */
-    margin-top: 75px; /* Abstand nach unten */
+    justify-content: center; 
+    margin-top: 75px; 
 }
 
-/* 🔹 Stellt sicher, dass `.filter-container` alles in einer Zeile hält */
+
 .filter-container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Verteilt Standort & Filter */
+    justify-content: space-between; 
     background-color: white;
     padding: 15px;
     border-radius: 10px;
@@ -1001,9 +1001,9 @@ body.car-selection .navbar {
     height: 125px;
 }
 
-/* Graue Box auf der linken Seite */
+
 .filter-location {
-    background-color: #333; /* Dunkelgrau */
+    background-color: #333;
     color: white;
     padding: 12px 20px;
     border-radius: 8px;
@@ -1011,30 +1011,30 @@ body.car-selection .navbar {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    height: 70%; /* Passt sich automatisch an */
+    height: 70%; 
     min-width: 20%;
     margin-left: 15px;
 }
 
-/* Stadt-Label oben links */
+
 .city-label {
     font-weight: bold;
     font-size: 20px;
     margin-bottom: -2.5px;
 }
 
-/* Container für Datum & Uhrzeiten */
+
 .filter-dates {
     display: flex;
     align-items: center;
 }
 
-/* Datum & Uhrzeiten */
+
 .date-time {
     font-size: 18px;
 }
 
-/* Trennlinie zwischen Datum & Uhrzeit */
+
 .divider {
     width: 1px;
     height: 14px;
@@ -1042,26 +1042,26 @@ body.car-selection .navbar {
     margin: 0 8px;
 }
 
-/* Bindestrich zwischen Abhol- und Rückgabedatum */
+
 .dash {
     margin: 0 10px;
     font-weight: bold;
 }
 
-/* 🔹 Verteilt die Buttons gleichmäßig und rückt sie näher an die schwarze Box */
+
 .filter-options {
     display: flex;
-    flex-grow: 1; /* Lässt die Buttons den verfügbaren Platz nutzen */
-    justify-content: space-evenly; /* Gleichmäßige Verteilung der Buttons */
+    flex-grow: 1; 
+    justify-content: space-evenly; 
     align-items: center;
-    margin-left: 50px; /* Reduziert den Abstand zur schwarzen Box */
+    margin-left: 50px; 
     margin-right: 35px;
     gap: 15px;
     height: 55%;
-    position: relative; /* Verhindert, dass die Box woanders angezeigt wird */
+    position: relative; 
 }
 
-/* 🔹 Buttons anpassen */
+
 .filter-btn {
     background-color: #e0e0e0;
     color: black;
@@ -1071,18 +1071,18 @@ body.car-selection .navbar {
     font-weight: bold;
     font-size: 18px;
     cursor: pointer;
-    flex: 1; /* Lässt alle Buttons die gleiche Breite haben */
-    text-align: center; /* Zentriert den Text in den Buttons */
+    flex: 1; 
+    text-align: center; 
     height: 100%;
-    letter-spacing: 1.5px; /* 👉 Buchstabenabstand hier anpassen */
+    letter-spacing: 1.5px; 
 }
 
-/* 🔹 Hover-Effekt */
+
 .filter-btn:hover {
     background-color: #d0d0d0;
 }
 
-/* 🔹 Dropdown-Box unter dem Button positionieren */
+
 .dropdown-box {
     position: absolute;
     background-color: white;
@@ -1090,17 +1090,17 @@ body.car-selection .navbar {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
     padding: 10px;
     width: 250px;
-    top: 100%; /* Direkt unterhalb des Buttons */
+    top: 100%; 
     display: none;
     z-index: 100;
 }
 
-/* 🔹 Sichtbare Dropdown-Box */
+
 .dropdown-box.visible {
     display: block;
 }
 
-/* 🔹 Stil für Dropdown-Optionen */
+
 .dropdown-box button {
     background-color: #e0e0e0;
     color: black;
@@ -1120,13 +1120,13 @@ body.car-selection .navbar {
     color: white;
 }
 
-/* 🔹 Aktive Dropdown-Option bleibt grau */
+
 .dropdown-box button.active {
     background-color: #333;
     color: white;
 }
 
-/* 🔹 Hauptbutton färbt sich, wenn mindestens eine Option aktiv ist */
+
 .filter-btn.active {
     background-color: #333;
     color: white;
@@ -1135,53 +1135,53 @@ body.car-selection .navbar {
 .car_more_filter {
     width: 100%;
     display: flex;
-    justify-content: center; /* Zentriert die Box */
+    justify-content: center; 
     margin-top: -25px;
 }
 
-/* 🔹 Extra-Filter-Box unterhalb der Haupt-Filterbox */
+
 #extra-filters-box {
     width: 90%;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
     margin-top: 10px;
-    padding: 15px; /* Fügt Innenabstand hinzu */
-    display: none; /* Anfangs versteckt */
+    padding: 15px; 
+    display: none; 
 }
 
-/* 🔹 Extra-Filter-Buttons gleichmäßig verteilen */
+
 .extra-filters {
     display: flex;
-    flex-wrap: wrap; /* Bricht die Buttons in eine neue Zeile */
-    justify-content: space-evenly; /* Gleichmäßige Verteilung */
+    flex-wrap: wrap;
+    justify-content: space-evenly; 
     align-items: center;
-    gap: 10px; /* Abstand zwischen den Buttons */
+    gap: 10px; 
 }
 
-/* 🔹 Passt die Größe der Buttons an den Text an */
+
 .extra-filters .filter-btn {
-    flex: 1 1 auto; /* Erlaubt die automatische Größenanpassung */
+    flex: 1 1 auto; 
     padding: 12px 18px;
     border-radius: 25px;
     font-size: 16px;
     text-align: center;
-    min-width: 150px; /* Mindestbreite für bessere Optik */
+    min-width: 150px; 
 }
 
-/* 🔹 Statische Dropdown-Positionierung, damit sie nicht scrollen */
+
 .dropdown-box {
-    position: fixed !important; /* Fixiert das Dropdown am Viewport */
+    position: fixed !important; 
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
     padding: 10px;
     width: 250px;
     display: none;
-    z-index: 1000; /* Stellt sicher, dass es über allem liegt */
+    z-index: 1000; 
 }
 
-/* Extra: Falls das Dropdown immer noch falsch sitzt, dieses CSS hinzufügen */
+
 .car_more_filter {
     position: relative;
 }
@@ -1194,56 +1194,56 @@ body.car-selection .navbar {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
     margin-top: 10px;
     padding: 15px;
-    display: none; /* Standardmäßig versteckt */
+    display: none; 
 }
 
-/* 🔹 Extra-Filter-Buttons gleichmäßig verteilen */
+
 .extra-filters {
     display: flex;
-    flex-wrap: wrap; /* Neue Zeile wenn Platz fehlt */
+    flex-wrap: wrap; 
     justify-content: space-evenly;
     align-items: center;
     gap: 10px;
 }
 
-/* 🔹 Dropdown bleibt in der Box und scrollt nicht mit */
+
 .dropdown-box {
-    position: absolute !important; /* Fixiert es an der Seite */
+    position: absolute !important; 
 }
 
-/* 🔹 Stift-Button Styling */
+
 #edit-search-btn {
     background: none;
     border: none;
     font-size: 18px;
     cursor: pointer;
-    color: white; /* Oder eine andere passende Farbe */
+    color: white; 
     margin-left: 10px;
     padding: 5px;
     transition: transform 0.2s ease;
 }
 
-/* 🔹 Leichter Hover-Effekt */
+
 #edit-search-btn:hover {
     transform: scale(1.2);
 }
 
-/* 🔍 Such-Pop-up (versteckt, bis geöffnet) */
+
 .search-popup {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.6); /* Verdunkelung */
-    display: none; /* ✅ Ändern von flex auf none */
+    background: rgba(0, 0, 0, 0.6);
+    display: none; 
     justify-content: center;
     align-items: flex-start;
     padding-top: 250px;
     z-index: 1000;
 }
 
-/* Schließen-Button */
+
 .close-btn {
     background: none;
     border: none;
@@ -1263,7 +1263,7 @@ body.car-selection .navbar {
 }
 
 :root {
-    --car-image-darken: 0.1; /* Wert von 0 (keine Verdunklung) bis 1 (komplett schwarz) */
+    --car-image-darken: 0.1; 
 }
 
 .car-card {
@@ -1290,7 +1290,7 @@ body.car-selection .navbar {
     z-index: 1;
 }
 
-/* Stelle sicher, dass das Bild und der Titel darunter liegen */
+
 .car-image img {
     width: 100%;
     height: auto;
@@ -1301,17 +1301,17 @@ body.car-selection .navbar {
 
 .car-info {
     display: flex;
-    justify-content: space-between; /* Abstand zwischen Text und Button */
+    justify-content: space-between; 
     align-items: center;
     padding: 15px;
-    text-align: left; /* Linksbündiger Text */
+    text-align: left; 
     background: #fff;
 }
 
 .car-info-left {
     display: flex;
     flex-direction: column;
-    gap: 5px; /* Abstand zwischen Titel & Preis */
+    gap: 5px; 
 }
 
 .car-title {
@@ -1326,7 +1326,7 @@ body.car-selection .navbar {
     color: rgb(83, 83, 83);
 }
 
-/* ✅ Buchungs-Button */
+
 .book-button {
     background-color: #333;
     color: white;
@@ -1343,14 +1343,14 @@ body.car-selection .navbar {
     background-color: #d3b6be;
 }
 
-/* Auf bestimmten Seiten: Grauer Header */
+
 body.car-details .navbar {
-    background-color: #333 !important; /* Grau */
+    background-color: #333 !important; 
 }
 
 
 
-/*Loginpage*/
+
 .static-spacer {
     position: relative;
     width: 100%;
@@ -1359,7 +1359,7 @@ body.car-details .navbar {
     background-size: cover;
 }
 
-/* 🔹 Hintergrund der Login-Seite */
+
 .loginpage-background {
     position: fixed;
     top: 0;
@@ -1371,14 +1371,14 @@ body.car-details .navbar {
     z-index: -1;
 }
 
-/* 🔹 Unsichtbarer Positionierungs-Spacer */
+
 .loginpage-spacer {
     position: relative;
     width: 100%;
     height: 100vh;
 }
 
-/* 🔹 Weiße Box für das Login-Formular */
+
 .loginpage-box {
     width: 600px;
     height: 350px;
@@ -1393,7 +1393,7 @@ body.car-details .navbar {
     transform: translate(-50%, -50%);
 }
 
-/* 🔹 Eingabefelder nur für die Login-Seite */
+
 .loginpage-input {
     width: 100%;
     padding: 10px;
@@ -1402,7 +1402,7 @@ body.car-details .navbar {
     border-radius: 5px;
 }
 
-/* 🔹 Login-Button nur für die Login-Seite */
+
 .loginregisterpage-button {
     width: 100%;
     padding: 10px;
@@ -1412,17 +1412,17 @@ body.car-details .navbar {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 15px; /* Erhöhe den Abstand */
+    margin-top: 15px; 
 }
 
 .loginregisterpage-button:hover {
     background-color: #e3b9c6;
 }
 
-/* 🔹 Link zum Registrieren */
+
 .loginpage-link {
     display: block;
-    margin-top: 25px; /* Erhöhe den Abstand */
+    margin-top: 25px; 
     color: #333;
     text-decoration: none;
 }
@@ -1431,16 +1431,15 @@ body.car-details .navbar {
     text-decoration: underline;
 }
 
-/* 🔹 Stil für die Login-Überschrift */
+
 .loginregisterpage-title {
-    font-size: 28px;  /* Größe der Überschrift */
-    font-weight: bold; /* Fettgedruckt */
-    color: #333; /* Dunkelgraue Farbe */
-    margin-bottom: 15px; /* Abstand nach unten */
+    font-size: 28px; 
+    font-weight: bold;
+    color: #333; 
+    margin-bottom: 15px; 
 }
 
-/*Registerpage*/
-/* 🔹 Hintergrund der Registrierungsseite */
+
 .registerpage-background {
     position: fixed;
     top: 0;
@@ -1452,14 +1451,14 @@ body.car-details .navbar {
     z-index: -1;
 }
 
-/* 🔹 Unsichtbarer Positionierungs-Spacer */
+
 .registerpage-spacer {
     position: relative;
     width: 100%;
     height: 100vh;
 }
 
-/* 🔹 Weiße Box für das Registrierungsformular */
+
 .registerpage-box {
     width: 600px;
     height: 775px;
@@ -1474,7 +1473,7 @@ body.car-details .navbar {
     transform: translate(-50%, -50%);
 }
 
-/* 🔹 Eingabefelder nur für die Registrierungsseite */
+
 .registerpage-input {
     width: 100%;
     padding: 10px;
@@ -1483,7 +1482,7 @@ body.car-details .navbar {
     border-radius: 5px;
 }
 
-/* 🔹 Registrierungs-Button nur für die Registrierungsseite */
+
 .registerpage-button {
     width: 100%;
     padding: 10px;
@@ -1500,7 +1499,7 @@ body.car-details .navbar {
     background-color: #e3b9c6;
 }
 
-/* 🔹 Checkbox-Container nur für die Registrierungsseite */
+
 .registerpage-checkbox {
     display: flex;
     align-items: center;
@@ -1508,7 +1507,7 @@ body.car-details .navbar {
     margin-top: 15px;
 }
 
-/* 🔹 Checkbox-Container */
+
 .registerpage-checkbox {
     display: flex;
     align-items: center;
@@ -1516,25 +1515,25 @@ body.car-details .navbar {
     margin-top: 15px;
 }
 
-/* 🔹 Standard-Checkbox verstecken */
+
 .registerpage-checkbox-input {
-    appearance: none; /* Entfernt das Standard-Design */
+    appearance: none; 
     width: 20px;
     height: 20px;
-    border: 2px solid #EFCFD8; /* Randfarbe */
+    border: 2px solid #EFCFD8; 
     border-radius: 4px;
     position: relative;
     cursor: pointer;
-    background-color: white; /* Hintergrund der Checkbox */
+    background-color: white;
 }
 
-/* 🔹 Wenn Checkbox aktiviert ist */
+
 .registerpage-checkbox-input:checked {
-    background-color: #EFCFD8; /* Hintergrundfarbe aktiv */
+    background-color: #EFCFD8;
     border-color: #EFCFD8;
 }
 
-/* 🔹 Checkbox-Haken (Pseudo-Element) */
+
 .registerpage-checkbox-input:checked::before {
     content: "✔";
     font-size: 14px;
@@ -1544,7 +1543,7 @@ body.car-details .navbar {
     left: 3px;
 }
 
-/* 🔹 Link zur Login-Seite nur für die Registrierungsseite */
+
 .registerpage-link {
     display: block;
     margin-top: 20px;
@@ -1556,7 +1555,7 @@ body.car-details .navbar {
     text-decoration: underline;
 }
 
-/* 🔹 Hintergrund der AGB-Seite */
+
 .agbpage-background {
     position: fixed;
     top: 0;
@@ -1568,14 +1567,14 @@ body.car-details .navbar {
     z-index: -1;
 }
 
-/* 🔹 Unsichtbarer Positionierungs-Spacer */
+
 .agbpage-spacer {
     position: relative;
     width: 100%;
     height: 100vh;
 }
 
-/* 🔹 Weiße Box für die AGB-Texte */
+
 .agbpage-box {
     width: 800px;
     height: 600px;
@@ -1590,7 +1589,7 @@ body.car-details .navbar {
     transform: translate(-50%, -50%);
 }
 
-/* 🔹 Titel für die AGB-Seite */
+
 .agbpage-title {
     font-size: 28px;
     font-weight: bold;
@@ -1598,7 +1597,7 @@ body.car-details .navbar {
     margin-bottom: 15px;
 }
 
-/* 🔹 Überschriften für Abschnitte */
+
 .agbpage-subtitle {
     font-size: 20px;
     font-weight: bold;
@@ -1606,7 +1605,7 @@ body.car-details .navbar {
     margin-top: 15px;
 }
 
-/* 🔹 Scrollbox für AGB-Texte */
+
 .agbpage-scrollbox {
     width: 100%;
     height: 450px;
@@ -1618,7 +1617,7 @@ body.car-details .navbar {
     text-align: left;
 }
 
-/* 🔹 Text-Formatierung für die AGB */
+
 .agbpage-text {
     font-size: 16px;
     color: #555;
@@ -1626,7 +1625,7 @@ body.car-details .navbar {
     margin-bottom: 10px;
 }
 
-/* 🔹 Listen für die AGB */
+
 .agbpage-list {
     list-style-type: disc;
     padding-left: 20px;
@@ -1634,7 +1633,7 @@ body.car-details .navbar {
     color: #555;
 }
 
-/* 🔹 AGB-Akzeptieren-Button */
+
 .agbpage-button {
     width: 100%;
     padding: 10px;
@@ -1651,8 +1650,7 @@ body.car-details .navbar {
     background-color: #e3b9c6;
 }
 
-/*Datenschutz*/
-/* 🔹 Hintergrund der Datenschutzseite */
+
 .datenschutzpage-background {
     position: fixed;
     top: 0;
@@ -1664,30 +1662,30 @@ body.car-details .navbar {
     z-index: -1;
 }
 
-/* 🔹 Unsichtbarer Positionierungs-Spacer */
+
 .datenschutzpage-spacer {
     position: relative;
     width: 100%;
     height: 100vh;
 }
 
-/* 🔹 Datenschutz-Box: bleibt oben fixiert, wächst nach unten */
+
 .datenschutzpage-box {
     width: 800px;
-    min-height: 200px; /* Anfangshöhe */
+    min-height: 200px; 
     text-align: center;
     background: white;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
     position: absolute;
-    top: 11.5%; /* Fixe obere Position */
+    top: 11.5%; 
     left: 50%;
-    transform: translateX(-50%); /* Zentrierung */
-    transition: height 0.3s ease-out; /* Sanfte Höhenerweiterung */
+    transform: translateX(-50%); 
+    transition: height 0.3s ease-out; 
 }
 
-/* 🔹 Titel für die Datenschutzseite */
+
 .datenschutzpage-title {
     font-size: 28px;
     font-weight: bold;
@@ -1695,14 +1693,14 @@ body.car-details .navbar {
     margin-bottom: 10px;
 }
 
-/* 🔹 Untertitel für Aktualisierungsdatum */
+
 .datenschutzpage-subtitle {
     font-size: 16px;
     color: #666;
     margin-bottom: 15px;
 }
 
-/* 🔹 Textformatierung für Datenschutzseite */
+
 .datenschutzpage-text {
     font-size: 16px;
     color: #555;
@@ -1710,7 +1708,7 @@ body.car-details .navbar {
     margin-bottom: 10px;
 }
 
-/* 🔹 Accordion-Container */
+
 .datenschutzpage-accordion {
     width: 100%;
     background: white;
@@ -1719,12 +1717,12 @@ body.car-details .navbar {
     border: 1px solid white;
 }
 
-/* 🔹 Einzelne Accordion-Elemente */
+
 .datenschutzpage-accordion-item {
     border-bottom: 1px solid #3d3d3d;
 }
 
-/* 🔹 Button-Styling für das Accordion */
+
 .datenschutzpage-accordion-button {
     width: 100%;
     background: none;
@@ -1741,14 +1739,14 @@ body.car-details .navbar {
     align-items: center;
 }
 
-/* 🔹 Icon für Plus / Kreuz */
+
 .datenschutzpage-accordion-icon {
     font-size: 18px;
     font-weight: bold;
     transition: transform 0.3s ease;
 }
 
-/* 🔹 Standard-Zustand: geschlossen */
+
 .datenschutzpage-accordion-content {
     padding: 0 15px;
     background-color: white;
@@ -1759,14 +1757,14 @@ body.car-details .navbar {
     transition: max-height 0.4s ease-out, opacity 0.4s ease-out, visibility 0.1s ease-out;
 }
 
-/* 🔹 Geöffneter Zustand */
+
 .datenschutzpage-accordion-content.open {
     opacity: 1;
     visibility: visible;
     transition: max-height 0.4s ease-out, opacity 0.3s ease-in;
 }
 
-/* 🔹 Datenschutz-Akzeptieren-Button */
+
 .datenschutzpage-button {
     width: 100%;
     padding: 10px;
@@ -1783,37 +1781,36 @@ body.car-details .navbar {
     background-color: #e3b9c6;
 }
 
-/* 🔹 Standard-Listen-Styling */
+
 .datenschutzpage-list {
-    list-style-type: none; /* Entfernt die Standard-Aufzählung */
+    list-style-type: none;
     padding-left: 0;
     margin-top: 10px;
-    text-align: center; /* Zentriert den Text */
+    text-align: center;
 }
 
-/* 🔹 Einzelne Listenelemente */
+
 .datenschutzpage-list li {
     display: flex;
     align-items: center;
-    justify-content: center; /* Zentriert Punkt und Text */
-    gap: 8px; /* Abstand zwischen Punkt und Text */
+    justify-content: center; 
+    gap: 8px; 
     font-size: 16px;
     color: #555;
     line-height: 1.5;
 }
 
-/* 🔹 Kreis (•) vor jedem Listenelement */
+
 .datenschutzpage-list li::before {
-    content: "•"; /* Kreis-Symbol */
+    content: "•"; 
     font-size: 18px;
     color: #555;
     font-weight: bold;
 }
 
-/*Impressmumspage*/
-/* 🔹 Impressum-Hintergrund soll statisch mitwachsen */
+
 .impressumpage-background {
-    position: absolute; /* Ändert von fixed auf absolute */
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
@@ -1823,17 +1820,17 @@ body.car-details .navbar {
     z-index: -1;
 }
 
-/* 🔹 Container für Impressum-Inhalt */
+
 .impressumpage-spacer {
-    min-height: 100vh; /* Stellt sicher, dass die Seite mindestens 100% Höhe hat */
+    min-height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: -40px; /* 🔹 Negative Werte schieben die Box nach oben */
+    margin-top: -40px; 
 }
 
-/* 🔹 Impressum-Box */
+
 .impressumpage-box {
     width: 900px;
     max-width: 90%;
@@ -1844,16 +1841,16 @@ body.car-details .navbar {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* 🔹 Titel */
+
 .impressumpage-title {
     font-size: 28px;
     font-weight: bold;
     color: #333;
-    text-align: center; /* Titel zentriert */
+    text-align: center; 
     margin-bottom: 20px;
 }
 
-/* 🔹 Untertitel */
+
 .impressumpage-subtitle {
     font-size: 20px;
     font-weight: bold;
@@ -1861,7 +1858,7 @@ body.car-details .navbar {
     margin-bottom: 10px;
 }
 
-/* 🔹 Text */
+
 .impressumpage-text {
     font-size: 16px;
     color: #555;
@@ -1869,26 +1866,26 @@ body.car-details .navbar {
     margin-bottom: 8px;
 }
 
-/* 🔹 Impressum-Tabelle */
+
 .impressumpage-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-/* 🔹 Spalten-Formatierung */
+
 .impressumpage-table td {
     vertical-align: top;
-    padding: 15px; /* Mehr Abstand */
+    padding: 15px; 
     text-align: left;
-    width: 50%; /* Gleiche Spaltenbreite */
+    width: 50%; 
 }
 
-/* 🔹 Fettgedruckte Abschnitte */
+
 .impressumpage-text strong {
     font-weight: bold;
 }
 
-/* 🔹 Dunkler Hintergrund (wenn Pop-up aktiv ist) */
+
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -1902,7 +1899,7 @@ body.car-details .navbar {
     z-index: 1000;
 }
 
-/* 🔹 Pop-up-Box */
+
 .popup-box {
     background: white;
     padding: 20px;
@@ -1912,7 +1909,7 @@ body.car-details .navbar {
     text-align: center;
 }
 
-/* 🔹 Titel */
+
 .popup-title {
     font-size: 18px;
     font-weight: bold;
@@ -1920,7 +1917,7 @@ body.car-details .navbar {
     color: #333;
 }
 
-/* 🔹 Fehlerliste */
+
 .popup-errors {
     list-style: none;
     padding: 0;
@@ -1933,7 +1930,7 @@ body.car-details .navbar {
     font-size: 14px;
 }
 
-/* 🔹 Schließen-Button */
+
 .popup-close {
     margin-top: 10px;
     background: #EFCFD8;
@@ -1949,16 +1946,16 @@ body.car-details .navbar {
 }
 
 .logged-in-user {
-    color: white; /* Gleiche Farbe wie die Navigation */
-    font-size: 25px; /* Gleiche Größe wie die anderen Links */
+    color: white; 
+    font-size: 25px; 
     display: flex;
     align-items: center;
-    margin-right: 20px; /* Abstand zum Logo */
+    margin-right: 20px; 
     background-color: #313131;
 }
 
 .logged-in-user strong {
-    margin-left: 10px; /* Abstand zwischen Komma und Username */
+    margin-left: 10px; 
 }
 
 .Logout-bg-image {
@@ -1972,7 +1969,7 @@ body.car-details .navbar {
     z-index: -1;
 }
 
-/* 🔹 Logout-Box Styling */
+
 .Logout-box {
     background: transparent;
     width: 100%;
@@ -1985,7 +1982,7 @@ body.car-details .navbar {
     align-content: center;
 }
 
-/* 🔹 Logout-Titel */
+
 .Logout-box h1 {
     font-size: 200px;
     font-weight: bold;
@@ -1993,7 +1990,7 @@ body.car-details .navbar {
     color: white;
 }
 
-/* 🔹 Logout-Text */
+
 .Logout-box p {
     font-size: 30px;
     line-height: 1.5;
@@ -2002,13 +1999,13 @@ body.car-details .navbar {
     margin-left: 30%;
 }
 
-/* 🔹 Handwave Icon */
+
 .Logout-box img {
     vertical-align: middle;
     margin-right: 10px;
 }
 
-/* 🔹 Logout-Seite zentrieren */
+
 .Logout-container {
     position: absolute;
     top: 50%;
@@ -2018,14 +2015,14 @@ body.car-details .navbar {
     width: 100%;
 }
 
-/* 🔹 Logout-Icon */
+
 .logout-icon {
     width: 100px;
     margin-bottom: 20px;
     filter: brightness(0) invert(1);
 }
 
-/* 🔹 Dunkler Hintergrund (wenn Pop-up aktiv ist) */
+
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -2039,7 +2036,7 @@ body.car-details .navbar {
     z-index: 1000;
 }
 
-/* 🔹 Pop-up-Box */
+
 .popup-box {
     background: white;
     padding: 20px;
@@ -2049,7 +2046,7 @@ body.car-details .navbar {
     text-align: center;
 }
 
-/* 🔹 Titel */
+
 .popup-title {
     font-size: 18px;
     font-weight: bold;
@@ -2057,13 +2054,13 @@ body.car-details .navbar {
     color: #333;
 }
 
-/* 🔹 Fehlermeldung */
+
 .popup-message {
     color: black;
     font-size: 14px;
 }
 
-/* 🔹 Schließen-Button */
+
 .popup-close {
     margin-top: 10px;
     background: #EFCFD8;
@@ -2078,23 +2075,23 @@ body.car-details .navbar {
     background: #e3b9c6;
 }
 
-/* 🔹 Stellt sicher, dass die Seite genug Platz bietet */
+
 .car-details-page {
     background-color: white;
     display: block;
-    min-height: 100vh; /* 🔥 Erhöht die Mindesthöhe auf die volle Bildschirmhöhe */
+    min-height: 100vh; 
 }
 
-/* 🔹 Zentriert den gesamten Container */
+
 .car-details-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto; /* 🔥 Anpassen, damit sich die Box dynamisch vergrößert */
+    height: auto; 
     padding: 150px 0;
 }
 
-/* 🔹 Hauptcontainer für Details */
+
 .car-details-container {
     display: flex;
     flex-wrap: wrap;
@@ -2104,10 +2101,10 @@ body.car-details .navbar {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     overflow: hidden;
-    align-items: stretch; /* 🔥 Stellt sicher, dass beide Hälften gleich hoch sind */
+    align-items: stretch; 
 }
 
-/* 🔹 Linke Hälfte: Auto-Bild */
+
 .car-image-section {
     width: 50%;
     display: flex;
@@ -2116,14 +2113,14 @@ body.car-details .navbar {
     background-color: black;
 }
 
-/* 🔹 Bild 100% Höhe */
+
 .car-image-section img {
     width: 100%;
-    height: 100%; /* 🔥 Bild nimmt die gesamte Höhe der Box ein */
+    height: 100%; 
     object-fit: cover;
 }
 
-/* 🔹 Rechte Hälfte: Details */
+
 .car-info-section {
     width: 50%;
     padding: 30px;
@@ -2135,7 +2132,7 @@ body.car-details .navbar {
 }
 
 
-/* 🔹 Stile nur für die Detailseite */
+
 .car-details-page .car-title {
     font-size: 32px;
     font-weight: bold;
@@ -2143,7 +2140,7 @@ body.car-details .navbar {
     color: white;
 }
 
-/* 🔹 Linie direkt unter dem Titel */
+
 .car-details-page .car-title-divider {
     border: none;
     height: 2px;
@@ -2151,7 +2148,7 @@ body.car-details .navbar {
     margin-bottom: 15px;
 }
 
-/* 🔹 Details-Tabelle */
+
 .car-specs {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -2171,7 +2168,7 @@ body.car-details .navbar {
     filter: invert(1);
 }
 
-/* 🔹 Preis- und Buchungsbereich */
+
 .car-booking {
     display: flex;
     justify-content: space-between;
@@ -2186,7 +2183,7 @@ body.car-details .navbar {
     color: white;
 }
 
-/* 🔹 Buchungs-Button */
+
 .car-details-page .book-button {
     background-color: transparent;
     color: white;
@@ -2203,12 +2200,12 @@ body.car-details .navbar {
     color: black;
 }
 
-/* Auf bestimmten Seiten: Grauer Header */
+
 body.car-details-page .navbar {
-    background-color: #333 !important; /* Grau */
+    background-color: #333 !important;
 }
 
-/* 🔹 Login-Button (wird nur angezeigt, wenn nicht eingeloggt) */
+
 .login-button {
     background: transparent;
     border: 2px solid pink;
@@ -2227,7 +2224,7 @@ body.car-details-page .navbar {
     color: white;
 }
 
-/* 🔹 Deaktivierter Buchungs-Button */
+
 .book-button.disabled {
     border-color: #494949;
     color: #494949;
@@ -2235,12 +2232,12 @@ body.car-details-page .navbar {
 }
 
 
-/* Auf bestimmten Seiten: Grauer Header */
+
 body.bookings-page .navbar {
-    background-color: #333 !important; /* Grau */
+    background-color: #333 !important; 
 }
 
-/* 🔹 Hintergrundfarbe */
+
 body.bookings-page {
     background-color: #f4f4f4;
     display: flex;
@@ -2248,7 +2245,7 @@ body.bookings-page {
     align-items: center;
 }
 
-/* 🔹 Weiße Hauptbox */
+
 .bookings-container {
     width: 90%;
     max-width: 1200px;
@@ -2260,7 +2257,7 @@ body.bookings-page {
     margin-bottom: 100px;
 }
 
-/* 🔹 Buchungsbox */
+
 .booking-card {
     display: flex;
     background: #333;
@@ -2270,51 +2267,51 @@ body.bookings-page {
     margin-top: 20px;
 }
 
-/* 🔹 Bildbereich (links) */
+
 .booking-image {
-    width: 45%;  /* Bild nimmt 45% der Breite ein */
+    width: 45%;  
     max-height: 100%;
     display: flex;
 }
 
-/* 🔹 Bildstil für maximale Qualität */
+
 .booking-image img {
     width: 100%;
     height: auto;
-    max-height: 500px; /* Setze eine Maximalhöhe, damit das Bild nicht zu groß wird */
-    object-fit: contain; /* 🔥 Statt "cover" wird das Bild nicht verzerrt */
-    border-radius: 8px; /* Abgerundete Ecken für schönes Design */
+    max-height: 500px; 
+    object-fit: contain;
+    border-radius: 8px; 
 }
 
-/* 🔹 Infobereich (rechts) */
+
 .booking-info {
     width: 55%;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* 🔥 Stellt sicher, dass der Titel ganz oben ist */
+    justify-content: flex-start; 
 }
 
-/* 🔹 Titel in der Buchungsübersicht */
+
 .booking-title {
     font-size: 26px;
     font-weight: bold;
     color: white;
     margin-bottom: 10px;
-    align-self: flex-start; /* 🔥 Verhindert zentrieren in flexbox */
+    align-self: flex-start; 
 }
 
-/* 🔹 Linie unter dem Titel */
+
 .booking-divider {
     border: none;
     height: 2px;
     background-color: white;
     width: 100%;
     margin-bottom: 15px;
-    align-self: flex-start; /* 🔥 Bleibt direkt unter dem Titel */
+    align-self: flex-start; 
 }
 
-/* 🔹 Falls keine Buchungen vorhanden */
+
 .no-bookings {
     text-align: center;
     color: #666;
@@ -2322,14 +2319,14 @@ body.bookings-page {
     margin-top: 20px;
 }
 
-/* 🔹 Tabelle für Buchungsinformationen */
+
 .booking-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 35px;
 }
 
-/* 🔹 Tabellenkopf (Labels) */
+
 .booking-table-header th {
     font-weight: bold;
     text-align: left;
@@ -2337,29 +2334,29 @@ body.bookings-page {
     color: white;
 }
 
-/* 🔹 Tabelleninhalt (Daten) */
+
 .booking-table-data td {
     padding: 8px;
     color: white;
-    vertical-align: top; /* 🔥 Setzt den Text oben ausgerichtet */
-    white-space: nowrap; /* Verhindert Zeilenumbruch */
+    vertical-align: top; 
+    white-space: nowrap; 
 }
 
-/* 🔹 Spalten gleichmäßiger aufteilen */
+
 .booking-table th:first-child, 
 .booking-table td:first-child {
-    width: 10%; /* ID etwas kleiner */
+    width: 10%; 
 }
 
-/* 🔹 Container für die Buttons */
+
 .booking-buttons {
     display: flex;
-    justify-content: flex-end; /* 🔥 Rechtsbündig */
-    gap: 10px; /* Abstand zwischen den Buttons */
+    justify-content: flex-end;
+    gap: 10px; 
     margin-top: 50px;
 }
 
-/* 🔹 Basisstil für beide Buttons */
+
 .booking-buttons button {
     padding: 10px 15px;
     font-size: 14px;
@@ -2367,7 +2364,7 @@ body.bookings-page {
     transition: all 0.3s ease-in-out;
 }
 
-/* 🔹 Stornieren-Button */
+
 .cancel-booking-button {
     background-color: transparent;
     color: rgb(255, 82, 82);
@@ -2384,7 +2381,7 @@ body.bookings-page {
     color: white;
 }
 
-/* 🔹 Details-Button */
+
 .details-button {
     background-color: transparent;
     color: white;
@@ -2401,7 +2398,7 @@ body.bookings-page {
     color: black;
 }
 
-/* Stornierungs-Pop-up */
+
 .cancel-popup-overlay {
     display: none;
     position: fixed;
@@ -2409,7 +2406,7 @@ body.bookings-page {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Hintergrund abdunkeln */
+    background: rgba(0, 0, 0, 0.5); 
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -2463,7 +2460,7 @@ body.bookings-page {
 
 .calendar-day.disabled {
     color: #bbb;
-    pointer-events: none; /* Klicks deaktivieren */
+    pointer-events: none; 
     background: none;
 }
 
@@ -2471,8 +2468,8 @@ body.bookings-page {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 65px; /* Abstand nach oben */
-    margin-bottom: -55px; /* Abstand nach unten */
+    margin-top: 65px; 
+    margin-bottom: -55px; 
 }
 
 .pagination-btn {
@@ -2505,20 +2502,20 @@ body.bookings-page {
     border-radius: 20px;
     overflow: hidden;
     margin-bottom: 75px;
-    overflow: visible; /* Verhindert das Abschneiden des Schattens */
-    padding: 10px; /* Gibt dem Schatten Platz */
+    overflow: visible; 
+    padding: 10px; 
 }
 
 .category img {
     width: 100%;
     max-height: 250px;
     border-radius: 20px;
-    display: inline-block; /* Stellt sicher, dass der Schatten sichtbar ist */
+    display: inline-block; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
     transition: filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* 🔹 Bild wird dunkler bei Hover */
+
 .category img:hover {
     filter: brightness(55%);
     cursor: pointer;
@@ -2530,24 +2527,24 @@ body.bookings-page {
     font-size: 32px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 5px; /* Erhöht den Abstand nach unten */
+    margin-bottom: 5px; 
 }
 
-/* 🔹 Dünne schwarze Linie unter den Kategorien */
+
 .category-divider {
-    width: 95%;  /* Breite der Linie (relativ zur Seite) */
-    margin: 50px auto 20px auto; /* 50px Abstand nach oben, 20px nach unten */
+    width: 95%;  
+    margin: 50px auto 20px auto; 
     border: none;
-    border-top: 0.5px solid black; /* Dünne schwarze Linie */
+    border-top: 0.5px solid black;
 }
 
 .unavailable {
     position: relative;
-    opacity: 0.7; /* Leicht transparent */
+    opacity: 0.7;
 }
 
 .unavailable img {
-    filter: grayscale(100%) brightness(30%); /* Bild stark abdunkeln */
+    filter: grayscale(100%) brightness(30%); 
 }
 
 .unavailable .overlay-text {
@@ -2566,19 +2563,19 @@ body.bookings-page {
 }
 
 .unavailable .book-button {
-    display: none; /* Details-Button ausblenden */
+    display: none; 
 }
 
-/* 🔹 Container für die Einstellungen */
+
 .settings-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 160px); /* Passt Höhe dynamisch an, um Platz für Header & Footer zu lassen */
-    padding: 80px 20px; /* Abstand nach oben und unten */
+    min-height: calc(100vh - 160px); 
+    padding: 80px 20px; 
 }
 
-/* 🔹 Die zentrale Box */
+
 .settings-box {
     background: white;
     padding: 40px;
@@ -2589,7 +2586,7 @@ body.bookings-page {
     text-align: center;
 }
 
-/* 🔹 Optional: Responsive Anpassung */
+
 @media (max-width: 768px) {
     .settings-box {
         width: 90%;
@@ -2601,7 +2598,7 @@ body.bookings-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh; /* Abstand zum Header & Footer */
+    min-height: 80vh; 
 }
 
 .settings-box {
@@ -2643,9 +2640,9 @@ body.user-settings .navbar {
     background-color: #333 !important;
 }
 
-/* Standardstil für den Button */
+
 .loginregisterpage-button {
-    background-color: #EFCFD8; /* Pink */
+    background-color: #EFCFD8; 
     color: black;
     font-weight: bold;
     border: none;
@@ -2656,20 +2653,20 @@ body.user-settings .navbar {
     transition: background-color 0.3s ease;
 }
 
-/* Hover-Effekt für den aktiven Button */
+
 .loginregisterpage-button:hover {
-    background-color: #e3b9c6; /* Dunkleres Pink */
+    background-color: #e3b9c6;
 }
 
-/* 🔹 Stil für deaktivierten Button */
+
 .loginregisterpage-button:disabled {
-    background-color: #ccc; /* Grau */
-    color: #888; /* Etwas dunklerer Grauton */
-    cursor: not-allowed; /* Gesperrter Cursor */
+    background-color: #ccc; 
+    color: #888; 
+    cursor: not-allowed; 
     box-shadow: none;
 }
 
-/* 🔹 Kein Hover-Effekt für deaktivierten Button */
+
 .loginregisterpage-button:disabled:hover {
     background-color: #ccc;
 }
@@ -2678,7 +2675,7 @@ body.user-settings .navbar {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
-    background-color: #d9534f; /* Rotes Design */
+    background-color: #d9534f; 
     color: white;
     font-size: 16px;
     border: none;
@@ -2688,18 +2685,18 @@ body.user-settings .navbar {
 }
 
 .logout-button:hover {
-    background-color: #c9302c; /* Etwas dunkleres Rot */
+    background-color: #c9302c; 
 }
 
 .no-results {
     text-align: center;
     font-size: 20px;
     font-weight: bold;
-    color: #333; /* Schwarzer Text */
-    background: #fff; /* Weißer Hintergrund */
+    color: #333; 
+    background: #fff; 
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sanfter Schatten */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); 
     width: 400px;
     margin-left: 655px;
 }
@@ -2739,7 +2736,7 @@ body.user-settings .navbar {
 .footer {
     text-align: center;
     padding: 20px;
-    margin-top: auto; /* Drückt den Footer an den unteren Rand */
+    margin-top: auto; 
 }
 
 button.disabled {
@@ -2747,7 +2744,7 @@ button.disabled {
     cursor: not-allowed;
 }
 
-/* Contactpage */
+
 .Contacta {
     width: 550px;
     padding: 20px;
@@ -2757,13 +2754,13 @@ button.disabled {
     text-align: center;
 }
 
-/* Titel */
+
 .Contactb {
     margin-bottom: 15px;
     color: #444;
 }
 
-/* Eingabefelder */
+
 .Contactd {
     width: 100%;
     padding: 10px;
@@ -2780,7 +2777,7 @@ button.disabled {
     box-shadow: 0 0 5px rgba(242, 138, 167, 0.5);
 }
 
-/* Textarea Contact*/
+
 .Contacte {
     width: 100%;
     padding: 10px;
@@ -2798,11 +2795,11 @@ button.disabled {
     box-shadow: 0 0 5px rgba(242, 138, 167, 0.5);
 }
 
-/* Button */
+
 .Contactf {
     width: 100%;
     padding: 12px;
-    background: #f28aa7; /* Rosa */
+    background: #f28aa7; 
     color: white;
     border: none;
     font-size: 18px;
@@ -2812,7 +2809,7 @@ button.disabled {
 }
 
 .Contactf:hover {
-    background: #e07793; /* Dunkleres Rosa */
+    background: #e07793; 
 }
 .contbox1 {
     background-color:#ffffffc4; 
@@ -2825,26 +2822,26 @@ button.disabled {
     align-items: center;
     
 }
-/* Container */
+
 .contact-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap; /* Für Mobilgeräte */
+    flex-wrap: wrap; 
     background-color: #ffffff; 
     padding: 80px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* Text-Bereich */
+
 .text-contact {
     max-width: 25%;
     text-align: left;
 }
 
 
-/* Buttons */
+
 .button-containercont {
     margin-top: 35px;
 }
@@ -2880,8 +2877,8 @@ button.disabled {
 }
 .contboxvid {
     position: relative;
-    width: 300px; /* Feste Breite für das Video */
-    height: 515px; /* Höhe passend zum 9:16-Verhältnis (340 * 16 / 9) */
+    width: 300px; 
+    height: 515px; 
     margin: 0;
     border-radius: 20px;
     display: flex;
@@ -2891,7 +2888,7 @@ button.disabled {
     background: #e07793;
 }
 
-/* Video-Styling */
+
 .contboxvid video {
     width: 90%;
     height: auto;
@@ -3006,13 +3003,11 @@ button.disabled {
 
 }
 
-/* ========== Brandpage Styles ========== */
-/* Hintergrundbild mit schwarzer Transparenz */
 .brandpage-header {
     position: relative;
     background: url('/Carsharing/images/EcoCar1.jpg') no-repeat center center;
     background-size: cover;
-    padding: 250px 20px; /* Bild wurde größer gemacht */
+    padding: 250px 20px; 
     color: white;
     text-align: center;
     display: flex;
@@ -3030,7 +3025,7 @@ button.disabled {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Schwarze Transparenz */
+    background: rgba(0, 0, 0, 0.6); 
     z-index: 1;
     margin-bottom: 100px;
 }
@@ -3058,7 +3053,7 @@ button.disabled {
     margin-top: 10px;
 }
 
-/* Abschnitt: Umwelt & Verantwortung */
+
 .brandpage-content {
     text-align: center;
     padding: 80px 20px;
@@ -3070,7 +3065,7 @@ button.disabled {
     margin-bottom: 50px;
 }
 
-/* Breitere Boxen für Naturbewusst & 7.500 */
+
 .features-container {
     display: flex;
     justify-content: center;
@@ -3082,7 +3077,7 @@ button.disabled {
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
-    width: 600px; /* Boxen verbreitert */
+    width: 600px; 
     text-align: center;
 }
 
@@ -3103,7 +3098,7 @@ button.disabled {
     font-size: 20px;
 }
 
-/* Abschnitt: Umweltbewusstsein & Design */
+
 .brandpage-commitment {
     display: flex;
     justify-content: center;
@@ -3113,10 +3108,10 @@ button.disabled {
     background: #f4f4f4;
 }
 
-/* Text größer und Blocksatz */
+
 .commitment-text {
     width: 55%;
-    text-align: justify; /* Blocksatz */
+    text-align: justify; 
 }
 
 .commitment-text h2 {
@@ -3130,7 +3125,7 @@ button.disabled {
     line-height: 1.8;
 }
 
-/* Video mit schwarzer Transparenz */
+
 .commitment-video {
     position: relative;
     width: 45%;
@@ -3146,7 +3141,7 @@ button.disabled {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Schwarze Transparenz */
+    background: rgba(0, 0, 0, 0.6); 
     z-index: 1;
 }
 
@@ -3158,13 +3153,11 @@ button.disabled {
     z-index: 2;
 }
 
-/* Mehr Abstand zum Footer */
+
 .brandpage-spacing {
     height: 000px;
 }
 
-/* Karrierepage */
- 
 .Karriere-bg-image{
     background: url('/Carsharing/images/BG-Karriere.png') no-repeat center center;
     background-size: cover;
@@ -3196,7 +3189,7 @@ button.disabled {
     font-size: 75px;
 }
  
-/* Stil für den Button */
+
 .bewerbung-button {
     background-color: #EFCFD8;
     color: black;
@@ -3247,7 +3240,7 @@ button.disabled {
     font-size: 25px;
 }
 
-/* Deutschlandkarte */
+
 .map-spacer {
     width: 100%;
     background-color: white;
@@ -3259,7 +3252,7 @@ button.disabled {
 .map-container {
     position: relative;
     width: 600px;
-    height: 600px; /* Höhe der Karte */
+    height: 600px; 
     background-image: url('../images/Deutschlandkarte.jpg');
     background-size: contain;
     background-repeat: no-repeat;
@@ -3283,11 +3276,11 @@ button.disabled {
     background-color: #e07793;
 }
  
-/* Tooltip-Styling */
+
 .map-marker::after {
-    content: attr(data-city); /* Holt den Namen aus dem data-city-Attribut */
+    content: attr(data-city); 
     position: absolute;
-    top: -35px; /* Über dem Marker */
+    top: -35px; 
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.8);
@@ -3298,18 +3291,18 @@ button.disabled {
     white-space: nowrap;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    pointer-events: none; /* Verhindert Interaktionen mit dem Tooltip */
+    pointer-events: none; 
     z-index: 15;
 }
  
 .map-marker:hover::after {
-    opacity: 1; /* Tooltip anzeigen */
+    opacity: 1; 
 }
 
 .locations-section {
     text-align: center;
     padding: 60px 20px;
-    background-color: white; /* Weißer Hintergrund */
+    background-color: white; 
 }
 
 .locations-section h1 {
@@ -3321,17 +3314,14 @@ button.disabled {
     margin-bottom: 40px;
 }
 
-/* 1) Überschrift "Buchungsdetails..." in Weiß */
 .car-info-section h2.car-title {
     color: white; 
 }
 
-/* Auf bestimmten Seiten: Grauer Header */
 body.booking-details-page .navbar {
     background-color: #333 !important; /* Grau */
 }
 
-/* 3) Gesamtpreis in Weiß und Bold */
 .car-info-section .car-price {
     color: white;
     font-weight: bold;
@@ -3352,7 +3342,6 @@ body.booking-details-page .navbar {
     background-color: #555;
 }
 
-/* 🔹 Container für Filter- und Pagination-Buttons */
 .top-section {
     display: flex;
     justify-content: space-between;
@@ -3360,19 +3349,16 @@ body.booking-details-page .navbar {
     margin-bottom: 20px;
 }
 
-/* 🔹 Stellt sicher, dass die Buttons sich anpassen */
 .filter-buttons {
     display: flex;
     gap: 10px;
 }
 
-/* 🔹 Pagination-Buttons neben den Filter-Buttons */
 .pagination-buttons {
     display: flex;
     gap: 10px;
 }
 
-/* 🔹 Styling für die Buttons */
 .pagination-button {
     padding: 8px 12px;
     border: 2px solid #333;

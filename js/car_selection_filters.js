@@ -1,3 +1,42 @@
+/**
+ * This script manages car filtering, sorting, and pagination for the car selection page.
+ * 
+ * Features:
+ * 
+ * 🔽 Dropdown Filters:
+ * - Initializes multiple dropdown filters (gearbox, type, sorting, price, etc.).
+ * - Allows both single and multiple selections, dynamically updating button states.
+ * - Closes dropdowns when clicking outside.
+ * 
+ * 🎛️ Toggle Filters:
+ * - Climate control and GPS filters toggle active states on click.
+ * 
+ * 🚗 Car Filtering & Sorting:
+ * - Collects active filters and sorting preferences.
+ * - Constructs a dynamic query string for `fetch_cars.php`.
+ * - Calls `fetchCarIds()` to retrieve available cars.
+ * 
+ * 🔄 Loading Unavailable Cars:
+ * - Fetches booked cars separately via `fetch_unavailable_cars.php`.
+ * - Groups identical unavailable cars and merges them into the results.
+ * - Styles unavailable cars with a grayscale overlay.
+ * 
+ * 📄 Car List Rendering:
+ * - Displays 15 cars per page with title, location, price, and availability.
+ * - Differentiates between available and booked cars visually.
+ * - "Details" buttons trigger `redirectToDetails(carId)`, forwarding search parameters.
+ * 
+ * 📑 Pagination:
+ * - Implements "Previous" and "Next" buttons for navigating pages.
+ * - Updates button states based on the number of cars.
+ * 
+ * 🚀 Real-time Filtering:
+ * - Clicking any filter option immediately triggers `fetchCarIds()` to update results.
+ * - Ensures seamless filtering without requiring page reloads.
+ * 
+ * This script provides an interactive and dynamic car search experience, ensuring that
+ * filtering, sorting, and pagination function smoothly for an optimized user journey.
+ */
 document.addEventListener("DOMContentLoaded", function () {
     function setupDropdown(buttonId, dropdownId) {
         const button = document.getElementById(buttonId);
@@ -5,46 +44,46 @@ document.addEventListener("DOMContentLoaded", function () {
         const options = dropdown.querySelectorAll("button");
         
         button.addEventListener("click", function () {
-            const rect = button.getBoundingClientRect(); // Position des Buttons holen
+            const rect = button.getBoundingClientRect(); // Get position of the button
 
-            // 🛠 Anpassungen für exakte Positionierung
-            const offsetY = -190; // Abstand nach unten
-            const offsetX = -635; // Falls notwendig, für Links/Rechts-Verschiebung
+            // 🛠 Adjustments for exact positioning
+            const offsetY = -190; // Distance downwards
+            const offsetX = -635; // If necessary, for left/right shift
 
-            dropdown.style.top = `${rect.bottom + window.scrollY + offsetY}px`; // Direkt unter den Button
-            dropdown.style.left = `${rect.left + window.scrollX + rect.width / 2 - dropdown.offsetWidth / 2 + offsetX}px`; // Exakt mittig
+            dropdown.style.top = `${rect.bottom + window.scrollY + offsetY}px`; // Directly under the button
+            dropdown.style.left = `${rect.left + window.scrollX + rect.width / 2 - dropdown.offsetWidth / 2 + offsetX}px`; // Exactly centered
             dropdown.classList.toggle("visible");
         });
 
-        // Event-Listener für Dropdown-Optionen (Einzelauswahl für "Sortierung" und "Preis bis", Mehrfachauswahl für andere)
+        // Event listener for dropdown options (single selection for “Sorting” and “Price to”, multiple selection for others)
         options.forEach(option => {
             option.addEventListener("click", function () {
                 if (buttonId === "sort-filter" || buttonId === "price-filter") {
-                    // Falls "Sortierung" oder "Preis bis", nur eine Auswahl zulassen, aber auch deaktivierbar machen
+                    // If “Sorting” or “Price to”, allow only one selection, but can also be deactivated
                     if (this.classList.contains("active")) {
                         this.classList.remove("active");
 
-                        // Falls nichts mehr aktiv ist, entferne Farbe vom Hauptbutton
+                        // If nothing is active anymore, remove color from the main button
                         button.classList.remove("active");
                     } else {
                         options.forEach(opt => opt.classList.remove("active"));
                         this.classList.add("active");
 
-                        // Hauptbutton färben
+                        // Color main button
                         button.classList.add("active");
                     }
                 } else {
-                    // Falls bereits aktiv, entferne Auswahl (für Mehrfachauswahl-Buttons)
+                    // If already active, remove selection (for multiple selection buttons)
                     if (this.classList.contains("active")) {
                         this.classList.remove("active");
                     } else {
                         this.classList.add("active");
                     }
 
-                    // Prüfe, ob mindestens eine Auswahl aktiv ist
+                    // Check whether at least one selection is active
                     const anyActive = [...options].some(opt => opt.classList.contains("active"));
 
-                    // Falls eine Auswahl aktiv ist, färbe den Hauptbutton
+                    // If a selection is active, color the main button
                     if (anyActive) {
                         button.classList.add("active");
                     } else {
@@ -54,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
-        // Klick außerhalb der Box schließt sie wieder
+        // Click outside the box to close it again
         document.addEventListener("click", function (event) {
             if (!button.contains(event.target) && !dropdown.contains(event.target)) {
                 dropdown.classList.remove("visible");
@@ -62,11 +101,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Dropdowns initialisieren
-    setupDropdown("gear-filter", "gear-dropdown"); // Getriebe
-    setupDropdown("type-filter", "type-dropdown"); // Typ
-    setupDropdown("sort-filter", "sort-dropdown"); // Sortierung
-    setupDropdown("price-filter", "price-dropdown"); // Preis bis
+    // Initialize dropdowns
+    setupDropdown("gear-filter", "gear-dropdown"); // Gearbox
+    setupDropdown("type-filter", "type-dropdown"); // Type
+    setupDropdown("sort-filter", "sort-dropdown"); // Sorting
+    setupDropdown("price-filter", "price-dropdown"); // Price until
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -75,13 +114,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (moreFiltersBtn && extraFiltersBox) {
         moreFiltersBtn.addEventListener("click", function () {
-            // Prüfe den aktuellen `display`-Wert
+            // Check the current `display` value
             const isHidden = getComputedStyle(extraFiltersBox).display === "none";
 
-            // Setze den neuen `display`-Wert basierend auf dem vorherigen Zustand
+            // Set the new `display` value based on the previous state
             extraFiltersBox.style.display = isHidden ? "block" : "none";
 
-            // 🔹 Button einfärben, wenn extraFiltersBox sichtbar ist
+            // 🔹 Color the button if extraFiltersBox is visible
             if (!isHidden) {
                 moreFiltersBtn.classList.remove("active");
             } else {
@@ -102,21 +141,21 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function () {
             const rect = button.getBoundingClientRect();
 
-            // Fixierte Position OHNE Scrollen
-            dropdown.style.top = `${rect.bottom - 253.5}px`; // Entfernt window.scrollY
+            // Fixed position WITHOUT scrolling
+            dropdown.style.top = `${rect.bottom - 253.5}px`; // Removes window.scrollY
             dropdown.style.left = `${rect.left + rect.width / 2 - dropdown.offsetWidth / 2 + offsetX}px`;
 
             dropdown.classList.toggle("visible");
         });
 
-        // Klick außerhalb des Dropdowns schließt es
+        // Click outside the dropdown to close it
         document.addEventListener("click", function (event) {
             if (!button.contains(event.target) && !dropdown.contains(event.target)) {
                 dropdown.classList.remove("visible");
             }
         });
 
-        // Event-Listener für Mehrfachauswahl (Buttons färben sich)
+        // Event listener for multiple selection (buttons change color)
         options.forEach(option => {
             option.addEventListener("click", function () {
                 if (this.classList.contains("active")) {
@@ -136,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 🔹 Dropdowns für neue Filter-Buttons initialisieren (mit X-Verschiebung)
+    // 🔹 Initialize dropdowns for new filter buttons (with X-displacement)
     setupDropdown("manufacturer-filter", "manufacturer-dropdown", -121.5);
     setupDropdown("doors-filter", "doors-dropdown", -122.5);
     setupDropdown("seats-filter", "seats-dropdown", -125);
@@ -163,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    let allCars = [];  // Speichert alle Autos nach der Filterung
+    let allCars = [];  // Saves all cars after filtering
     let currentPage = 0;
     const carsPerPage = 15;
 
@@ -215,18 +254,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 currentPage = 0;
                 renderCars();
     
-                // 🚀 Danach gebuchte Autos nachladen
+                // 🚀 Reload booked cars afterwards
                 fetchUnavailableCars();
             })
             .catch(error => console.error("Fehler beim Laden der Car-IDs:", error));
     }
     
-    // 🔹 Neue Funktion: Gebuchte Autos nachladen & anzeigen
+    // 🔹 New function: Reload & display booked cars
     function fetchUnavailableCars() {
         let url = `fetch_unavailable_cars.php`;
         let params = [];
     
-        // 🔹 Dieselben Filter wie für verfügbare Autos sammeln
+        // 🔹 Collect the same filters as for available cars
         const activeSortButton = document.querySelector("#sort-dropdown button.active");
         if (activeSortButton) {
             const sortOrder = activeSortButton.innerText.includes("absteigend") ? "price_desc" : "price_asc";
@@ -264,14 +303,14 @@ document.addEventListener("DOMContentLoaded", function () {
             url += `?${params.join("&")}`;
         }
     
-        // 🔹 Daten abrufen
+        // 🔹 Retrieve data
         fetch(url)
             .then(response => response.json())
             .then(data => {
                 if (data.cars && data.cars.length > 0) {
                     const groupedUnavailableCars = groupUnavailableCars(data.cars);
-                    allCars.push(...groupedUnavailableCars); // 🚀 Füge gefilterte, gebuchte Autos hinzu
-                    renderCars(); // 🔄 Aktualisiere die Anzeige mit den neuen Autos
+                    allCars.push(...groupedUnavailableCars); // 🚀 Add filtered, booked cars
+                    renderCars(); // 🔄 Update the display with the new cars
                 }
             })
             .catch(error => console.error("Fehler beim Laden der gebuchten Autos:", error));
@@ -302,11 +341,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p>Derzeit stehen keine Fahrzeuge, für die von Ihnen gewählten Filteroptionen, zur Verfügung</p>
                 </div>
             `;
-            updatePaginationButtons(); // ❗ Direkt nach dem Hinzufügen prüfen!
+            updatePaginationButtons(); // ❗ Check directly after adding!
             return;
         }
     
-        // 🔹 Zeige nur Autos für die aktuelle Seite
+        // 🔹 Show only cars for the current page
         const start = currentPage * carsPerPage;
         const visibleCars = allCars.slice(start, start + carsPerPage);
     
@@ -317,7 +356,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const imageName = car.img_file_name ? car.img_file_name : "default.jpg";
     
             if (car.status === "booked") {
-                // 🔹 Stil für gebuchte Autos
+                // 🔹 Style for booked cars
                 carElement.classList.add("unavailable");
                 carElement.innerHTML = `
                     <div class="car-image">
@@ -335,7 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                 `;
             } else {
-                // 🔹 Stil für verfügbare Autos
+                // 🔹 Style for available cars
                 carElement.innerHTML = `
                     <div class="car-image">
                         <img src="images/cars/${imageName}" alt="${car.vendor_name} ${car.type}" 
@@ -353,7 +392,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                 `;
     
-                // ✅ Event Listener für "Details"-Button
+                // ✅ Event listener for “Details” button
                 carElement.querySelector(".book-button").addEventListener("click", function () {
                     const carId = this.getAttribute("data-car-id");
                     redirectToDetails(carId);
@@ -363,15 +402,15 @@ document.addEventListener("DOMContentLoaded", function () {
             container.appendChild(carElement);
         });
     
-        updatePaginationButtons(); // ❗ Nach dem Rendern der Autos aufrufen
+        updatePaginationButtons(); // ❗ Call up after rendering the cars
     }            
 
     function updatePaginationButtons() {
         const prevButton = document.getElementById("prev-cars");
         const nextButton = document.getElementById("next-cars");
-        const noCarsMessage = document.querySelector(".no-results"); // Prüft, ob keine Autos vorhanden sind
+        const noCarsMessage = document.querySelector(".no-results"); // Checks whether no cars are present
     
-        // 🔹 Falls keine Autos verfügbar sind → Beide Buttons deaktivieren
+        // 🔹 If no cars are available → Deactivate both buttons
         if (noCarsMessage) {
             prevButton.disabled = true;
             nextButton.disabled = true;
@@ -380,12 +419,12 @@ document.addEventListener("DOMContentLoaded", function () {
             nextButton.disabled = ((currentPage + 1) * carsPerPage >= allCars.length);
         }
     
-        // 🔹 Klassen für deaktivierte Buttons setzen, um das Styling beizubehalten
+        // 🔹 Set classes for deactivated buttons to retain the styling
         prevButton.classList.toggle("disabled", prevButton.disabled);
         nextButton.classList.toggle("disabled", nextButton.disabled);
     }
     
-    // 🔹 Event Listener für die Paging-Buttons
+    // 🔹 Event listener for the paging buttons
     document.getElementById("prev-cars").addEventListener("click", function () {
         if (currentPage > 0) {
             currentPage--;
@@ -400,7 +439,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
     
-    // 🏁 Event Listener für ALLE Filter-Buttons (Sofortige Aktualisierung)
+    // 🏁 Event listener for ALL filter buttons (immediate update)
     document.querySelectorAll("#sort-dropdown button, #type-dropdown button, #gear-dropdown button, #manufacturer-dropdown button, #doors-dropdown button, #seats-dropdown button, #drive-dropdown button, #age-dropdown button, #price-dropdown button, #climate-filter, #gps-filter, #trunk-dropdown button")
         .forEach(button => {
             button.addEventListener("click", function () {
@@ -408,5 +447,5 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     
-    fetchCarIds(); // 🚀 Starte die erste Datenabfrage            
+    fetchCarIds(); // 🚀 Start the first data query            
 });

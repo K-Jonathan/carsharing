@@ -1,3 +1,16 @@
+/**
+ * This script handles client-side pagination and interaction for a static list of booking cards.
+ * 
+ * Features:
+ * - Selects all `.booking-card` elements already present in the DOM.
+ * - Paginates the bookings list to show 3 cards per page.
+ * - Re-renders the visible booking cards when "Previous" or "Next" buttons are clicked.
+ * - Updates pagination buttons' disabled state based on the current page.
+ * - Uses event delegation to handle "Details" button clicks:
+ *    🔹 Navigates to `booking_details.php` with the selected booking ID.
+ * 
+ * Note: It clones booking cards into the visible area to avoid altering the original elements.
+ */
 document.addEventListener("DOMContentLoaded", function () {
     let allBookings = [];
     let currentPage = 0;
@@ -7,11 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderBookings() {
         allBookings = document.querySelectorAll(".booking-card");
 
-        bookingsList.innerHTML = ""; // Liste leeren, um nur relevante Buchungen anzuzeigen
+        bookingsList.innerHTML = ""; // Clear list to display only relevant bookings
 
         allBookings.forEach((booking, index) => {
             if (index >= currentPage * bookingsPerPage && index < (currentPage + 1) * bookingsPerPage) {
-                bookingsList.appendChild(booking.cloneNode(true)); // Buchung einfügen
+                bookingsList.appendChild(booking.cloneNode(true)); // Insert booking
             }
         });
 
@@ -37,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🔹 Event-Delegation für "Details"-Buttons
+    // 🔹 Event delegation for “Details” buttons
     bookingsList.addEventListener("click", function (event) {
         if (event.target.classList.contains("details-button")) {
             const bookingId = event.target.getAttribute("data-booking-id");
@@ -47,5 +60,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    renderBookings(); // Erste Anzeige
+    renderBookings(); // First display
 });
